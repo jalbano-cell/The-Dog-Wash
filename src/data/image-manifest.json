@@ -1,0 +1,155 @@
+[
+  {
+    "filename": "hero-dog-grooming.jpg",
+    "subject": "Professional groomer calmly grooming a well-behaved, relaxed dog in a modern salon",
+    "aspectRatio": "16:9",
+    "width": 1600,
+    "height": 900,
+    "alt": "Professional groomer gently grooming a calm, well-groomed dog in a bright modern salon",
+    "tone": "primary"
+  },
+  {
+    "filename": "service-full-grooming.jpg",
+    "subject": "Groomer completing a full breed-standard grooming cut",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Groomer giving a dog a full breed-standard grooming cut",
+    "tone": "sand"
+  },
+  {
+    "filename": "service-bath-brush.jpg",
+    "subject": "Dog being bathed and brushed in a grooming tub",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Dog being bathed and brushed in a grooming tub",
+    "tone": "sand"
+  },
+  {
+    "filename": "service-nail-trim.jpg",
+    "subject": "Groomer carefully trimming a dog's nails",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Groomer trimming a dog's nails carefully",
+    "tone": "sand"
+  },
+  {
+    "filename": "service-ear-cleaning.jpg",
+    "subject": "Groomer gently cleaning a dog's ear",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Groomer gently cleaning a dog's ear",
+    "tone": "sand"
+  },
+  {
+    "filename": "service-deshedding.jpg",
+    "subject": "Groomer de-shedding a heavy-coated dog with a specialized brush",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Groomer de-shedding a heavy-coated dog with a specialized brush",
+    "tone": "sand"
+  },
+  {
+    "filename": "service-puppy-grooming.jpg",
+    "subject": "Groomer gently introducing a puppy to its first grooming session",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Groomer gently introducing a puppy to grooming",
+    "tone": "sand"
+  },
+  {
+    "filename": "service-teeth-cleaning.jpg",
+    "subject": "Groomer performing basic dental hygiene care on a dog",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Groomer performing dental hygiene care on a dog",
+    "tone": "sand"
+  },
+  {
+    "filename": "service-flea-tick.jpg",
+    "subject": "Dog receiving a soothing flea and tick treatment bath",
+    "aspectRatio": "1:1",
+    "width": 800,
+    "height": 800,
+    "alt": "Dog receiving a soothing flea and tick treatment bath",
+    "tone": "sand"
+  },
+  {
+    "filename": "gallery-before-01.jpg",
+    "subject": "Goldendoodle with an overgrown, matted coat before grooming",
+    "aspectRatio": "4:3",
+    "width": 1200,
+    "height": 900,
+    "alt": "Goldendoodle with an overgrown, matted coat before grooming",
+    "tone": "stone"
+  },
+  {
+    "filename": "gallery-after-01.jpg",
+    "subject": "Goldendoodle with a neat, fluffy trimmed coat after grooming",
+    "aspectRatio": "4:3",
+    "width": 1200,
+    "height": 900,
+    "alt": "Goldendoodle with a neat, fluffy trimmed coat after grooming",
+    "tone": "fresh"
+  },
+  {
+    "filename": "gallery-before-02.jpg",
+    "subject": "Shih Tzu with a long, shaggy coat before grooming",
+    "aspectRatio": "4:3",
+    "width": 1200,
+    "height": 900,
+    "alt": "Shih Tzu with a long, shaggy coat before grooming",
+    "tone": "stone"
+  },
+  {
+    "filename": "gallery-after-02.jpg",
+    "subject": "Shih Tzu with a short, clean puppy-cut style after grooming",
+    "aspectRatio": "4:3",
+    "width": 1200,
+    "height": 900,
+    "alt": "Shih Tzu with a short, clean puppy-cut style after grooming",
+    "tone": "fresh"
+  },
+  {
+    "filename": "gallery-before-03.jpg",
+    "subject": "Poodle mix with a dense, tangled coat before grooming",
+    "aspectRatio": "4:3",
+    "width": 1200,
+    "height": 900,
+    "alt": "Poodle mix with a dense, tangled coat before grooming",
+    "tone": "stone"
+  },
+  {
+    "filename": "gallery-after-03.jpg",
+    "subject": "Poodle mix with a rounded, breed-standard cut after grooming",
+    "aspectRatio": "4:3",
+    "width": 1200,
+    "height": 900,
+    "alt": "Poodle mix with a rounded, breed-standard cut after grooming",
+    "tone": "fresh"
+  },
+  {
+    "filename": "about-groomer-portrait.jpg",
+    "subject": "Portrait of the award-winning head groomer with a client dog",
+    "aspectRatio": "4:5",
+    "width": 800,
+    "height": 1000,
+    "alt": "Portrait of The Dog Wash's award-winning head groomer with a client dog",
+    "tone": "stone"
+  },
+  {
+    "filename": "contact-facility-exterior.jpg",
+    "subject": "Exterior of The Dog Wash grooming studio storefront",
+    "aspectRatio": "16:9",
+    "width": 1600,
+    "height": 900,
+    "alt": "Exterior storefront of The Dog Wash grooming studio in Etobicoke",
+    "tone": "primary"
+  }
+]
