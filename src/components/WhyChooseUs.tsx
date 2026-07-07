@@ -1,4 +1,4 @@
-import { Heart, Award, Sparkles, Leaf, Wallet, MapPin } from "lucide-react";
+import { Heart, Award, Sparkles, Leaf, Wallet, MapPin, PawPrint } from "lucide-react";
 import { features } from "@/data/content";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -12,9 +12,14 @@ const iconMap = {
   mapPin: MapPin,
 };
 
+const iconStyles = [
+  "bg-primary-600 text-white",
+  "bg-playful-500 text-white",
+];
+
 export function WhyChooseUs() {
   return (
-    <section id="why-us" className="bg-white py-20 lg:py-28">
+    <section id="why-us" className="bg-white bg-dog-pattern py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Why Choose The Dog Wash"
@@ -23,18 +28,25 @@ export function WhyChooseUs() {
         />
 
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => {
+          {features.map((feature, index) => {
             const Icon = iconMap[feature.icon];
             return (
               <div
                 key={feature.title}
-                className="rounded-2xl border border-sand-dark/60 bg-cream p-7 transition-colors hover:border-primary-300"
+                className="group relative overflow-hidden rounded-2xl border border-sand-dark/60 bg-cream p-7 transition-colors hover:border-primary-300"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-600 text-white">
+                <PawPrint
+                  aria-hidden
+                  size={72}
+                  className="pointer-events-none absolute -bottom-4 -right-4 rotate-12 text-stone-800/[0.04] transition-transform duration-300 group-hover:rotate-[24deg] group-hover:scale-110"
+                />
+                <span
+                  className={`relative flex h-11 w-11 items-center justify-center rounded-xl transition-transform group-hover:animate-wag ${iconStyles[index % iconStyles.length]}`}
+                >
                   <Icon size={20} />
                 </span>
-                <h3 className="mt-5 text-lg font-bold text-stone-800">{feature.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                <h3 className="relative mt-5 text-lg font-bold text-stone-800">{feature.title}</h3>
+                <p className="relative mt-2 text-sm leading-relaxed text-stone-600">
                   {feature.description}
                 </p>
               </div>

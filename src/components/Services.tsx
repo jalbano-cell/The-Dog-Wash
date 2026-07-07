@@ -27,7 +27,7 @@ const iconMap = {
 
 export function Services() {
   return (
-    <section id="services" className="bg-cream py-20 lg:py-28">
+    <section id="services" className="bg-cream bg-dog-pattern py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Our Services"

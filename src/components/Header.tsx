@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, PawPrint } from "lucide-react";
 import clsx from "clsx";
 import { business } from "@/data/business";
 import { Container } from "@/components/ui/Container";
@@ -37,7 +37,11 @@ export function Header() {
       )}
     >
       <Container className="flex h-18 items-center justify-between py-3">
-        <Link href="#top" className="flex items-baseline gap-2">
+        <Link href="#top" className="group flex items-baseline gap-2">
+          <PawPrint
+            size={22}
+            className="mb-0.5 shrink-0 -rotate-12 text-playful-500 transition-transform duration-300 group-hover:animate-wag"
+          />
           <span className="font-display text-xl font-extrabold tracking-tight text-stone-800">
             The Dog Wash
           </span>

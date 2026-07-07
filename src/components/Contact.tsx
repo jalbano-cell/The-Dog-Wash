@@ -10,7 +10,7 @@ export function Contact() {
   const mapSrc = `https://maps.google.com/maps?q=${business.mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
-    <section id="contact" className="bg-cream py-20 lg:py-28">
+    <section id="contact" className="bg-cream bg-dog-pattern py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Visit Us"

@@ -7,7 +7,7 @@ export function About() {
   const portrait = getImage("about-groomer-portrait.jpg");
 
   return (
-    <section id="about" className="bg-white py-20 lg:py-28">
+    <section id="about" className="bg-white bg-dog-pattern py-20 lg:py-28">
       <Container className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
         <div className="relative mx-auto w-full max-w-sm lg:mx-0">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-xl ring-1 ring-stone-800/5">

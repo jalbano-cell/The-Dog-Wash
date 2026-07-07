@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 
 export function BookingCTA() {
   return (
-    <section id="booking" className="bg-stone-800 py-20 lg:py-24">
+    <section id="booking" className="bg-stone-800 bg-dog-pattern-dark py-20 lg:py-24">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">

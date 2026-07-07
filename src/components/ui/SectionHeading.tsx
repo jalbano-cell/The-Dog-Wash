@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { PawPrint } from "lucide-react";
 
 export function SectionHeading({
   eyebrow,
@@ -21,7 +22,13 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-600">
+        <p
+          className={clsx(
+            "mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary-600",
+            align === "center" ? "justify-center" : "justify-start"
+          )}
+        >
+          <PawPrint size={13} className="-rotate-12 text-playful-500" />
           {eyebrow}
         </p>
       ) : null}

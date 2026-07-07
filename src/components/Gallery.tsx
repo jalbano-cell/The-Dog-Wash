@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Gallery() {
   return (
-    <section id="gallery" className="bg-cream py-20 lg:py-28">
+    <section id="gallery" className="bg-cream bg-dog-pattern py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Gallery"

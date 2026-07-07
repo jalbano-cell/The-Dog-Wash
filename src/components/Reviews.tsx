@@ -20,7 +20,7 @@ export function Reviews() {
   }, [next]);
 
   return (
-    <section id="reviews" className="bg-primary-700 py-20 text-white lg:py-28">
+    <section id="reviews" className="bg-primary-700 bg-dog-pattern-dark py-20 text-white lg:py-28">
       <Container>
         <div className="flex flex-col items-center text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-100">
