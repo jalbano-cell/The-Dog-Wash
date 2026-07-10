@@ -59,7 +59,7 @@ export const locations: LocationInfo[] = [
       { days: ["Thursday"], opens: "10:00", closes: "18:00" },
     ],
     exteriorImage: "contact-facility-exterior-etobicoke.jpg",
-    bookingEmail: "johnalbano2015@gmail.com",
+    bookingEmail: "johnalbano2016@gmail.com",
     isPrimary: true,
   },
   {
