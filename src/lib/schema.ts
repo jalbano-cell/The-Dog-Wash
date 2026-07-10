@@ -1,34 +1,39 @@
 import { business } from "@/data/business";
+import type { LocationInfo } from "@/data/locations";
 
-export function localBusinessSchema() {
+const siteUrl = "https://thedogwashetobicoke.ca";
+
+export function localBusinessSchema(location: LocationInfo) {
+  const pageUrl = location.isPrimary ? siteUrl : `${siteUrl}/locations/${location.slug}`;
+
   return {
     "@context": "https://schema.org",
     "@type": "PetGroomer",
-    name: business.name,
-    image: "https://thedogwashetobicoke.ca/images/hero-dog-grooming.jpg",
-    "@id": "https://thedogwashetobicoke.ca/#business",
-    url: "https://thedogwashetobicoke.ca",
-    telephone: business.phone,
+    name: location.displayName,
+    image: `${siteUrl}/images/hero-dog-grooming.jpg`,
+    "@id": `${pageUrl}/#business`,
+    url: pageUrl,
+    telephone: location.phone,
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
-      streetAddress: business.address.line1,
-      addressLocality: business.address.city,
-      addressRegion: business.address.region,
-      postalCode: business.address.postalCode,
-      addressCountry: business.address.country,
+      streetAddress: location.address.line1,
+      addressLocality: location.address.city,
+      addressRegion: location.address.region,
+      postalCode: location.address.postalCode,
+      addressCountry: location.address.country,
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: business.geo.lat,
-      longitude: business.geo.lng,
+      latitude: location.geo.lat,
+      longitude: location.geo.lng,
     },
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: business.rating.value,
-      reviewCount: business.rating.count,
+      ratingValue: location.rating.value,
+      reviewCount: location.rating.count,
     },
-    openingHoursSpecification: business.hoursSchema.map((entry) => ({
+    openingHoursSpecification: location.hoursSchema.map((entry) => ({
       "@type": "OpeningHoursSpecification",
       dayOfWeek: entry.days,
       opens: entry.opens,

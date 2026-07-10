@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Award, ShieldCheck, HeartHandshake } from "lucide-react";
+import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { getImage } from "@/data/images";
 
-export function About() {
+export function About({ location }: { location: LocationInfo }) {
   const portrait = getImage("about-groomer-portrait.jpg");
 
   return (
@@ -30,15 +31,16 @@ export function About() {
 
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-600">
-            About The Dog Wash
+            About Our {location.shortName} Location
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-stone-800 sm:text-4xl">
             A luxury pet spa built on trust, care, and craft
           </h2>
           <p className="mt-6 text-base leading-relaxed text-stone-600">
-            The Dog Wash is a luxury pet spa on Royal York Rd in Etobicoke, led
-            by an award-winning head groomer ranked among the top pet stylists
-            in Canada. From breed-standard trims to creative styling, every
+            The Dog Wash&rsquo;s {location.shortName} location is on{" "}
+            {location.address.line1} in {location.address.city}, led by an
+            award-winning head groomer ranked among the top pet stylists in
+            Canada. From breed-standard trims to creative styling, every
             appointment is handled by certified professionals who treat your
             dog like their own.
           </p>

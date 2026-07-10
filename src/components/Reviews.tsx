@@ -3,11 +3,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { testimonials } from "@/data/content";
-import { business } from "@/data/business";
+import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
 
-export function Reviews() {
+export function Reviews({ location }: { location: LocationInfo }) {
   const [index, setIndex] = useState(0);
   const count = testimonials.length;
 
@@ -27,12 +27,12 @@ export function Reviews() {
             Reviews
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            What Etobicoke pet parents are saying
+            What {location.address.city} pet parents are saying
           </h2>
           <div className="mt-4 flex items-center gap-2">
-            <StarRating rating={business.rating.value} />
+            <StarRating rating={location.rating.value} />
             <span className="text-sm font-medium text-primary-100">
-              {business.rating.value} average from {business.rating.count}+ Google reviews
+              {location.rating.value} average from {location.rating.count}+ Google reviews
             </span>
           </div>
         </div>

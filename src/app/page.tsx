@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { LocationTabs } from "@/components/LocationTabs";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
 import { Services } from "@/components/Services";
@@ -10,24 +11,33 @@ import { BookingCTA } from "@/components/BookingCTA";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { MobileActionBar } from "@/components/MobileActionBar";
+import { getPrimaryLocation } from "@/data/locations";
+import { localBusinessSchema } from "@/lib/schema";
 
 export default function Home() {
+  const location = getPrimaryLocation();
+
   return (
     <>
-      <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema(location)) }}
+      />
+      <Header location={location} />
+      <LocationTabs />
       <main className="flex-1">
-        <Hero />
-        <TrustBar />
-        <Services />
+        <Hero location={location} />
+        <TrustBar location={location} />
+        <Services location={location} />
         <WhyChooseUs />
-        <Reviews />
+        <Reviews location={location} />
         <Gallery />
-        <About />
-        <BookingCTA />
-        <Contact />
+        <About location={location} />
+        <BookingCTA location={location} />
+        <Contact location={location} />
       </main>
-      <Footer />
-      <MobileActionBar />
+      <Footer location={location} />
+      <MobileActionBar location={location} />
     </>
   );
 }

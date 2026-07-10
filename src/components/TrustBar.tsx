@@ -1,31 +1,31 @@
 import { Star, MapPin, Users, Sparkles, PawPrint } from "lucide-react";
-import { business } from "@/data/business";
+import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 
-const items = [
-  {
-    icon: Star,
-    label: `${business.rating.value} / 5 on Google`,
-    sub: `${business.rating.count}+ reviews`,
-  },
-  {
-    icon: MapPin,
-    label: "Local Etobicoke Groomer",
-    sub: "Royal York Rd studio",
-  },
-  {
-    icon: Users,
-    label: "Experienced Pet Care Staff",
-    sub: "Award-winning stylists",
-  },
-  {
-    icon: Sparkles,
-    label: "Clean & Safe Facility",
-    sub: "Sanitized every visit",
-  },
-];
+export function TrustBar({ location }: { location: LocationInfo }) {
+  const items = [
+    {
+      icon: Star,
+      label: `${location.rating.value} / 5 on Google`,
+      sub: `${location.rating.count}+ reviews`,
+    },
+    {
+      icon: MapPin,
+      label: `Local ${location.address.city} Groomer`,
+      sub: `${location.shortName} studio`,
+    },
+    {
+      icon: Users,
+      label: "Experienced Pet Care Staff",
+      sub: "Award-winning stylists",
+    },
+    {
+      icon: Sparkles,
+      label: "Clean & Safe Facility",
+      sub: "Sanitized every visit",
+    },
+  ];
 
-export function TrustBar() {
   return (
     <section className="border-y border-sand-dark/60 bg-white bg-dog-pattern py-8">
       <Container className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4">

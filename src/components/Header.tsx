@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, Phone, PawPrint } from "lucide-react";
 import clsx from "clsx";
-import { business } from "@/data/business";
+import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
+import { useBookingModal } from "@/components/BookingModalContext";
 
 const navLinks = [
   { href: "#services", label: "Services" },
@@ -16,9 +17,10 @@ const navLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Header() {
+export function Header({ location }: { location: LocationInfo }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { openBookingModal } = useBookingModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -46,7 +48,7 @@ export function Header() {
             The Dog Wash
           </span>
           <span className="hidden text-xs font-medium text-primary-600 sm:inline">
-            Etobicoke
+            {location.shortName}
           </span>
         </Link>
 
@@ -64,18 +66,19 @@ export function Header() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href={business.phoneHref}
+            href={location.phoneHref}
             className="flex items-center gap-2 text-sm font-semibold text-stone-800 transition-colors hover:text-primary-600"
           >
             <Phone size={16} />
-            {business.phone}
+            {location.phone}
           </a>
-          <a
-            href="#booking"
+          <button
+            type="button"
+            onClick={() => openBookingModal(location)}
             className="rounded-full bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-700 hover:shadow-md"
           >
             Book Appointment
-          </a>
+          </button>
         </div>
 
         <button
@@ -104,19 +107,22 @@ export function Header() {
             ))}
             <div className="mt-3 flex flex-col gap-2 px-3">
               <a
-                href={business.phoneHref}
+                href={location.phoneHref}
                 className="flex items-center justify-center gap-2 rounded-full border border-primary-600 px-5 py-2.5 text-sm font-semibold text-primary-600"
               >
                 <Phone size={16} />
                 Call Now
               </a>
-              <a
-                href="#booking"
-                onClick={() => setMenuOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  openBookingModal(location);
+                }}
                 className="rounded-full bg-primary-600 px-5 py-2.5 text-center text-sm font-semibold text-white"
               >
                 Book Appointment
-              </a>
+              </button>
             </div>
           </Container>
         </div>

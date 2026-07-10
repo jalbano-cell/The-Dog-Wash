@@ -4,7 +4,9 @@ export type Service = {
   description: string;
   image: string;
   alt: string;
-  icon: "scissors" | "droplets" | "hand" | "ear" | "wind" | "puppy" | "smile" | "shield";
+  icon: "scissors" | "droplets" | "hand" | "ear" | "wind" | "puppy" | "smile" | "shield" | "sparkles";
+  /** Slugs of the locations (see src/data/locations.ts) that offer this service. */
+  locations: string[];
 };
 
 export const services: Service[] = [
@@ -14,8 +16,9 @@ export const services: Service[] = [
     description:
       "A complete head-to-tail groom — bath, cut, styling and finishing touches — tailored to your dog's breed and coat.",
     image: "/images/service-full-grooming.jpg",
-    alt: "Groomer giving a dog a full breed-standard grooming cut",
+    alt: "Freshly groomed white fluffy dog wearing a plaid bow tie collar, sitting on a grooming table",
     icon: "scissors",
+    locations: ["etobicoke"],
   },
   {
     slug: "bath-brush",
@@ -23,8 +26,9 @@ export const services: Service[] = [
     description:
       "A gentle, thorough wash and blow-dry with de-tangling brush-out, leaving coats soft, clean and fresh.",
     image: "/images/service-bath-brush.jpg",
-    alt: "Dog being bathed and brushed in a grooming tub",
+    alt: "Soapy Poodle Mix getting a bath in a grooming tub",
     icon: "droplets",
+    locations: ["etobicoke", "limehouse"],
   },
   {
     slug: "nail-trimming",
@@ -32,8 +36,9 @@ export const services: Service[] = [
     description:
       "Careful, low-stress nail trims and filing to keep paws healthy and comfortable between visits.",
     image: "/images/service-nail-trim.jpg",
-    alt: "Groomer trimming a dog's nails carefully",
+    alt: "Close-up of a groomer trimming a dog's nails with clippers",
     icon: "hand",
+    locations: ["etobicoke", "limehouse"],
   },
   {
     slug: "ear-cleaning",
@@ -41,8 +46,9 @@ export const services: Service[] = [
     description:
       "Gentle ear cleaning to help prevent buildup, irritation and infection — especially for floppy-eared breeds.",
     image: "/images/service-ear-cleaning.jpg",
-    alt: "Groomer gently cleaning a dog's ear",
+    alt: "Groomer gently cleaning a Golden Retriever's ear with a wipe",
     icon: "ear",
+    locations: ["etobicoke", "limehouse"],
   },
   {
     slug: "deshedding",
@@ -50,8 +56,9 @@ export const services: Service[] = [
     description:
       "A specialized treatment that removes loose undercoat to cut down shedding and keep your home fur-free.",
     image: "/images/service-deshedding.jpg",
-    alt: "Groomer de-shedding a heavy-coated dog with a specialized brush",
+    alt: "Groomer de-shedding a Golden Retriever's coat with a slicker brush",
     icon: "wind",
+    locations: ["etobicoke", "limehouse"],
   },
   {
     slug: "puppy-grooming",
@@ -59,8 +66,9 @@ export const services: Service[] = [
     description:
       "A soft introduction to grooming for puppies — short, positive sessions that build lifelong comfort and trust.",
     image: "/images/service-puppy-grooming.jpg",
-    alt: "Groomer gently introducing a puppy to grooming",
+    alt: "Groomer combing and trimming a red Toy Poodle puppy's coat",
     icon: "puppy",
+    locations: ["etobicoke"],
   },
   {
     slug: "teeth-cleaning",
@@ -68,8 +76,9 @@ export const services: Service[] = [
     description:
       "Basic dental hygiene care to help freshen breath and support healthy teeth and gums.",
     image: "/images/service-teeth-cleaning.jpg",
-    alt: "Groomer performing dental hygiene care on a dog",
+    alt: "Groomer cleaning a Golden Retriever's teeth with a finger toothbrush",
     icon: "smile",
+    locations: ["etobicoke"],
   },
   {
     slug: "flea-tick-treatment",
@@ -77,7 +86,22 @@ export const services: Service[] = [
     description:
       "A soothing treatment bath formulated to help clear fleas and ticks and calm irritated skin.",
     image: "/images/service-flea-tick.jpg",
-    alt: "Dog receiving a soothing flea and tick treatment bath",
+    alt: "Applying a spot-on flea and tick treatment to a dog's coat",
     icon: "shield",
+    locations: ["etobicoke", "limehouse"],
+  },
+  {
+    slug: "self-serve-wash",
+    name: "Self-Serve Wash Station",
+    description:
+      "Bring your dog in and use our walk-up wash stations — we supply the shampoo, towels and dryers, you supply the belly rubs.",
+    image: "/images/service-self-serve-wash.jpg",
+    alt: "Self-serve dog wash station with steps, tub, and coin-operated control panel",
+    icon: "sparkles",
+    locations: ["limehouse"],
   },
 ];
+
+export function getServicesForLocation(slug: string): Service[] {
+  return services.filter((service) => service.locations.includes(slug));
+}

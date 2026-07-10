@@ -1,21 +1,21 @@
 import Image from "next/image";
 import { MapPin, Phone, Clock } from "lucide-react";
-import { business } from "@/data/business";
+import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getImage } from "@/data/images";
 
-export function Contact() {
-  const exterior = getImage("contact-facility-exterior.jpg");
-  const mapSrc = `https://maps.google.com/maps?q=${business.mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+export function Contact({ location }: { location: LocationInfo }) {
+  const exterior = getImage(location.exteriorImage);
+  const mapSrc = `https://maps.google.com/maps?q=${location.mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <section id="contact" className="bg-cream bg-dog-pattern py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Visit Us"
-          title="Find us in Etobicoke"
-          description="Conveniently located on Royal York Rd — walk-ins welcome when space allows, appointments preferred."
+          title={`Find our ${location.shortName} location`}
+          description={`Conveniently located on ${location.address.line1} — walk-ins welcome when space allows, appointments preferred.`}
         />
 
         <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -36,15 +36,15 @@ export function Contact() {
                 <MapPin size={20} className="mt-0.5 shrink-0 text-primary-600" />
                 <div>
                   <p className="text-sm font-bold text-stone-800">Address</p>
-                  <p className="text-sm text-stone-600">{business.address.full}</p>
+                  <p className="text-sm text-stone-600">{location.address.full}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-2xl bg-white p-5 ring-1 ring-stone-800/5">
                 <Phone size={20} className="mt-0.5 shrink-0 text-primary-600" />
                 <div>
                   <p className="text-sm font-bold text-stone-800">Phone</p>
-                  <a href={business.phoneHref} className="text-sm text-stone-600 hover:text-primary-600">
-                    {business.phone}
+                  <a href={location.phoneHref} className="text-sm text-stone-600 hover:text-primary-600">
+                    {location.phone}
                   </a>
                 </div>
               </div>
@@ -56,7 +56,7 @@ export function Contact() {
                 <p className="text-sm font-bold text-stone-800">Hours</p>
               </div>
               <dl className="grid grid-cols-1 gap-y-1.5 text-sm">
-                {business.hours.map((h) => (
+                {location.hours.map((h) => (
                   <div key={h.day} className="flex items-center justify-between border-b border-sand-dark/50 py-1.5 last:border-0">
                     <dt className="text-stone-600">{h.day}</dt>
                     <dd

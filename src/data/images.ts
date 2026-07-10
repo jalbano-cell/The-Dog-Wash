@@ -3,7 +3,7 @@ import manifest from "./image-manifest.json";
 export type ImageSpec = {
   filename: string;
   subject: string;
-  aspectRatio: "16:9" | "1:1" | "4:3" | "4:5";
+  aspectRatio: "16:9" | "1:1" | "4:3" | "4:5" | "3:4";
   width: number;
   height: number;
   alt: string;

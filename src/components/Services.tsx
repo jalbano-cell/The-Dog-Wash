@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Scissors,
@@ -8,11 +10,14 @@ import {
   Dog,
   Smile,
   ShieldCheck,
+  Sparkles,
   ArrowRight,
 } from "lucide-react";
-import { services } from "@/data/services";
+import { getServicesForLocation } from "@/data/services";
+import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useBookingModal } from "@/components/BookingModalContext";
 
 const iconMap = {
   scissors: Scissors,
@@ -23,15 +28,19 @@ const iconMap = {
   puppy: Dog,
   smile: Smile,
   shield: ShieldCheck,
+  sparkles: Sparkles,
 };
 
-export function Services() {
+export function Services({ location }: { location: LocationInfo }) {
+  const services = getServicesForLocation(location.slug);
+  const { openBookingModal } = useBookingModal();
+
   return (
     <section id="services" className="bg-cream bg-dog-pattern py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Our Services"
-          title="Grooming services for every dog, every coat"
+          title={`Grooming services at our ${location.shortName} location`}
           description="Premium care backed by certified technique — book a single service or a full spa day."
         />
 
@@ -61,13 +70,14 @@ export function Services() {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-stone-600">
                     {service.description}
                   </p>
-                  <a
-                    href="#booking"
+                  <button
+                    type="button"
+                    onClick={() => openBookingModal(location)}
                     className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition-colors group-hover:text-primary-700"
                   >
                     Book Now
                     <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
-                  </a>
+                  </button>
                 </div>
               </div>
             );

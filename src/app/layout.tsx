@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
-import { localBusinessSchema } from "@/lib/schema";
+import { BookingModalProvider } from "@/components/BookingModalContext";
 import "./globals.css";
 
 const display = Plus_Jakarta_Sans({
@@ -61,13 +61,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-CA" className={`${display.variable} ${body.variable} h-full antialiased`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema()) }}
-        />
-      </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <BookingModalProvider>{children}</BookingModalProvider>
+      </body>
     </html>
   );
 }

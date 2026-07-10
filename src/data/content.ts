@@ -100,26 +100,26 @@ export type GalleryPair = {
 export const gallery: GalleryPair[] = [
   {
     id: "01",
-    breed: "Goldendoodle",
+    breed: "Toy Poodle",
     before: "/images/gallery-before-01.jpg",
     after: "/images/gallery-after-01.jpg",
-    beforeAlt: "Goldendoodle with an overgrown, matted coat before grooming",
-    afterAlt: "Goldendoodle with a neat, fluffy trimmed coat after grooming",
+    beforeAlt: "Toy Poodle with an overgrown, matted coat before grooming",
+    afterAlt: "Toy Poodle with a neat, fluffy trimmed coat after grooming",
   },
   {
     id: "02",
     breed: "Shih Tzu",
     before: "/images/gallery-before-02.jpg",
     after: "/images/gallery-after-02.jpg",
-    beforeAlt: "Shih Tzu with a long, shaggy coat before grooming",
-    afterAlt: "Shih Tzu with a short, clean puppy-cut style after grooming",
+    beforeAlt: "Black and white Shih Tzu with a wet, matted coat before grooming",
+    afterAlt: "Black and white Shih Tzu with a neat, trimmed coat after grooming",
   },
   {
     id: "03",
     breed: "Poodle Mix",
     before: "/images/gallery-before-03.jpg",
     after: "/images/gallery-after-03.jpg",
-    beforeAlt: "Poodle mix with a dense, tangled coat before grooming",
-    afterAlt: "Poodle mix with a rounded, breed-standard cut after grooming",
+    beforeAlt: "Brown Poodle Mix mid-bath, covered in shampoo suds",
+    afterAlt: "Brown Poodle Mix with a fluffy, rounded breed-standard cut after grooming",
   },
 ];

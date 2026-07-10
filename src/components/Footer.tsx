@@ -1,10 +1,12 @@
+import Link from "next/link";
 import { AtSign, MapPin, Phone, PawPrint } from "lucide-react";
 import { business } from "@/data/business";
+import { locations, type LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 
 const pawRotations = [-15, 10, -8, 16, -12, 8];
 
-export function Footer() {
+export function Footer({ location }: { location: LocationInfo }) {
   return (
     <footer className="relative bg-stone-800 bg-dog-pattern-dark pb-28 pt-14 text-white/70 lg:pb-14">
       <div aria-hidden>
@@ -20,12 +22,12 @@ export function Footer() {
         </Container>
       </div>
       <Container>
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="font-display text-xl font-extrabold text-white">The Dog Wash</p>
             <p className="mt-3 text-sm leading-relaxed">
-              Premium, calm dog grooming in Etobicoke — trusted by pet parents
-              across Toronto.
+              Premium, calm dog grooming across Etobicoke — trusted by pet
+              parents across Toronto.
             </p>
             <a
               href={business.instagram}
@@ -34,7 +36,7 @@ export function Footer() {
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white"
             >
               <AtSign size={16} />
-              @the_dog_wash
+              the_dog_wash
             </a>
           </div>
 
@@ -49,16 +51,32 @@ export function Footer() {
           </div>
 
           <div>
+            <p className="text-sm font-bold uppercase tracking-wide text-white">Locations</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              {locations.map((loc) => (
+                <li key={loc.slug}>
+                  <Link
+                    href={loc.isPrimary ? "/" : `/locations/${loc.slug}`}
+                    className={loc.slug === location.slug ? "font-semibold text-white" : "hover:text-white"}
+                  >
+                    {loc.shortName}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
             <p className="text-sm font-bold uppercase tracking-wide text-white">Contact</p>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="mt-0.5 shrink-0" />
-                {business.address.full}
+                {location.address.full}
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={16} className="shrink-0" />
-                <a href={business.phoneHref} className="hover:text-white">
-                  {business.phone}
+                <a href={location.phoneHref} className="hover:text-white">
+                  {location.phone}
                 </a>
               </li>
             </ul>
@@ -68,6 +86,19 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} The Dog Wash. All rights reserved.</p>
           <p>Etobicoke, Toronto, Ontario</p>
+        </div>
+        <div className="mt-3 text-xs text-white/50">
+          <p>
+            Website powered and managed by{" "}
+            <a
+              href="https://omnigriddigital.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-white/70 hover:text-white"
+            >
+              OmniGrid Digital
+            </a>
+          </p>
         </div>
       </Container>
     </footer>
