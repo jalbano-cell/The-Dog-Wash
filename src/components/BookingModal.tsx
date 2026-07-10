@@ -114,7 +114,7 @@ export function BookingModal({
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-primary-600 px-6 py-2.5 text-sm font-semibold text-primary-600 transition-colors hover:bg-primary-50"
             >
               <Phone size={16} />
-              Or call {currentLocation.phone} now
+              Or call {currentLocation.phone}
             </a>
           </div>
         ) : (
