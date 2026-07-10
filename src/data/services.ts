@@ -28,7 +28,7 @@ export const services: Service[] = [
     image: "/images/service-bath-brush.jpg",
     alt: "Soapy Poodle Mix getting a bath in a grooming tub",
     icon: "droplets",
-    locations: ["etobicoke", "limehouse"],
+    locations: ["etobicoke", "georgetown"],
   },
   {
     slug: "nail-trimming",
@@ -38,7 +38,7 @@ export const services: Service[] = [
     image: "/images/service-nail-trim.jpg",
     alt: "Close-up of a groomer trimming a dog's nails with clippers",
     icon: "hand",
-    locations: ["etobicoke", "limehouse"],
+    locations: ["etobicoke", "georgetown"],
   },
   {
     slug: "ear-cleaning",
@@ -48,7 +48,7 @@ export const services: Service[] = [
     image: "/images/service-ear-cleaning.jpg",
     alt: "Groomer gently cleaning a Golden Retriever's ear with a wipe",
     icon: "ear",
-    locations: ["etobicoke", "limehouse"],
+    locations: ["etobicoke", "georgetown"],
   },
   {
     slug: "deshedding",
@@ -58,7 +58,7 @@ export const services: Service[] = [
     image: "/images/service-deshedding.jpg",
     alt: "Groomer de-shedding a Golden Retriever's coat with a slicker brush",
     icon: "wind",
-    locations: ["etobicoke", "limehouse"],
+    locations: ["etobicoke", "georgetown"],
   },
   {
     slug: "puppy-grooming",
@@ -88,7 +88,7 @@ export const services: Service[] = [
     image: "/images/service-flea-tick.jpg",
     alt: "Applying a spot-on flea and tick treatment to a dog's coat",
     icon: "shield",
-    locations: ["etobicoke", "limehouse"],
+    locations: ["etobicoke", "georgetown"],
   },
   {
     slug: "self-serve-wash",
@@ -98,7 +98,7 @@ export const services: Service[] = [
     image: "/images/service-self-serve-wash.jpg",
     alt: "Self-serve dog wash station with steps, tub, and coin-operated control panel",
     icon: "sparkles",
-    locations: ["limehouse"],
+    locations: ["georgetown"],
   },
 ];
 

@@ -68,10 +68,10 @@ export const locations: LocationInfo[] = [
     // still placeholders — swap src/data/services.ts entries for this slug
     // once the owner provides the real service list, and confirm the rating
     // once the location's real Google review data is available.
-    slug: "limehouse",
-    shortName: "Limehouse",
+    slug: "georgetown",
+    shortName: "Georgetown",
     displayName: "The Dog Wash Inc.",
-    tagline: "Limehouse's Express Self-Serve Wash & Grooming Bar",
+    tagline: "Georgetown's Express Self-Serve Wash & Grooming Bar",
     descriptionShort:
       "A fast, affordable self-serve wash bar plus express grooming services — for pet parents who want a quick, quality clean without booking a full spa day.",
     phone: "(905) 702-9274",
@@ -97,7 +97,7 @@ export const locations: LocationInfo[] = [
       { day: "Sunday", hours: "9:00 AM – 5:00 PM" },
     ],
     hoursSchema: [{ days: ["Thursday", "Sunday"], opens: "09:00", closes: "17:00" }],
-    exteriorImage: "contact-facility-exterior-limehouse.jpg",
+    exteriorImage: "contact-facility-exterior-georgetown.jpg",
     bookingEmail: "johnalbano2016@gmail.com",
   },
 ];
