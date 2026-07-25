@@ -27,7 +27,7 @@ export function TrustBar({ location }: { location: LocationInfo }) {
   ];
 
   return (
-    <section className="border-y border-sand-dark/60 bg-white bg-dog-pattern py-8">
+    <section className="border-y border-sand-dark/60 bg-white py-8">
       <Container className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4">
         {items.map((item, index) => (
           <div key={item.label} className="relative flex items-center gap-3">

@@ -1,26 +1,12 @@
 import Link from "next/link";
-import { AtSign, MapPin, Phone, PawPrint } from "lucide-react";
+import { AtSign, MapPin, Phone } from "lucide-react";
 import { business } from "@/data/business";
 import { locations, type LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 
-const pawRotations = [-15, 10, -8, 16, -12, 8];
-
 export function Footer({ location }: { location: LocationInfo }) {
   return (
-    <footer className="relative bg-stone-800 bg-dog-pattern-dark pb-28 pt-14 text-white/70 lg:pb-14">
-      <div aria-hidden>
-        <Container className="flex justify-center gap-6 pb-8 opacity-40 sm:justify-start">
-          {pawRotations.map((rotate, i) => (
-            <PawPrint
-              key={i}
-              size={14}
-              style={{ transform: `rotate(${rotate}deg)` }}
-              className="text-playful-400"
-            />
-          ))}
-        </Container>
-      </div>
+    <footer className="relative bg-stone-800 pb-28 pt-14 text-white/70 lg:pb-14">
       <Container>
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>

@@ -46,43 +46,53 @@ export const features: Feature[] = [
 export type Testimonial = {
   quote: string;
   name: string;
+  /** Dog name + breed, e.g. "Milo the Goldendoodle". */
+  dog: string;
   rating: number;
   source: string;
 };
 
+// [PLACEHOLDER] reviews written in a realistic voice — replace each entry with
+// a real Google review (quote, reviewer first name + last initial, and their
+// dog's name/breed) before launch.
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Staff is friendly and really listens to requests. They took the time to understand exactly the cut we wanted.",
-    name: "J. M.",
+      "The staff really listened to exactly the cut we wanted and took their time getting it right. My girl came home looking incredible and completely relaxed.",
+    name: "Sarah M.",
+    dog: "with Milo the Goldendoodle",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "Great price, great service — will definitely be going back. My dog came out looking better than ever.",
-    name: "A. R.",
+      "Great price and even better service — you can tell they genuinely love dogs. We've already booked our next appointment.",
+    name: "Andrew R.",
+    dog: "with Bailey the Cocker Spaniel",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "They're so patient with my nervous rescue. You can tell they genuinely care about how the dogs feel, not just how they look.",
-    name: "S. K.",
+      "They're so patient with my nervous rescue. They care about how the dogs feel, not just how they look — that means everything to me.",
+    name: "Steph K.",
+    dog: "with Luna the rescue mix",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "Clean, professional, and my Goldendoodle actually gets excited when we pull into the parking lot now.",
-    name: "T. L.",
+      "Clean, professional, and somehow my dog actually gets excited when we pull into the parking lot now. That says it all.",
+    name: "Tom L.",
+    dog: "with Cooper the Bernedoodle",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "Booked a full groom for my Shih Tzu and the attention to detail was excellent. Will be our regular spot from now on.",
-    name: "M. P.",
+      "Booked a full groom for my Shih Tzu and the attention to detail was excellent. This is our regular spot from now on.",
+    name: "Maria P.",
+    dog: "with Coco the Shih Tzu",
     rating: 4,
     source: "Google Review",
   },

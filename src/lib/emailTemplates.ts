@@ -2,14 +2,14 @@ import type { BookingPayload } from "@/lib/bookingToken";
 import type { LocationInfo } from "@/data/locations";
 
 const BRAND = {
-  primary600: "#3f6559",
-  primary700: "#305048",
-  primary50: "#eef4f1",
-  cream: "#faf7f2",
-  stone800: "#3a423e",
-  stone600: "#6b7370",
-  sandDark: "#e6dccb",
-  gold: "#d9a441",
+  primary600: "#d1367f",
+  primary700: "#af2867",
+  primary50: "#fdf1f7",
+  cream: "#fdf2f8",
+  stone800: "#2b3550",
+  stone600: "#566281",
+  sandDark: "#d9e6f5",
+  gold: "#e34d9b",
 };
 
 function serviceLine(booking: Pick<BookingPayload, "service" | "customService">) {
@@ -129,6 +129,37 @@ export function ownerBookingRequestEmail({
   return layout({
     title: "New booking request",
     preheader: `${booking.name} requested an appointment at ${location.shortName}`,
+    bodyHtml,
+  });
+}
+
+export function contactMessageEmail({
+  location,
+  name,
+  contact,
+  message,
+}: {
+  location: LocationInfo;
+  name: string;
+  contact: string;
+  message: string;
+}) {
+  const bodyHtml = `
+    <h1 style="margin:0 0 4px;font-size:20px;font-weight:700;color:${BRAND.stone800};">New contact message</h1>
+    <p style="margin:0 0 20px;font-size:14px;color:${BRAND.stone600};">${location.shortName} studio</p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.primary50};border-radius:14px;padding:16px 18px;margin-bottom:22px;">
+      <tr><td style="font-size:15px;font-weight:700;color:${BRAND.stone800};padding-bottom:2px;">${name}</td></tr>
+      <tr><td style="font-size:13px;color:${BRAND.stone600};">${contact}</td></tr>
+    </table>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      ${detailRow("Message", message.replace(/\n/g, "<br />"))}
+    </table>`;
+
+  return layout({
+    title: "New contact message",
+    preheader: `${name} sent a message via the ${location.shortName} contact form`,
     bodyHtml,
   });
 }

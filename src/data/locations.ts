@@ -6,6 +6,10 @@ export type LocationInfo = {
   descriptionShort: string;
   phone: string;
   phoneHref: string;
+  /** sms: link for the "Text us" buttons. [PLACEHOLDER — confirm this line accepts texts.] */
+  sms: string;
+  /** Optional wa.me link. Leave undefined to hide the WhatsApp option. [PLACEHOLDER] */
+  whatsapp?: string;
   address: {
     line1: string;
     city: string;
@@ -34,6 +38,7 @@ export const locations: LocationInfo[] = [
       "Award-winning, certified pet stylists delivering calm, careful grooming for every breed — in a clean, modern studio your dog will actually enjoy.",
     phone: "(416) 242-2501",
     phoneHref: "tel:+14162422501",
+    sms: "sms:+14162422501", // [PLACEHOLDER — confirm this number can receive texts]
     address: {
       line1: "1500 Royal York Rd #38",
       city: "Etobicoke",
@@ -76,6 +81,7 @@ export const locations: LocationInfo[] = [
       "A fast, affordable self-serve wash bar plus express grooming services — for pet parents who want a quick, quality clean without booking a full spa day.",
     phone: "(905) 702-9274",
     phoneHref: "tel:+19057029274",
+    sms: "sms:+19057029274", // [PLACEHOLDER — confirm this number can receive texts]
     address: {
       line1: "13364 Highway 7",
       city: "Halton Hills",

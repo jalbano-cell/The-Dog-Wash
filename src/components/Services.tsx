@@ -36,12 +36,12 @@ export function Services({ location }: { location: LocationInfo }) {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section id="services" className="bg-cream bg-dog-pattern py-20 lg:py-28">
+    <section id="services" data-reveal className="bg-cream py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Our Services"
-          title={`Grooming services at our ${location.shortName} location`}
-          description="Premium care backed by certified technique — book a single service or a full spa day."
+          title={`Grooming services at our ${location.shortName} studio`}
+          description="Premium care from certified, dog-loving hands — whether your pup needs a single service or a full spa day, we treat them like our own."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -72,7 +72,7 @@ export function Services({ location }: { location: LocationInfo }) {
                   </p>
                   <button
                     type="button"
-                    onClick={() => openBookingModal(location)}
+                    onClick={() => openBookingModal(location, { service: service.name })}
                     className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition-colors group-hover:text-primary-700"
                   >
                     Book Now

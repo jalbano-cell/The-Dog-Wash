@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, PawPrint } from "lucide-react";
+import { Menu, X, Phone, PawPrint, MapPin, ChevronDown } from "lucide-react";
 import clsx from "clsx";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
@@ -10,10 +10,9 @@ import { useBookingModal } from "@/components/BookingModalContext";
 
 const navLinks = [
   { href: "#services", label: "Services" },
-  { href: "#why-us", label: "Why Us" },
-  { href: "#reviews", label: "Reviews" },
+  { href: "#pricing", label: "Pricing" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#about", label: "About" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -39,18 +38,26 @@ export function Header({ location }: { location: LocationInfo }) {
       )}
     >
       <Container className="flex h-18 items-center justify-between py-3">
-        <Link href="#top" className="group flex items-baseline gap-2">
-          <PawPrint
-            size={22}
-            className="mb-0.5 shrink-0 -rotate-12 text-playful-500 transition-transform duration-300 group-hover:animate-wag"
-          />
-          <span className="font-display text-xl font-extrabold tracking-tight text-stone-800">
-            The Dog Wash
-          </span>
-          <span className="hidden text-xs font-medium text-primary-600 sm:inline">
+        <div className="flex items-center gap-3">
+          <Link href="#top" className="group flex items-baseline gap-2">
+            <PawPrint
+              size={22}
+              className="mb-0.5 shrink-0 -rotate-12 text-playful-500 transition-transform duration-300 group-hover:animate-wag"
+            />
+            <span className="font-display text-xl font-extrabold tracking-tight text-stone-800">
+              The Dog Wash
+            </span>
+          </Link>
+          <Link
+            href="/"
+            aria-label="Change location"
+            className="hidden items-center gap-1 rounded-full bg-sand px-2.5 py-1 text-xs font-semibold text-primary-600 transition-colors hover:bg-primary-50 sm:inline-flex"
+          >
+            <MapPin size={12} />
             {location.shortName}
-          </span>
-        </Link>
+            <ChevronDown size={12} className="opacity-60" />
+          </Link>
+        </div>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
@@ -95,6 +102,14 @@ export function Header({ location }: { location: LocationInfo }) {
       {menuOpen ? (
         <div className="border-t border-sand-dark/60 bg-cream lg:hidden">
           <Container className="flex flex-col gap-1 py-4">
+            <Link
+              href="/"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-primary-600 hover:bg-sand"
+            >
+              <MapPin size={16} />
+              Change location ({location.shortName})
+            </Link>
             {navLinks.map((link) => (
               <a
                 key={link.href}

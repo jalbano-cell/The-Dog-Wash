@@ -19,11 +19,11 @@ const iconStyles = [
 
 export function WhyChooseUs() {
   return (
-    <section id="why-us" className="bg-white bg-dog-pattern py-20 lg:py-28">
+    <section id="why-us" data-reveal className="bg-white py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Why Choose The Dog Wash"
-          title="Trusted care, backed by results"
+          title="The care every dog parent hopes for"
           description="A calm environment, experienced hands, and honest pricing — everything that makes grooming stress-free for you and your dog."
         />
 

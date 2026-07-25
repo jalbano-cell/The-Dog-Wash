@@ -1,10 +1,27 @@
 import { business } from "@/data/business";
 import type { LocationInfo } from "@/data/locations";
+import type { FaqItem } from "@/data/faq";
 
 const siteUrl = "https://thedogwashetobicoke.ca";
 
+export function faqPageSchema(items: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        // Strip internal placeholder notes from the public structured data.
+        text: item.answer.replace(/\s*\[PLACEHOLDER[^\]]*\]/g, "").trim(),
+      },
+    })),
+  };
+}
+
 export function localBusinessSchema(location: LocationInfo) {
-  const pageUrl = location.isPrimary ? siteUrl : `${siteUrl}/locations/${location.slug}`;
+  const pageUrl = `${siteUrl}/locations/${location.slug}`;
 
   return {
     "@context": "https://schema.org",

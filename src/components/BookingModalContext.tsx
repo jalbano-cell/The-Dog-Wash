@@ -4,16 +4,23 @@ import { createContext, useCallback, useContext, useState, type ReactNode } from
 import type { LocationInfo } from "@/data/locations";
 import { BookingModal } from "@/components/BookingModal";
 
+type OpenBookingOptions = {
+  /** Service name to pre-select in the form (must match a service for the location). */
+  service?: string;
+};
+
 type BookingModalContextValue = {
-  openBookingModal: (location: LocationInfo) => void;
+  openBookingModal: (location: LocationInfo, options?: OpenBookingOptions) => void;
 };
 
 const BookingModalContext = createContext<BookingModalContextValue | null>(null);
 
 export function BookingModalProvider({ children }: { children: ReactNode }) {
   const [activeLocation, setActiveLocation] = useState<LocationInfo | null>(null);
+  const [presetService, setPresetService] = useState<string | undefined>(undefined);
 
-  const openBookingModal = useCallback((location: LocationInfo) => {
+  const openBookingModal = useCallback((location: LocationInfo, options?: OpenBookingOptions) => {
+    setPresetService(options?.service);
     setActiveLocation(location);
   }, []);
 
@@ -23,7 +30,7 @@ export function BookingModalProvider({ children }: { children: ReactNode }) {
     <BookingModalContext.Provider value={{ openBookingModal }}>
       {children}
       {activeLocation ? (
-        <BookingModal location={activeLocation} onClose={closeBookingModal} />
+        <BookingModal location={activeLocation} presetService={presetService} onClose={closeBookingModal} />
       ) : null}
     </BookingModalContext.Provider>
   );

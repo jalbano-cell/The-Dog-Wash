@@ -23,9 +23,11 @@ const dogSizes = [
 
 export function BookingModal({
   location,
+  presetService,
   onClose,
 }: {
   location: LocationInfo;
+  presetService?: string;
   onClose: () => void;
 }) {
   const [submitted, setSubmitted] = useState(false);
@@ -35,10 +37,12 @@ export function BookingModal({
   const [dogSize, setDogSize] = useState<(typeof dogSizes)[number]["value"] | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [selectedService, setSelectedService] = useState("");
+  const availableServices = getServicesForLocation(currentLocation.slug);
+  const [selectedService, setSelectedService] = useState(() =>
+    presetService && availableServices.some((s) => s.name === presetService) ? presetService : ""
+  );
 
   const hoursForSelectedDate = selectedDate ? getHoursForDate(currentLocation, selectedDate) : null;
-  const availableServices = getServicesForLocation(currentLocation.slug);
 
   function handleLocationChange(next: LocationInfo) {
     setCurrentLocation(next);

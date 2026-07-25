@@ -4,10 +4,10 @@ import { getEmailConfigForLocation, sendMail } from "@/lib/email";
 import { verifyBookingToken } from "@/lib/bookingToken";
 import { customerConfirmationEmail } from "@/lib/emailTemplates";
 
-const PRIMARY = "#3f6559";
-const STONE = "#3a423e";
-const STONE_MUTED = "#6b7370";
-const CREAM = "#faf7f2";
+const PRIMARY = "#d1367f";
+const STONE = "#2b3550";
+const STONE_MUTED = "#566281";
+const CREAM = "#fdf2f8";
 
 function page({ title, bodyHtml, status = 200 }: { title: string; bodyHtml: string; status?: number }) {
   const html = `<!doctype html>

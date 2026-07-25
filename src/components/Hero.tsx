@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import Image from "next/image";
 import { Phone, CalendarCheck, MapPin, ShieldCheck, PawPrint } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
@@ -14,7 +13,7 @@ export function Hero({ location }: { location: LocationInfo }) {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section id="top" className="relative overflow-hidden bg-cream bg-dog-pattern pb-16 pt-14 sm:pt-20 lg:pb-24 lg:pt-24">
+    <section id="top" className="relative overflow-hidden bg-cream pb-16 pt-14 sm:pt-20 lg:pb-24 lg:pt-24">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-primary-100/70 blur-3xl"
@@ -22,24 +21,6 @@ export function Hero({ location }: { location: LocationInfo }) {
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-10 left-0 h-72 w-72 rounded-full bg-playful-100/70 blur-3xl"
-      />
-      <PawPrint
-        aria-hidden
-        size={36}
-        style={{ "--paw-rotate": "-18deg" } as CSSProperties}
-        className="pointer-events-none absolute left-[6%] top-16 hidden -rotate-[18deg] text-playful-400/40 animate-bounce-slow sm:block"
-      />
-      <PawPrint
-        aria-hidden
-        size={26}
-        style={{ "--paw-rotate": "10deg", animationDelay: "0.6s" } as CSSProperties}
-        className="pointer-events-none absolute left-[16%] top-40 hidden rotate-[10deg] text-primary-300/50 animate-bounce-slow sm:block"
-      />
-      <PawPrint
-        aria-hidden
-        size={20}
-        style={{ "--paw-rotate": "-6deg", animationDelay: "1.2s" } as CSSProperties}
-        className="pointer-events-none absolute left-[24%] top-[68%] hidden -rotate-[6deg] text-playful-400/40 animate-bounce-slow lg:block"
       />
       <Container className="relative grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
         <div className="animate-fade-up">
