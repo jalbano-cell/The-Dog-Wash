@@ -11,7 +11,7 @@ export function TrustBar({ location }: { location: LocationInfo }) {
     },
     {
       icon: MapPin,
-      label: `Local ${location.address.city} Groomer`,
+      label: `Local ${location.shortName} Groomer`,
       sub: `${location.shortName} studio`,
     },
     {

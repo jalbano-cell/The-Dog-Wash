@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Phone, CalendarCheck, MapPin, ShieldCheck, PawPrint, Sun } from "lucide-react";
+import { Phone, CalendarCheck, MapPin, ShieldCheck, PawPrint, Sun, Award } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
@@ -28,6 +28,10 @@ export function Hero({ location }: { location: LocationInfo }) {
       <Container className="relative grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
         <div className="animate-fade-up">
           <div className="mb-6 flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-600 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow-sm">
+              <Award size={13} />
+              Award-Winning Groomer
+            </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-sand-dark bg-white/70 px-4 py-1.5 text-xs font-semibold text-stone-600">
               <MapPin size={14} className="text-primary-600" />
               {location.tagline}
@@ -99,6 +103,10 @@ export function Hero({ location }: { location: LocationInfo }) {
               className="object-cover"
             />
           </div>
+          <div className="absolute -top-4 right-4 flex items-center gap-2 rounded-full bg-primary-600 px-4 py-2 text-white shadow-xl ring-2 ring-white sm:-top-5 sm:right-6">
+            <Award size={18} />
+            <span className="text-sm font-extrabold uppercase tracking-wide">Award-Winning</span>
+          </div>
           <div className="absolute -bottom-6 -left-6 hidden items-start gap-3 rounded-2xl bg-white p-4 shadow-xl ring-1 ring-stone-800/5 sm:flex">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-playful-100 text-playful-600">
               <PawPrint size={16} />
@@ -108,7 +116,7 @@ export function Hero({ location }: { location: LocationInfo }) {
                 Local &amp; Trusted
               </p>
               <p className="mt-1 text-sm font-bold text-stone-800">
-                Serving Etobicoke &amp; Toronto
+                Serving {location.areaServed[0]} &amp; {location.areaServed[1]}
               </p>
             </div>
           </div>

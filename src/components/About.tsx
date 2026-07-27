@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { Award, ShieldCheck, HeartHandshake } from "lucide-react";
+import { Award, ShieldCheck, HeartHandshake, Trophy } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { getImage } from "@/data/images";
+import { realAwards } from "@/data/business";
 
 export function About({ location }: { location: LocationInfo }) {
   const portrait = getImage("about-groomer-portrait.jpg");
@@ -23,8 +24,8 @@ export function About({ location }: { location: LocationInfo }) {
           </div>
           <div className="absolute -bottom-6 -right-6 hidden rounded-2xl bg-primary-600 p-4 text-white shadow-xl sm:block">
             <p className="flex items-center gap-2 text-sm font-bold">
-              <Award size={16} />
-              Top 10 Groomer in Canada
+              <Trophy size={16} />
+              Award-Winning Groomer
             </p>
           </div>
         </div>
@@ -50,6 +51,23 @@ export function About({ location }: { location: LocationInfo }) {
             level, use gentle handling techniques, and keep our studio
             spotless — so every visit is as calm as it is transformative.
           </p>
+
+          {realAwards.length > 0 ? (
+            <div className="mt-8 rounded-2xl border border-primary-200 bg-primary-50 p-5">
+              <p className="flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-primary-700">
+                <Trophy size={16} />
+                Award-Winning · Recognized &amp; Certified
+              </p>
+              <ul className="mt-3 space-y-2">
+                {realAwards.map((award) => (
+                  <li key={award} className="flex items-start gap-2 text-sm font-medium text-stone-700">
+                    <Award size={15} className="mt-0.5 shrink-0 text-primary-600" />
+                    {award}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="flex items-start gap-3">
