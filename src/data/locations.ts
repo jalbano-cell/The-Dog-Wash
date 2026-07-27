@@ -6,10 +6,6 @@ export type LocationInfo = {
   descriptionShort: string;
   phone: string;
   phoneHref: string;
-  /** sms: link for the "Text us" buttons. [PLACEHOLDER — confirm this line accepts texts.] */
-  sms: string;
-  /** Optional wa.me link. Leave undefined to hide the WhatsApp option. [PLACEHOLDER] */
-  whatsapp?: string;
   address: {
     line1: string;
     city: string;
@@ -21,6 +17,10 @@ export type LocationInfo = {
   mapQuery: string;
   geo: { lat: number; lng: number };
   rating: { value: number; count: number; provider: string };
+  /** Cities/areas served — used in LocalBusiness structured data. */
+  areaServed: string[];
+  /** One-line description used in the page's LocalBusiness JSON-LD. */
+  seoDescription: string;
   hours: { day: string; hours: string }[];
   hoursSchema: { days: string[]; opens: string; closes: string }[];
   exteriorImage: string;
@@ -38,7 +38,6 @@ export const locations: LocationInfo[] = [
       "Award-winning, certified pet stylists delivering calm, careful grooming for every breed — in a clean, modern studio your dog will actually enjoy.",
     phone: "(416) 242-2501",
     phoneHref: "tel:+14162422501",
-    sms: "sms:+14162422501", // [PLACEHOLDER — confirm this number can receive texts]
     address: {
       line1: "1500 Royal York Rd #38",
       city: "Etobicoke",
@@ -48,8 +47,11 @@ export const locations: LocationInfo[] = [
       full: "1500 Royal York Rd #38, Etobicoke, ON M9P 3B6",
     },
     mapQuery: "1500 Royal York Rd %2338, Etobicoke, ON M9P 3B6",
-    geo: { lat: 43.6725, lng: -79.5388 },
+    geo: { lat: 43.6885, lng: -79.5225 },
     rating: { value: 4.2, count: 220, provider: "Google" },
+    areaServed: ["Etobicoke", "Toronto"],
+    seoDescription:
+      "Award-winning dog grooming studio in Etobicoke, Toronto. Full grooming, bath & brush, nail trims and more from certified pet stylists.",
     hours: [
       { day: "Monday", hours: "Closed" },
       { day: "Tuesday", hours: "9:00 AM – 5:00 PM" },
@@ -68,11 +70,8 @@ export const locations: LocationInfo[] = [
     isPrimary: true,
   },
   {
-    // Real address/coordinates resolved from the owner's Google Maps link
-    // (maps.app.goo.gl/4vNqiGCHnmL5FXbx5) via reverse geocoding. Services are
-    // still placeholders — swap src/data/services.ts entries for this slug
-    // once the owner provides the real service list, and confirm the rating
-    // once the location's real Google review data is available.
+    // Services are still placeholders — swap src/data/services.ts entries for
+    // this slug once the owner provides the real service list.
     slug: "georgetown",
     shortName: "Georgetown",
     displayName: "The Dog Wash Inc.",
@@ -81,18 +80,20 @@ export const locations: LocationInfo[] = [
       "A fast, affordable self-serve wash bar plus express grooming services — for pet parents who want a quick, quality clean without booking a full spa day.",
     phone: "(905) 702-9274",
     phoneHref: "tel:+19057029274",
-    sms: "sms:+19057029274", // [PLACEHOLDER — confirm this number can receive texts]
     address: {
-      line1: "13364 Highway 7",
-      city: "Halton Hills",
+      line1: "ON-7",
+      city: "Limehouse",
       region: "ON",
       postalCode: "L7G 4S4",
       country: "CA",
-      full: "13364 Highway 7, Halton Hills, ON L7G 4S4",
+      full: "ON-7, Limehouse, ON L7G 4S4",
     },
-    mapQuery: "43.6582941,-79.9619322",
-    geo: { lat: 43.6582941, lng: -79.9619322 },
-    rating: { value: 4.6, count: 85, provider: "Google" },
+    mapQuery: "43.660379,-79.964538",
+    geo: { lat: 43.660379, lng: -79.964538 },
+    rating: { value: 5.0, count: 6, provider: "Google" },
+    areaServed: ["Georgetown", "Halton Hills", "Limehouse", "Acton", "Milton"],
+    seoDescription:
+      "Award-winning dog grooming studio serving Georgetown and Halton Hills. Full grooming, bath & brush, nail trims and more from certified pet stylists.",
     hours: [
       { day: "Monday", hours: "Closed" },
       { day: "Tuesday", hours: "Closed" },

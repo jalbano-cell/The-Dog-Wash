@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MapPin, Phone, Clock, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Clock } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -47,25 +47,6 @@ export function Contact({ location }: { location: LocationInfo }) {
                   <a href={location.phoneHref} className="text-sm text-stone-600 hover:text-primary-600">
                     {location.phone}
                   </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 rounded-2xl bg-white p-5 ring-1 ring-stone-800/5">
-                <MessageSquare size={20} className="mt-0.5 shrink-0 text-primary-600" />
-                <div>
-                  <p className="text-sm font-bold text-stone-800">Text us</p>
-                  <a href={location.sms} className="text-sm text-stone-600 hover:text-primary-600">
-                    Send a text
-                  </a>
-                  {location.whatsapp ? (
-                    <a
-                      href={location.whatsapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-0.5 block text-sm text-stone-600 hover:text-primary-600"
-                    >
-                      WhatsApp
-                    </a>
-                  ) : null}
                 </div>
               </div>
             </div>

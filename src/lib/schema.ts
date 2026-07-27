@@ -1,8 +1,9 @@
 import { business } from "@/data/business";
 import type { LocationInfo } from "@/data/locations";
 import type { FaqItem } from "@/data/faq";
+import { siteConfig } from "@/lib/site-config";
 
-const siteUrl = "https://thedogwashetobicoke.ca";
+const siteUrl = siteConfig.baseUrl;
 
 export function faqPageSchema(items: FaqItem[]) {
   return {
@@ -25,12 +26,14 @@ export function localBusinessSchema(location: LocationInfo) {
 
   return {
     "@context": "https://schema.org",
-    "@type": "PetGroomer",
-    name: location.displayName,
-    image: `${siteUrl}/images/hero-dog-grooming.jpg`,
-    "@id": `${pageUrl}/#business`,
+    "@type": "LocalBusiness",
+    "@id": `${pageUrl}#${location.slug}`,
+    name: `The Dog Wash - ${location.shortName}`,
+    description: location.seoDescription,
     url: pageUrl,
-    telephone: location.phone,
+    image: `${siteUrl}/images/hero-dog-grooming.jpg`,
+    // E.164 form, derived from the tel: link so it always matches the visible number.
+    telephone: location.phoneHref.replace(/^tel:/, ""),
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
@@ -45,17 +48,19 @@ export function localBusinessSchema(location: LocationInfo) {
       latitude: location.geo.lat,
       longitude: location.geo.lng,
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: location.rating.value,
-      reviewCount: location.rating.count,
-    },
     openingHoursSpecification: location.hoursSchema.map((entry) => ({
       "@type": "OpeningHoursSpecification",
       dayOfWeek: entry.days,
       opens: entry.opens,
       closes: entry.closes,
     })),
+    // Must match the rating shown on the page (trust badge + reviews section).
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: location.rating.value.toFixed(1),
+      reviewCount: String(location.rating.count),
+    },
     sameAs: [business.instagram],
+    areaServed: location.areaServed,
   };
 }

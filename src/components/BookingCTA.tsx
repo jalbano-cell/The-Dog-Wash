@@ -1,7 +1,9 @@
-import { Phone, MessageCircle } from "lucide-react";
-import { business } from "@/data/business";
+"use client";
+
+import { Phone, CalendarCheck } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
+import { useBookingModal } from "@/components/BookingModalContext";
 
 function hoursSummary(location: LocationInfo) {
   const openDays = location.hours.filter((h) => h.hours !== "Closed");
@@ -10,6 +12,8 @@ function hoursSummary(location: LocationInfo) {
 }
 
 export function BookingCTA({ location }: { location: LocationInfo }) {
+  const { openBookingModal } = useBookingModal();
+
   return (
     <section id="booking" className="bg-stone-800 py-20 lg:py-24">
       <Container>
@@ -18,27 +22,25 @@ export function BookingCTA({ location }: { location: LocationInfo }) {
             Book your dog&rsquo;s appointment today
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
-            Call our {location.shortName} studio directly or message us on
-            Instagram to check availability — we&rsquo;ll find the right time
-            for you and your dog.
+            Book online in a few taps or call our {location.shortName} studio
+            directly — we&rsquo;ll find the right time for you and your dog.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={() => openBookingModal(location)}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-600/30 transition-all hover:bg-primary-700 sm:w-auto"
+            >
+              <CalendarCheck size={18} />
+              Book Appointment
+            </button>
             <a
               href={location.phoneHref}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary-600/30 transition-all hover:bg-primary-700 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10 sm:w-auto"
             >
               <Phone size={18} />
               Call {location.phone}
-            </a>
-            <a
-              href={business.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10 sm:w-auto"
-            >
-              <MessageCircle size={18} />
-              Message to Book Online
             </a>
           </div>
 

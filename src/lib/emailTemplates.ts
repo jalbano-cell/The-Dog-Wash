@@ -1,5 +1,6 @@
 import type { BookingPayload } from "@/lib/bookingToken";
 import type { LocationInfo } from "@/data/locations";
+import { siteHost } from "@/lib/site-config";
 
 const BRAND = {
   primary600: "#d1367f",
@@ -71,7 +72,7 @@ function layout({
             </tr>
             <tr>
               <td style="padding:18px 28px;background:${BRAND.primary50};text-align:center;">
-                <span style="font-size:11px;color:${BRAND.stone600};">This is an automated message from thedogwashetobicoke.ca</span>
+                <span style="font-size:11px;color:${BRAND.stone600};">This is an automated message from ${siteHost}</span>
               </td>
             </tr>
           </table>

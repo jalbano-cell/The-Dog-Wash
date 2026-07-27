@@ -52,10 +52,10 @@ export type Testimonial = {
   source: string;
 };
 
-// [PLACEHOLDER] reviews written in a realistic voice — replace each entry with
-// a real Google review (quote, reviewer first name + last initial, and their
-// dog's name/breed) before launch.
-export const testimonials: Testimonial[] = [
+// Etobicoke: [PLACEHOLDER] reviews written in a realistic voice — replace each
+// entry with a real Google review (quote, reviewer first name + last initial,
+// and their dog's name/breed) before launch.
+const etobicokeReviews: Testimonial[] = [
   {
     quote:
       "The staff really listened to exactly the cut we wanted and took their time getting it right. My girl came home looking incredible and completely relaxed.",
@@ -97,6 +97,62 @@ export const testimonials: Testimonial[] = [
     source: "Google Review",
   },
 ];
+
+// Georgetown: [PLACEHOLDER — replace with the location's real Google reviews.]
+// Written to reflect Georgetown's 5.0 rating and its positioning — gentle,
+// calm handling of anxious dogs, with several praising Angela by name. Confirm
+// wording/names against the actual Google reviews before launch.
+const georgetownReviews: Testimonial[] = [
+  {
+    quote:
+      "Angela was so gentle and patient with my anxious rescue — he's normally terrified of grooming but she kept him calm the whole time. We drove past three other places to come here and it's worth it.",
+    name: "Jenna R.",
+    dog: "with Finn the rescue mix",
+    rating: 5,
+    source: "Google Review",
+  },
+  {
+    quote:
+      "Best groomer we've found in Halton Hills. Angela genuinely cares about the dogs, not just getting them in and out. My girl comes home happy and looking beautiful every time.",
+    name: "Derek M.",
+    dog: "with Willow the Golden Retriever",
+    rating: 5,
+    source: "Google Review",
+  },
+  {
+    quote:
+      "My senior dog can be nervous and stiff, but Angela takes her time and is so kind with him. You can tell she loves what she does. Highly recommend to anyone in the area.",
+    name: "Patricia L.",
+    dog: "with Baxter the Cocker Spaniel",
+    rating: 5,
+    source: "Google Review",
+  },
+  {
+    quote:
+      "So happy we found this place. Calm, clean, and Angela is fantastic with dogs who don't love being groomed. My poodle actually walks in wagging now.",
+    name: "Sam T.",
+    dog: "with Pixel the Toy Poodle",
+    rating: 5,
+    source: "Google Review",
+  },
+  {
+    quote:
+      "Being open on Sundays is a lifesaver for our schedule, and the grooming is top-notch. Angela is gentle, professional, and clearly great with anxious dogs. Five stars.",
+    name: "Nicole B.",
+    dog: "with Momo the Bichon Frise",
+    rating: 5,
+    source: "Google Review",
+  },
+];
+
+export const reviewsByLocation: Record<string, Testimonial[]> = {
+  etobicoke: etobicokeReviews,
+  georgetown: georgetownReviews,
+};
+
+export function getReviewsForLocation(slug: string): Testimonial[] {
+  return reviewsByLocation[slug] ?? etobicokeReviews;
+}
 
 export type GalleryPair = {
   id: string;

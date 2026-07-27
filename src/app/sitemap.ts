@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { locations } from "@/data/locations";
+import { siteConfig } from "@/lib/site-config";
 
-const siteUrl = "https://thedogwashetobicoke.ca";
+const siteUrl = siteConfig.baseUrl;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

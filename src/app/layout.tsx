@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { BookingModalProvider } from "@/components/BookingModalContext";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const display = Plus_Jakarta_Sans({
@@ -15,7 +16,7 @@ const body = Inter({
   weight: ["400", "500", "600"],
 });
 
-const siteUrl = "https://thedogwashetobicoke.ca";
+const siteUrl = siteConfig.baseUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -26,11 +27,11 @@ export const metadata: Metadata = {
   description:
     "Award-winning dog grooming studio in Etobicoke, Toronto. Full grooming, bath & brush, nail trims and more from certified pet stylists. Book your dog's appointment today.",
   keywords: [
-    "dog grooming Etobicoke",
-    "dog groomer Toronto",
+    "dog grooming",
+    "dog groomer",
     "pet grooming near me",
-    "dog groomer Etobicoke",
-    "Royal York dog grooming",
+    "dog wash",
+    "dog grooming near me",
   ],
   openGraph: {
     title: "The Dog Wash | Premium Dog Grooming in Etobicoke",

@@ -35,11 +35,29 @@ export async function generateMetadata({
   const location = getLocationBySlug(slug);
   if (!location) return {};
 
+  const path = `/locations/${location.slug}`;
+  const title = `${location.shortName} | ${location.tagline}`;
+  // Per-location keywords so Etobicoke terms never appear on the Georgetown
+  // page (or vice versa).
+  const keywords = [
+    ...location.areaServed.flatMap((area) => [`dog grooming ${area}`, `dog groomer ${area}`]),
+    "pet grooming near me",
+    "dog wash",
+  ];
+
   return {
-    title: `${location.shortName} | ${location.tagline}`,
-    description: location.descriptionShort,
+    title,
+    description: location.seoDescription,
+    keywords,
     alternates: {
-      canonical: `/locations/${location.slug}`,
+      canonical: path,
+    },
+    openGraph: {
+      title,
+      description: location.seoDescription,
+      url: path,
+      type: "website",
+      images: [{ url: "/images/hero-dog-grooming.jpg", width: 1600, height: 900 }],
     },
   };
 }

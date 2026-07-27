@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Phone, CalendarCheck, MapPin, ShieldCheck, PawPrint } from "lucide-react";
+import { Phone, CalendarCheck, MapPin, ShieldCheck, PawPrint, Sun } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
@@ -11,6 +11,9 @@ import { useBookingModal } from "@/components/BookingModalContext";
 export function Hero({ location }: { location: LocationInfo }) {
   const heroImage = getImage("hero-dog-grooming.jpg");
   const { openBookingModal } = useBookingModal();
+  const opensSunday = location.hours.some(
+    (h) => h.day === "Sunday" && h.hours.toLowerCase() !== "closed"
+  );
 
   return (
     <section id="top" className="relative overflow-hidden bg-cream pb-16 pt-14 sm:pt-20 lg:pb-24 lg:pt-24">
@@ -24,9 +27,17 @@ export function Hero({ location }: { location: LocationInfo }) {
       />
       <Container className="relative grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
         <div className="animate-fade-up">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sand-dark bg-white/70 px-4 py-1.5 text-xs font-semibold text-stone-600">
-            <MapPin size={14} className="text-primary-600" />
-            {location.tagline}
+          <div className="mb-6 flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-sand-dark bg-white/70 px-4 py-1.5 text-xs font-semibold text-stone-600">
+              <MapPin size={14} className="text-primary-600" />
+              {location.tagline}
+            </span>
+            {opensSunday ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm">
+                <Sun size={13} />
+                Open Sundays
+              </span>
+            ) : null}
           </div>
 
           <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-stone-800 sm:text-5xl lg:text-[3.4rem]">

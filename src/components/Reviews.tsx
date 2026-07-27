@@ -2,13 +2,14 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { testimonials } from "@/data/content";
+import { getReviewsForLocation } from "@/data/content";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
 import { CountUp } from "@/components/CountUp";
 
 export function Reviews({ location }: { location: LocationInfo }) {
+  const testimonials = getReviewsForLocation(location.slug);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const count = testimonials.length;
