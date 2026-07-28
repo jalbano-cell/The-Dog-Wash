@@ -3,13 +3,17 @@ import type { LocationInfo } from "@/data/locations";
 import { siteHost } from "@/lib/site-config";
 
 const BRAND = {
-  primary600: "#d1367f",
+  primary600: "#d1367f", // pink
   primary700: "#af2867",
   primary50: "#fdf1f7",
+  accent: "#3f8fd6", // blue
+  accentDark: "#2f74b8",
   cream: "#fdf2f8",
   stone800: "#2b3550",
   stone600: "#566281",
   sandDark: "#d9e6f5",
+  line: "#f2dce9", // soft pink divider
+  pageBg: "#f6f2f6",
   gold: "#e34d9b",
 };
 
@@ -33,9 +37,32 @@ function formatDate(date: string) {
 function detailRow(label: string, value: string) {
   return `
     <tr>
-      <td style="padding:9px 0;border-bottom:1px solid ${BRAND.sandDark};font-size:13px;font-weight:600;color:${BRAND.stone600};width:38%;vertical-align:top;">${label}</td>
-      <td style="padding:9px 0;border-bottom:1px solid ${BRAND.sandDark};font-size:14px;color:${BRAND.stone800};vertical-align:top;">${value}</td>
+      <td style="padding:10px 0;border-bottom:1px solid ${BRAND.line};font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;color:${BRAND.stone600};width:34%;vertical-align:top;">${label}</td>
+      <td style="padding:10px 0;border-bottom:1px solid ${BRAND.line};font-size:14px;color:${BRAND.stone800};vertical-align:top;">${value}</td>
     </tr>`;
+}
+
+/** Wraps detail rows in a soft, rounded card. */
+function detailCard(rowsHtml: string) {
+  return `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.primary50};border:1px solid ${BRAND.line};border-radius:14px;">
+      <tr><td style="padding:6px 18px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rowsHtml}</table>
+      </td></tr>
+    </table>`;
+}
+
+function ctaButtonSecondary(url: string, label: string) {
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:14px auto 0;">
+      <tr>
+        <td style="border-radius:999px;border:2px solid ${BRAND.accent};">
+          <a href="${url}" style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:700;color:${BRAND.accentDark};text-decoration:none;border-radius:999px;">
+            ${label}
+          </a>
+        </td>
+      </tr>
+    </table>`;
 }
 
 function layout({
@@ -54,25 +81,30 @@ function layout({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${title}</title>
   </head>
-  <body style="margin:0;padding:0;background:${BRAND.cream};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <body style="margin:0;padding:0;background:${BRAND.pageBg};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${preheader}</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.cream};padding:32px 16px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.pageBg};padding:32px 16px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(58,66,62,0.08);">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:22px;overflow:hidden;box-shadow:0 6px 24px rgba(43,53,80,0.10);">
+            <!-- Blue accent strip -->
+            <tr><td style="height:5px;background:${BRAND.accent};font-size:0;line-height:0;">&nbsp;</td></tr>
+            <!-- Pink header with brand + tagline -->
             <tr>
-              <td style="background:${BRAND.primary600};padding:22px 28px;">
-                <span style="font-size:17px;font-weight:700;color:#ffffff;letter-spacing:0.01em;">🐾 The Dog Wash</span>
+              <td style="background:${BRAND.primary600};padding:26px 32px;">
+                <span style="font-size:21px;font-weight:800;color:#ffffff;letter-spacing:0.01em;">🐾 The Dog Wash</span>
+                <div style="margin-top:4px;font-size:12px;font-weight:600;color:#fbdcec;letter-spacing:0.02em;">Premium Dog Grooming · Etobicoke &amp; Georgetown</div>
               </td>
             </tr>
             <tr>
-              <td style="padding:28px;">
+              <td style="padding:30px 32px;">
                 ${bodyHtml}
               </td>
             </tr>
             <tr>
-              <td style="padding:18px 28px;background:${BRAND.primary50};text-align:center;">
-                <span style="font-size:11px;color:${BRAND.stone600};">This is an automated message from ${siteHost}</span>
+              <td style="padding:22px 32px;background:${BRAND.primary50};border-top:1px solid ${BRAND.line};text-align:center;">
+                <div style="font-size:14px;font-weight:800;color:${BRAND.stone800};">The Dog Wash</div>
+                <div style="margin-top:3px;font-size:11px;color:${BRAND.stone600};">Premium dog grooming · ${siteHost}</div>
               </td>
             </tr>
           </table>
@@ -125,7 +157,7 @@ export function ownerBookingRequestEmail({
       <tr><td style="font-size:13px;color:${BRAND.stone600};">${booking.phone} &nbsp;•&nbsp; ${booking.customerEmail}</td></tr>
     </table>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
+    ${detailCard(rows)}
 
     ${ctaButton(manageUrl, "Review &amp; respond →")}
     <p style="margin:10px 0 0;text-align:center;font-size:12px;color:${BRAND.stone600};">
@@ -159,9 +191,7 @@ export function contactMessageEmail({
       <tr><td style="font-size:13px;color:${BRAND.stone600};">${contact}</td></tr>
     </table>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-      ${detailRow("Message", message.replace(/\n/g, "<br />"))}
-    </table>`;
+    ${detailCard(detailRow("Message", message.replace(/\n/g, "<br />")))}`;
 
   return layout({
     title: "New contact message",
@@ -193,8 +223,8 @@ export function customerConfirmationEmail({
       Your appointment at ${location.shortName} has been confirmed. Here are the details:
     </p>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
-    ${calendarUrl ? ctaButton(calendarUrl, "📅 Add to Google Calendar") : ""}
+    ${detailCard(rows)}
+    ${calendarUrl ? ctaButtonSecondary(calendarUrl, "📅 Add to Google Calendar") : ""}
 
     <p style="margin:24px 0 0;font-size:14px;line-height:1.6;color:${BRAND.stone600};">
       Need to reschedule or have a question? Just call or text us at

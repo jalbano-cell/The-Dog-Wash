@@ -1,8 +1,8 @@
 import type { BookingPayload } from "@/lib/bookingToken";
 import type { LocationInfo } from "@/data/locations";
 
-// A groom runs about 3 hours; calendar events span that window.
-const EVENT_DURATION_MINUTES = 180;
+// Appointments are booked in 2-hour blocks; calendar events span that window.
+const EVENT_DURATION_MINUTES = 120;
 const TIMEZONE = "America/Toronto";
 
 function pad(n: number) {
