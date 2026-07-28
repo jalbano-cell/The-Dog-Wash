@@ -83,14 +83,27 @@ function layout({
 </html>`;
 }
 
+function ctaButton(url: string, label: string) {
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:26px auto 6px;">
+      <tr>
+        <td style="border-radius:999px;background:${BRAND.primary600};">
+          <a href="${url}" style="display:inline-block;padding:14px 32px;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;border-radius:999px;">
+            ${label}
+          </a>
+        </td>
+      </tr>
+    </table>`;
+}
+
 export function ownerBookingRequestEmail({
   booking,
   location,
-  approveUrl,
+  manageUrl,
 }: {
   booking: BookingPayload;
   location: LocationInfo;
-  approveUrl: string;
+  manageUrl: string;
 }) {
   const rows = [
     detailRow("Location", location.displayName),
@@ -114,17 +127,9 @@ export function ownerBookingRequestEmail({
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
 
-    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:26px auto 6px;">
-      <tr>
-        <td style="border-radius:999px;background:${BRAND.primary600};">
-          <a href="${approveUrl}" style="display:inline-block;padding:14px 32px;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;border-radius:999px;">
-            ✓ Approve appointment
-          </a>
-        </td>
-      </tr>
-    </table>
+    ${ctaButton(manageUrl, "Review &amp; respond →")}
     <p style="margin:10px 0 0;text-align:center;font-size:12px;color:${BRAND.stone600};">
-      Approving will automatically email ${booking.name} a confirmation.
+      Approve the requested time${location.bookingMode === "approve" ? ", or offer two alternatives" : ""} — ${booking.name} is emailed a confirmation once you do.
     </p>`;
 
   return layout({
@@ -168,9 +173,11 @@ export function contactMessageEmail({
 export function customerConfirmationEmail({
   booking,
   location,
+  calendarUrl,
 }: {
   booking: BookingPayload;
   location: LocationInfo;
+  calendarUrl?: string | null;
 }) {
   const rows = [
     detailRow("Location", `${location.displayName} — ${location.address.full}`),
@@ -187,6 +194,7 @@ export function customerConfirmationEmail({
     </p>
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
+    ${calendarUrl ? ctaButton(calendarUrl, "📅 Add to Google Calendar") : ""}
 
     <p style="margin:24px 0 0;font-size:14px;line-height:1.6;color:${BRAND.stone600};">
       Need to reschedule or have a question? Just call or text us at
@@ -197,6 +205,38 @@ export function customerConfirmationEmail({
   return layout({
     title: "Your appointment is confirmed",
     preheader: `Your ${location.shortName} appointment is confirmed`,
+    bodyHtml,
+  });
+}
+
+export function customerOfferEmail({
+  booking,
+  location,
+  options,
+}: {
+  booking: BookingPayload;
+  location: LocationInfo;
+  options: { label: string; url: string }[];
+}) {
+  const buttons = options
+    .map((opt) => ctaButton(opt.url, opt.label))
+    .join("");
+
+  const bodyHtml = `
+    <h1 style="margin:0 0 4px;font-size:20px;font-weight:700;color:${BRAND.stone800};">Two times for you, ${booking.name.split(" ")[0]}!</h1>
+    <p style="margin:0 0 8px;font-size:14px;line-height:1.6;color:${BRAND.stone600};">
+      Thanks for your request at ${location.shortName}. We have two openings that
+      would work${booking.dogName ? ` for ${booking.dogName}` : ""} — tap whichever suits you best and we'll lock it in.
+    </p>
+    ${buttons}
+    <p style="margin:18px 0 0;text-align:center;font-size:12px;color:${BRAND.stone600};">
+      Whichever you pick is confirmed instantly. Questions? Call us at
+      <a href="${location.phoneHref}" style="color:${BRAND.primary600};font-weight:700;text-decoration:none;">${location.phone}</a>.
+    </p>`;
+
+  return layout({
+    title: "Two appointment times to choose from",
+    preheader: `Pick one of two times for your ${location.shortName} appointment`,
     bodyHtml,
   });
 }

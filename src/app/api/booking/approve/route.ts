@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import { getLocationBySlug } from "@/data/locations";
+import { getLocationBySlug, type LocationInfo } from "@/data/locations";
 import { getEmailConfigForLocation, sendMail } from "@/lib/email";
-import { verifyBookingToken } from "@/lib/bookingToken";
+import { verifyBookingToken, type BookingPayload } from "@/lib/bookingToken";
 import { customerConfirmationEmail } from "@/lib/emailTemplates";
+import { googleCalendarUrl } from "@/lib/calendar";
 
 const PRIMARY = "#d1367f";
 const STONE = "#2b3550";
@@ -33,11 +34,38 @@ function invalidTokenPage() {
     bodyHtml: `
       <h1 style="margin:0 0 8px;font-size:19px;color:${STONE};">This link isn't valid</h1>
       <p style="margin:0;font-size:14px;color:${STONE_MUTED};line-height:1.6;">
-        It may have been altered or is from an old email. Check the original booking request email and try again.
+        It may have been altered or is from an old email. Check the original email and try again.
       </p>`,
   });
 }
 
+async function sendConfirmation(booking: BookingPayload, location: LocationInfo, notifyOwner: boolean) {
+  const config = getEmailConfigForLocation(location.slug);
+  const calendarUrl = location.bookingMode === "calendar" ? googleCalendarUrl(booking, location) : null;
+
+  await sendMail({
+    config,
+    to: booking.customerEmail,
+    subject: `Confirmed: your appointment at ${location.shortName}`,
+    text: `Your appointment at ${location.displayName} is confirmed for ${booking.date || "the requested date"} at ${booking.time || "the requested time"}. Call or text ${location.phone} with any questions.`,
+    html: customerConfirmationEmail({ booking, location, calendarUrl }),
+  });
+
+  if (notifyOwner) {
+    await sendMail({
+      config,
+      to: location.bookingEmail,
+      subject: `Confirmed: ${booking.name} — ${booking.date || ""} ${booking.time || ""} (${location.shortName})`,
+      text: `${booking.name} confirmed their appointment at ${location.displayName} for ${booking.date || "the requested date"} at ${booking.time || "the requested time"}. Phone: ${booking.phone}. Email: ${booking.customerEmail}.`,
+    });
+  }
+
+  return calendarUrl;
+}
+
+// Customer-facing confirm page (reached from the "pick one of two times" email).
+// GET has no side effects — confirmation only happens on the POST below, which
+// protects against email/link prefetchers firing a confirmation prematurely.
 export async function GET(request: Request) {
   const token = new URL(request.url).searchParams.get("token") ?? "";
   const booking = verifyBookingToken(token);
@@ -46,25 +74,20 @@ export async function GET(request: Request) {
   const location = getLocationBySlug(booking.locationSlug);
   if (!location) return invalidTokenPage();
 
-  const serviceLine =
-    booking.service === "custom" ? `Custom — ${booking.customService || "not specified"}` : booking.service || "Not specified";
-
   return page({
-    title: "Approve appointment",
+    title: "Confirm your appointment",
     bodyHtml: `
-      <h1 style="margin:0 0 4px;font-size:19px;color:${STONE};">Approve this appointment?</h1>
-      <p style="margin:0 0 20px;font-size:13px;color:${STONE_MUTED};">${location.shortName} studio</p>
+      <h1 style="margin:0 0 4px;font-size:19px;color:${STONE};">Confirm this time?</h1>
+      <p style="margin:0 0 20px;font-size:13px;color:${STONE_MUTED};">The Dog Wash — ${location.shortName}</p>
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;color:${STONE};margin-bottom:24px;">
-        <tr><td style="padding:6px 0;color:${STONE_MUTED};width:36%;">Name</td><td style="padding:6px 0;">${booking.name}</td></tr>
-        <tr><td style="padding:6px 0;color:${STONE_MUTED};">Email</td><td style="padding:6px 0;">${booking.customerEmail}</td></tr>
-        <tr><td style="padding:6px 0;color:${STONE_MUTED};">Service</td><td style="padding:6px 0;">${serviceLine}</td></tr>
-        <tr><td style="padding:6px 0;color:${STONE_MUTED};">Date</td><td style="padding:6px 0;">${booking.date || "Not specified"}</td></tr>
+        <tr><td style="padding:6px 0;color:${STONE_MUTED};width:36%;">Date</td><td style="padding:6px 0;">${booking.date || "Not specified"}</td></tr>
         <tr><td style="padding:6px 0;color:${STONE_MUTED};">Time</td><td style="padding:6px 0;">${booking.time || "Not specified"}</td></tr>
       </table>
       <form method="POST" action="/api/booking/approve">
         <input type="hidden" name="token" value="${token}" />
+        <input type="hidden" name="by" value="customer" />
         <button type="submit" style="width:100%;padding:14px;border:none;border-radius:999px;background:${PRIMARY};color:#fff;font-size:15px;font-weight:700;cursor:pointer;">
-          ✓ Approve &amp; email confirmation to ${booking.name.split(" ")[0]}
+          ✓ Confirm this appointment
         </button>
       </form>`,
   });
@@ -73,21 +96,16 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const data = await request.formData();
   const token = String(data.get("token") ?? "");
+  const by = String(data.get("by") ?? "owner");
   const booking = verifyBookingToken(token);
   if (!booking) return invalidTokenPage();
 
   const location = getLocationBySlug(booking.locationSlug);
   if (!location) return invalidTokenPage();
 
+  let calendarUrl: string | null = null;
   try {
-    const config = getEmailConfigForLocation(location.slug);
-    await sendMail({
-      config,
-      to: booking.customerEmail,
-      subject: `Confirmed: your appointment at ${location.shortName}`,
-      text: `Your appointment at ${location.displayName} is confirmed for ${booking.date || "the requested date"} at ${booking.time || "the requested time"}. Call or text ${location.phone} with any questions.`,
-      html: customerConfirmationEmail({ booking, location }),
-    });
+    calendarUrl = await sendConfirmation(booking, location, by === "customer");
   } catch (err) {
     console.error("Failed to send confirmation email", err);
     return page({
@@ -101,12 +119,17 @@ export async function POST(request: Request) {
     });
   }
 
+  const calendarButton = calendarUrl
+    ? `<a href="${calendarUrl}" style="display:inline-block;margin-top:20px;padding:12px 24px;border-radius:999px;background:${PRIMARY};color:#fff;font-size:14px;font-weight:700;text-decoration:none;">📅 Add to your Google Calendar</a>`
+    : "";
+
   return page({
-    title: "Appointment approved",
+    title: "Appointment confirmed",
     bodyHtml: `
-      <h1 style="margin:0 0 8px;font-size:19px;color:${STONE};">✓ Approved</h1>
+      <h1 style="margin:0 0 8px;font-size:19px;color:${STONE};">✓ Confirmed</h1>
       <p style="margin:0;font-size:14px;color:${STONE_MUTED};line-height:1.6;">
-        A confirmation email was sent to <strong style="color:${STONE};">${booking.customerEmail}</strong> for ${booking.name}'s appointment at ${location.shortName}.
-      </p>`,
+        A confirmation email was sent to <strong style="color:${STONE};">${booking.customerEmail}</strong> for ${booking.name}'s appointment at ${location.shortName}${booking.date ? ` on ${booking.date}` : ""}${booking.time ? ` at ${booking.time}` : ""}.
+      </p>
+      ${calendarButton}`,
   });
 }

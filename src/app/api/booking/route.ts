@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     };
 
     const origin = new URL(request.url).origin;
-    const approveUrl = `${origin}/api/booking/approve?token=${encodeURIComponent(createBookingToken(booking))}`;
+    const manageUrl = `${origin}/booking/manage?token=${encodeURIComponent(createBookingToken(booking))}`;
 
     const textBody = [
       `New booking request — ${location.displayName}`,
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
       `Size: ${dogSize || "Not specified"}`,
       `Notes: ${message || "None"}`,
       "",
-      `Approve and notify the customer: ${approveUrl}`,
+      `Review & respond (approve or offer times): ${manageUrl}`,
     ].join("\n");
 
     await sendMail({
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
       to: location.bookingEmail,
       subject: `New booking request — ${name} (${location.shortName})`,
       text: textBody,
-      html: ownerBookingRequestEmail({ booking, location, approveUrl }),
+      html: ownerBookingRequestEmail({ booking, location, manageUrl }),
     });
   } catch (err) {
     console.error("Failed to send booking email", err);

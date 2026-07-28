@@ -25,6 +25,14 @@ export type LocationInfo = {
   hoursSchema: { days: string[]; opens: string; closes: string }[];
   exteriorImage: string;
   bookingEmail: string;
+  /**
+   * How a booking request is handled once Angela reviews it:
+   * - "approve": she approves the requested time or offers the customer two
+   *   alternative times to pick from.
+   * - "calendar": she approves and the confirmation includes an
+   *   "Add to Google Calendar" link.
+   */
+  bookingMode: "approve" | "calendar";
   isPrimary?: boolean;
 };
 
@@ -67,6 +75,7 @@ export const locations: LocationInfo[] = [
     ],
     exteriorImage: "contact-facility-exterior-etobicoke.jpg",
     bookingEmail: "johnalbano2016@gmail.com",
+    bookingMode: "approve",
     isPrimary: true,
   },
   {
@@ -106,6 +115,7 @@ export const locations: LocationInfo[] = [
     hoursSchema: [{ days: ["Thursday", "Sunday"], opens: "09:00", closes: "17:00" }],
     exteriorImage: "contact-facility-exterior-georgetown.jpg",
     bookingEmail: "johnalbano2016@gmail.com",
+    bookingMode: "calendar",
   },
 ];
 

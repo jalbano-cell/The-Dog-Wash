@@ -17,11 +17,16 @@ function toMinutes(hhmm: string) {
   return h * 60 + m;
 }
 
+// A full groom takes ~3 hours, so appointment starts are spaced 3 hours apart
+// and the last start of the day is early enough for the groom to finish by close.
+const GROOM_DURATION_MINUTES = 180;
+const SLOT_GAP_MINUTES = 180;
+
 function buildSlots(opensAt: string, closesAt: string) {
   const start = toMinutes(opensAt);
   const end = toMinutes(closesAt);
   const slots: { value: string; label: string }[] = [];
-  for (let m = start; m < end; m += 30) {
+  for (let m = start; m + GROOM_DURATION_MINUTES <= end; m += SLOT_GAP_MINUTES) {
     const hh = Math.floor(m / 60)
       .toString()
       .padStart(2, "0");
