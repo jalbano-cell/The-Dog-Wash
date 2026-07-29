@@ -11,7 +11,6 @@ import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { Reviews } from "@/components/Reviews";
 import { Gallery } from "@/components/Gallery";
 import { About } from "@/components/About";
-import { Team } from "@/components/Team";
 import { BookingCTA } from "@/components/BookingCTA";
 import { Faq } from "@/components/Faq";
 import { Contact } from "@/components/Contact";
@@ -94,7 +93,6 @@ export default async function LocationPage({
         <Reviews location={location} />
         <Gallery />
         <About location={location} />
-        <Team />
         <BookingCTA location={location} />
         <Faq />
         <Contact location={location} />

@@ -379,6 +379,19 @@ export function BookingModal({
                   </>
                 )}
               </button>
+
+              <p className="text-center text-xs text-stone-500">
+                By requesting a booking you agree to our{" "}
+                <a
+                  href="/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-primary-600 hover:text-primary-700"
+                >
+                  Terms &amp; Conditions
+                </a>
+                .
+              </p>
             </form>
 
             <div className="mt-5 flex items-center justify-center gap-2 border-t border-sand-dark/70 pt-5 text-sm text-stone-600">
