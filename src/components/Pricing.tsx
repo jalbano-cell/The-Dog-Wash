@@ -14,15 +14,16 @@ export function Pricing({ location }: { location: LocationInfo }) {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section id="pricing" data-reveal className="bg-white py-20 lg:py-28">
+    <section id="pricing" data-reveal className="bg-white py-24 lg:py-32">
       <Container>
         <SectionHeading
           eyebrow="Pricing"
-          title="Simple, size-based pricing"
+          title="Simple,"
+          titleMuted="size-based pricing"
           description="Every dog is different, so full grooms start from a base price by size. Here's what dog parents can expect before we begin."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
           {pricing.sizeTiers.map((tier, index) => {
             const featured = index === 1;
             return (

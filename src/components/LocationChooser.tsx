@@ -35,8 +35,8 @@ export function LocationChooser() {
               <MapPin size={13} />
               Two Studios
             </span>
-            <h1 className="mt-5 font-display text-4xl font-extrabold tracking-tight text-stone-800 sm:text-5xl">
-              Choose your location
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-stone-800 sm:text-6xl">
+              Choose your <span className="text-stone-400">location</span>
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-base text-stone-600 sm:text-lg">
               Pick the studio nearest you to see services, hours, and book your

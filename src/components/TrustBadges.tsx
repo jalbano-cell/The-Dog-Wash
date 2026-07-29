@@ -13,7 +13,7 @@ export function TrustBadges({ location }: { location: LocationInfo }) {
       <Container>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {/* Featured: award-winning gets the emphasis treatment. */}
-          <div className="flex items-center gap-3 rounded-2xl bg-primary-600 px-4 py-3.5 shadow-md shadow-primary-600/20 ring-1 ring-primary-600 sm:col-span-1">
+          <div className="flex items-center gap-3 rounded-3xl bg-primary-600 px-4 py-3.5 shadow-md shadow-primary-600/20 ring-1 ring-primary-600 sm:col-span-1">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-primary-600">
               <Award size={22} />
             </span>
@@ -25,7 +25,7 @@ export function TrustBadges({ location }: { location: LocationInfo }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 rounded-2xl border border-sand-dark/70 bg-primary-50/50 px-4 py-3">
+          <div className="flex items-center gap-3 rounded-3xl border border-sand-dark/70 bg-primary-50/50 px-4 py-3">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-600 text-white">
               <BadgeCheck size={18} />
             </span>
@@ -35,7 +35,7 @@ export function TrustBadges({ location }: { location: LocationInfo }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 rounded-2xl border border-sand-dark/70 bg-primary-50/50 px-4 py-3">
+          <div className="flex items-center gap-3 rounded-3xl border border-sand-dark/70 bg-primary-50/50 px-4 py-3">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-600 text-white">
               <Star size={18} />
             </span>

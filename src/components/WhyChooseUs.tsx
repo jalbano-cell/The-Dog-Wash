@@ -19,21 +19,22 @@ const iconStyles = [
 
 export function WhyChooseUs() {
   return (
-    <section id="why-us" data-reveal className="bg-white py-20 lg:py-28">
+    <section id="why-us" data-reveal className="bg-white py-24 lg:py-32">
       <Container>
         <SectionHeading
           eyebrow="Why Choose The Dog Wash"
-          title="The care every dog parent hopes for"
+          title="The care"
+          titleMuted="every dog parent hopes for"
           description="A calm environment, experienced hands, and honest pricing — everything that makes grooming stress-free for you and your dog."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => {
             const Icon = iconMap[feature.icon];
             return (
               <div
                 key={feature.title}
-                className="group relative overflow-hidden rounded-2xl border border-sand-dark/60 bg-cream p-7 transition-colors hover:border-primary-300"
+                className="group relative overflow-hidden rounded-3xl border border-sand-dark/60 bg-cream p-8 transition-colors hover:border-primary-300"
               >
                 <PawPrint
                   aria-hidden

@@ -15,27 +15,27 @@
   --color-stone-700: #414d69;
   --color-stone-800: #2b3550;
 
-  /* Brand primary — playful pink */
-  --color-primary-50: #fdf1f7;
-  --color-primary-100: #fbdcec;
-  --color-primary-200: #f6bfda;
-  --color-primary-300: #f099c4;
-  --color-primary-500: #e34d9b;
-  --color-primary-600: #d1367f;
-  --color-primary-700: #af2867;
+  /* Brand primary — blue */
+  --color-primary-50: #eef5fc;
+  --color-primary-100: #d8e9f8;
+  --color-primary-200: #b6d5f0;
+  --color-primary-300: #86b6e6;
+  --color-primary-500: #3f8fd6;
+  --color-primary-600: #2f74b8;
+  --color-primary-700: #245d95;
 
-  /* Secondary accent — bright sky blue */
-  --color-accent-500: #3f8fd6;
-  --color-accent-600: #2f74b8;
+  /* Secondary accent — pink */
+  --color-accent-500: #e34d9b;
+  --color-accent-600: #d1367f;
 
-  /* Rating — pink stars, on-palette */
+  /* Rating — pink stars */
   --color-gold: #e34d9b;
 
-  /* Playful accent — cheerful blue, like a splash of water */
-  --color-playful-100: #d9ecfb;
-  --color-playful-400: #6db4ec;
-  --color-playful-500: #3f97e0;
-  --color-playful-600: #2b7bc4;
+  /* Playful accent — pink */
+  --color-playful-100: #fbdcec;
+  --color-playful-400: #ee7fb8;
+  --color-playful-500: #e34d9b;
+  --color-playful-600: #d1367f;
 }
 
 @theme inline {

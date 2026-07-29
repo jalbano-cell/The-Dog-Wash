@@ -9,10 +9,10 @@ export function About({ location }: { location: LocationInfo }) {
   const portrait = getImage("about-groomer-portrait.jpg");
 
   return (
-    <section id="about" data-reveal className="bg-white py-20 lg:py-28">
-      <Container className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
+    <section id="about" data-reveal className="bg-white py-24 lg:py-32">
+      <Container className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <div className="relative mx-auto w-full max-w-sm lg:mx-0">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-xl ring-1 ring-stone-800/5">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-xl ring-1 ring-stone-800/5">
             <Image
               src={`/images/${portrait.filename}`}
               alt={portrait.alt}
@@ -31,13 +31,14 @@ export function About({ location }: { location: LocationInfo }) {
         </div>
 
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-600">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-primary-600">
             About Our {location.shortName} Location
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-stone-800 sm:text-4xl">
-            A luxury pet spa built on trust, care, and craft
+          <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-stone-800 sm:text-5xl">
+            A luxury pet spa built on{" "}
+            <span className="text-stone-400">trust, care, and craft</span>
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-stone-600">
+          <p className="mt-7 text-base leading-relaxed text-stone-500">
             The Dog Wash&rsquo;s {location.shortName} location is on{" "}
             {location.address.line1} in {location.address.city}, led by an
             award-winning head groomer ranked among the top pet stylists in
@@ -45,7 +46,7 @@ export function About({ location }: { location: LocationInfo }) {
             appointment is handled by certified professionals who treat your
             dog like their own.
           </p>
-          <p className="mt-4 text-base leading-relaxed text-stone-600">
+          <p className="mt-4 text-base leading-relaxed text-stone-500">
             Our philosophy is simple: grooming should never feel rushed or
             stressful. We take the time to read each dog&rsquo;s comfort
             level, use gentle handling techniques, and keep our studio

@@ -41,7 +41,7 @@ export function ContactForm({ location }: { location: LocationInfo }) {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center rounded-2xl bg-white p-8 text-center ring-1 ring-stone-800/5">
+      <div className="flex flex-col items-center rounded-3xl bg-white p-8 text-center ring-1 ring-stone-800/5">
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-primary-600">
           <CheckCircle2 size={28} />
         </span>
@@ -54,7 +54,7 @@ export function ContactForm({ location }: { location: LocationInfo }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="rounded-2xl bg-white p-6 ring-1 ring-stone-800/5 sm:p-8">
+    <form onSubmit={handleSubmit} noValidate className="rounded-3xl bg-white p-6 ring-1 ring-stone-800/5 sm:p-8">
       <h3 className="text-lg font-bold text-stone-800">Send us a message</h3>
       <p className="mt-1 text-sm text-stone-600">
         Have a question about your dog or our services? We&rsquo;d love to hear from you.

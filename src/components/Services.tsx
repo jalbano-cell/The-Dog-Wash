@@ -36,23 +36,24 @@ export function Services({ location }: { location: LocationInfo }) {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section id="services" data-reveal className="bg-cream py-20 lg:py-28">
+    <section id="services" data-reveal className="bg-cream py-24 lg:py-32">
       <Container>
         <SectionHeading
           eyebrow="Our Services"
-          title={`Grooming services at our ${location.shortName} studio`}
+          title="Grooming services"
+          titleMuted={`at our ${location.shortName} studio`}
           description="Premium care from certified, dog-loving hands — whether your pup needs a single service or a full spa day, we treat them like our own."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => {
             const Icon = iconMap[service.icon];
             return (
               <div
                 key={service.slug}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-800/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-stone-800/5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
               >
-                <div className="relative aspect-square overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.alt}
@@ -65,18 +66,20 @@ export function Services({ location }: { location: LocationInfo }) {
                     <Icon size={17} />
                   </span>
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-base font-bold text-stone-800">{service.name}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-stone-600">
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-display text-lg font-bold text-stone-800">{service.name}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-stone-500">
                     {service.description}
                   </p>
                   <button
                     type="button"
                     onClick={() => openBookingModal(location, { service: service.name })}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition-colors group-hover:text-primary-700"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-600 transition-colors group-hover:text-primary-700"
                   >
                     Book Now
-                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-50 transition-transform group-hover:translate-x-0.5">
+                      <ArrowRight size={13} />
+                    </span>
                   </button>
                 </div>
               </div>

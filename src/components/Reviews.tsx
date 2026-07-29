@@ -11,16 +11,17 @@ export function Reviews({ location }: { location: LocationInfo }) {
   const track = [...testimonials, ...testimonials];
 
   return (
-    <section id="reviews" className="overflow-hidden bg-primary-700 py-20 text-white lg:py-28">
+    <section id="reviews" className="overflow-hidden bg-primary-700 py-24 text-white lg:py-32">
       <Container>
         <div className="flex flex-col items-center text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-100">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-primary-100">
             Reviews
           </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            What {location.shortName} pet parents are saying
+          <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
+            What {location.shortName} pet parents{" "}
+            <span className="text-primary-300">are saying</span>
           </h2>
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-5 flex items-center gap-2">
             <StarRating rating={location.rating.value} />
             <span className="text-sm font-medium text-primary-100">
               {location.rating.value} average from <CountUp end={location.rating.count} />+ Google reviews
@@ -32,7 +33,7 @@ export function Reviews({ location }: { location: LocationInfo }) {
       {/* Auto-scrolling review cards. Pauses on hover; users who prefer reduced
           motion get a static, horizontally scrollable row instead. */}
       <div
-        className="group relative mt-14 flex overflow-hidden motion-reduce:overflow-x-auto"
+        className="group relative mt-16 flex overflow-hidden motion-reduce:overflow-x-auto"
         aria-label="Customer reviews"
       >
         {/* Edge fades */}
@@ -44,7 +45,7 @@ export function Reviews({ location }: { location: LocationInfo }) {
             <article
               key={i}
               aria-hidden={i >= testimonials.length}
-              className="mr-6 flex w-[300px] shrink-0 flex-col rounded-2xl bg-white p-6 text-left text-stone-800 shadow-lg sm:w-[360px]"
+              className="mr-6 flex w-[300px] shrink-0 flex-col rounded-3xl bg-white p-7 text-left text-stone-800 shadow-lg sm:w-[380px]"
             >
               <Quote size={24} className="text-primary-300" />
               <p className="mt-3 flex-1 text-sm leading-relaxed text-stone-700">

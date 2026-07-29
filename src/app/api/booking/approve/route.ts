@@ -5,10 +5,10 @@ import { verifyBookingToken, type BookingPayload } from "@/lib/bookingToken";
 import { customerConfirmationEmail } from "@/lib/emailTemplates";
 import { googleCalendarUrl } from "@/lib/calendar";
 
-const PRIMARY = "#d1367f";
+const PRIMARY = "#2f74b8";
 const STONE = "#2b3550";
 const STONE_MUTED = "#566281";
-const CREAM = "#fdf2f8";
+const CREAM = "#f1f6fb";
 
 function page({ title, bodyHtml, status = 200 }: { title: string; bodyHtml: string; status?: number }) {
   const html = `<!doctype html>

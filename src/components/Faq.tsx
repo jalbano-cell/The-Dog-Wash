@@ -10,15 +10,16 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" data-reveal className="bg-white py-20 lg:py-28">
+    <section id="faq" data-reveal className="bg-white py-24 lg:py-32">
       <Container>
         <SectionHeading
           eyebrow="FAQ"
-          title="Questions dog parents ask us"
+          title="Questions"
+          titleMuted="dog parents ask us"
           description="Everything you need to know before your dog's first visit. Still curious? Give us a call — we're happy to help."
         />
 
-        <div className="mx-auto mt-14 max-w-3xl space-y-3">
+        <div className="mt-16 max-w-3xl space-y-3">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
             const panelId = `faq-panel-${index}`;

@@ -3,17 +3,17 @@ import type { LocationInfo } from "@/data/locations";
 import { siteHost } from "@/lib/site-config";
 
 const BRAND = {
-  primary600: "#d1367f", // pink
-  primary700: "#af2867",
-  primary50: "#fdf1f7",
-  accent: "#3f8fd6", // blue
-  accentDark: "#2f74b8",
-  cream: "#fdf2f8",
+  primary600: "#2f74b8", // blue
+  primary700: "#245d95",
+  primary50: "#eef5fc",
+  accent: "#e34d9b", // pink
+  accentDark: "#d1367f",
+  cream: "#f1f6fb",
   stone800: "#2b3550",
   stone600: "#566281",
   sandDark: "#d9e6f5",
-  line: "#f2dce9", // soft pink divider
-  pageBg: "#f6f2f6",
+  line: "#dbe7f4", // soft blue divider
+  pageBg: "#f2f5f9",
   gold: "#e34d9b",
 };
 
@@ -93,7 +93,7 @@ function layout({
             <tr>
               <td style="background:${BRAND.primary600};padding:26px 32px;">
                 <span style="font-size:21px;font-weight:800;color:#ffffff;letter-spacing:0.01em;">🐾 The Dog Wash</span>
-                <div style="margin-top:4px;font-size:12px;font-weight:600;color:#fbdcec;letter-spacing:0.02em;">Premium Dog Grooming · Etobicoke &amp; Georgetown</div>
+                <div style="margin-top:4px;font-size:12px;font-weight:600;color:#d8e9f8;letter-spacing:0.02em;">Premium Dog Grooming · Etobicoke &amp; Georgetown</div>
               </td>
             </tr>
             <tr>

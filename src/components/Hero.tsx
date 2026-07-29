@@ -1,121 +1,147 @@
 "use client";
 
-import Image from "next/image";
-import { Phone, CalendarCheck, MapPin, ShieldCheck, PawPrint, Sun, Award } from "lucide-react";
+import { Phone, ArrowRight, MapPin, Sun, Award, ImagePlus, ShieldCheck } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
-import { getImage } from "@/data/images";
 import { useBookingModal } from "@/components/BookingModalContext";
+import { realAwards } from "@/data/business";
+
+// Starburst "seal" path (12-point), computed once.
+const BURST_PATH = (() => {
+  const points = 12;
+  const [outer, inner, cx, cy] = [50, 39, 50, 50];
+  let d = "";
+  for (let i = 0; i < points * 2; i++) {
+    const r = i % 2 === 0 ? outer : inner;
+    const a = (i * Math.PI) / points - Math.PI / 2;
+    d += `${i === 0 ? "M" : "L"}${(cx + r * Math.cos(a)).toFixed(2)} ${(cy + r * Math.sin(a)).toFixed(2)}`;
+  }
+  return `${d}Z`;
+})();
 
 export function Hero({ location }: { location: LocationInfo }) {
-  const heroImage = getImage("hero-dog-grooming.jpg");
   const { openBookingModal } = useBookingModal();
   const opensSunday = location.hours.some(
     (h) => h.day === "Sunday" && h.hours.toLowerCase() !== "closed"
   );
 
   return (
-    <section id="top" className="relative overflow-hidden bg-cream pb-16 pt-14 sm:pt-20 lg:pb-24 lg:pt-24">
+    <section id="top" className="relative overflow-hidden bg-primary-700 text-white">
+      {/* Paw watermarks */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-primary-100/70 blur-3xl"
+        className="pointer-events-none absolute -left-10 top-16 h-56 w-56 rotate-12 rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-white/[0.04]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-10 left-0 h-72 w-72 rounded-full bg-playful-100/70 blur-3xl"
+        className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 -rotate-12 rounded-[50%] bg-white/[0.04]"
       />
-      <Container className="relative grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
-        <div className="animate-fade-up">
-          <div className="mb-6 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-600 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow-sm">
-              <Award size={13} />
-              Award-Winning Groomer
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary-600/30 to-primary-800/50" />
+
+      <Container className="relative py-16 lg:py-24">
+        {/* Pill tags */}
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide backdrop-blur">
+            <Award size={13} />
+            Award-Winning Groomer
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold backdrop-blur">
+            <MapPin size={13} />
+            {location.tagline}
+          </span>
+          {opensSunday ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500 px-4 py-1.5 text-xs font-bold text-white shadow-sm">
+              <Sun size={13} />
+              Open Sundays
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-sand-dark bg-white/70 px-4 py-1.5 text-xs font-semibold text-stone-600">
-              <MapPin size={14} className="text-primary-600" />
-              {location.tagline}
-            </span>
-            {opensSunday ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500 px-3 py-1.5 text-xs font-bold text-white shadow-sm">
-                <Sun size={13} />
-                Open Sundays
-              </span>
-            ) : null}
-          </div>
-
-          <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-stone-800 sm:text-5xl lg:text-[3.4rem]">
-            Premium dog grooming,
-            <span className="text-primary-600"> calm &amp; careful</span> from
-            start to finish.
-          </h1>
-
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600">
-            {location.descriptionShort}{" "}
-            Book your dog&rsquo;s next visit at our {location.shortName} studio
-            in {location.address.city}.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <button
-              type="button"
-              onClick={() => openBookingModal(location)}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary-600 px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-primary-600/20 transition-all hover:bg-primary-700 hover:shadow-lg"
-            >
-              <CalendarCheck size={18} />
-              Book Appointment
-            </button>
-            <a
-              href={location.phoneHref}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-800/15 bg-white px-7 py-3.5 text-base font-semibold text-stone-800 transition-all hover:border-primary-600 hover:text-primary-600"
-            >
-              <Phone size={18} />
-              Call Now
-            </a>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-sand-dark/70 pt-6">
-            <div className="flex items-center gap-2.5">
-              <StarRating rating={location.rating.value} />
-              <span className="text-sm font-semibold text-stone-800">
-                {location.rating.value}
-                <span className="font-normal text-stone-600">
-                  {" "}
-                  ({location.rating.count}+ Google reviews)
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2 text-sm font-medium text-stone-600">
-              <ShieldCheck size={16} className="text-primary-600" />
-              Certified, Award-Winning Stylists
-            </div>
-          </div>
+          ) : null}
         </div>
 
-        <div className="relative animate-fade-up [animation-delay:150ms]">
-          <div className="relative aspect-video overflow-hidden rounded-3xl shadow-2xl shadow-stone-800/10 ring-1 ring-stone-800/5">
-            <Image
-              src={`/images/${heroImage.filename}`}
-              alt={heroImage.alt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 560px, 100vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="absolute -top-4 right-4 flex items-center gap-2 rounded-full bg-primary-600 px-4 py-2 text-white shadow-xl ring-2 ring-white sm:-top-5 sm:right-6">
-            <Award size={18} />
-            <span className="text-sm font-extrabold uppercase tracking-wide">Award-Winning</span>
-          </div>
-          <div className="absolute -bottom-6 -left-6 hidden items-start gap-3 rounded-2xl bg-white p-4 shadow-xl ring-1 ring-stone-800/5 sm:flex">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-playful-100 text-playful-600">
-              <PawPrint size={16} />
+        {/* Headline */}
+        <div className="relative mx-auto mt-8 max-w-4xl text-center">
+          <span className="pointer-events-none absolute -left-2 -top-6 hidden h-20 w-20 rotate-[-12deg] items-center justify-center sm:flex lg:-left-8">
+            <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full text-accent-500" aria-hidden>
+              <path fill="currentColor" d={BURST_PATH} />
+            </svg>
+            <span className="relative text-center text-[10px] font-extrabold uppercase leading-[1.1] text-white">
+              Award
+              <br />
+              Winning
             </span>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
-                Local &amp; Trusted
+          </span>
+          <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+            Premium dog grooming,{" "}
+            <span className="text-playful-400">calm &amp; careful</span>{" "}
+            <span className="text-white/55">from start to finish.</span>
+          </h1>
+        </div>
+
+        <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-white/80 sm:text-lg">
+          {location.descriptionShort}{" "}
+          Book your dog&rsquo;s next visit at our {location.shortName} studio in {location.address.city}.
+        </p>
+
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => openBookingModal(location)}
+            className="group inline-flex items-center justify-between gap-3 rounded-full bg-accent-500 py-2 pl-7 pr-2 text-base font-semibold text-white shadow-lg shadow-accent-600/30 transition-all hover:bg-accent-600"
+          >
+            Book Appointment
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-accent-600 transition-transform group-hover:translate-x-0.5">
+              <ArrowRight size={18} />
+            </span>
+          </button>
+          <a
+            href={location.phoneHref}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/15"
+          >
+            <Phone size={18} />
+            Call Now
+          </a>
+        </div>
+
+        {/* Floating cards composition */}
+        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
+          {/* Left: social proof */}
+          <div className="flex flex-col justify-center rounded-3xl bg-white p-6 text-stone-800 shadow-xl">
+            <div className="flex items-center gap-2">
+              <StarRating rating={location.rating.value} />
+              <span className="text-sm font-bold text-stone-800">{location.rating.value}</span>
+            </div>
+            <p className="mt-2 text-sm text-stone-500">
+              {location.rating.count}+ Google reviews
+            </p>
+            <p className="mt-4 flex items-center gap-2 text-sm font-semibold text-stone-800">
+              <ShieldCheck size={16} className="text-primary-600" />
+              Certified, Award-Winning Stylists
+            </p>
+          </div>
+
+          {/* Center: image placeholder (swap in the hero photo when ready) */}
+          <div className="relative flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-3xl border-2 border-dashed border-white/40 bg-white/10 backdrop-blur">
+            <ImagePlus size={44} className="text-white/80" />
+            <span className="text-sm font-semibold uppercase tracking-[0.15em] text-white/80">
+              Photo coming soon
+            </span>
+          </div>
+
+          {/* Right: two stacked cards */}
+          <div className="flex flex-col gap-5">
+            <div className="rounded-3xl bg-accent-500 p-6 text-white shadow-xl">
+              <p className="text-xs font-bold uppercase tracking-wide text-white/80">Our Groomers</p>
+              <p className="mt-1.5 flex items-center gap-2 text-base font-extrabold">
+                <Award size={18} />
+                Certified &amp; Award-Winning Stylists
               </p>
-              <p className="mt-1 text-sm font-bold text-stone-800">
+              {realAwards[0] ? (
+                <p className="mt-2 text-sm text-white/90">{realAwards[0]}</p>
+              ) : null}
+            </div>
+            <div className="flex-1 rounded-3xl bg-white p-6 text-stone-800 shadow-xl">
+              <p className="text-xs font-bold uppercase tracking-wide text-stone-500">Local &amp; Trusted</p>
+              <p className="mt-1.5 text-base font-extrabold text-stone-800">
                 Serving {location.areaServed[0]} &amp; {location.areaServed[1]}
               </p>
             </div>
