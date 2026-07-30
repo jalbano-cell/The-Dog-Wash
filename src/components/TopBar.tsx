@@ -1,7 +1,8 @@
-import { Phone, MapPin, Clock, AtSign } from "lucide-react";
+import { Phone, MapPin, Clock } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { business } from "@/data/business";
 import { Container } from "@/components/ui/Container";
+import { InstagramIcon } from "@/components/icons/InstagramIcon";
 
 function openDays(location: LocationInfo) {
   return location.hours
@@ -35,7 +36,7 @@ export function TopBar({ location }: { location: LocationInfo }) {
           aria-label="Instagram"
           className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 transition-colors hover:bg-accent-500 hover:text-white"
         >
-          <AtSign size={13} />
+          <InstagramIcon size={13} />
           the_dog_wash
         </a>
       </Container>

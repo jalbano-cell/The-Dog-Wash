@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, ArrowRight, MapPin, Sun, Award, ImagePlus, ShieldCheck } from "lucide-react";
+import { Phone, ArrowRight, MapPin, Sun, Award, ShieldCheck } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
@@ -28,16 +28,23 @@ export function Hero({ location }: { location: LocationInfo }) {
 
   return (
     <section id="top" className="relative overflow-hidden bg-primary-700 text-white">
-      {/* Paw watermarks */}
+      {/* Background photo (drop the file at /public/images/hero-grooming.jpg).
+          Until it exists, the blue section colour shows through gracefully. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-10 top-16 h-56 w-56 rotate-12 rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-white/[0.04]"
+        className="pointer-events-none absolute inset-0 bg-[url('/images/hero-grooming.jpg')] bg-cover bg-center"
       />
+      {/* Blue overlays — lighter, so the photo reads through; top darkened to keep the headline legible */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-primary-700/35" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 -rotate-12 rounded-[50%] bg-white/[0.04]"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone-800/40 via-transparent to-transparent"
       />
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary-600/30 to-primary-800/50" />
+      {/* Soft accent glows */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-10 top-16 h-56 w-56 rotate-12 rounded-[45%_55%_50%_50%/55%_45%_55%_45%] bg-white/[0.05]"
+      />
 
       <Container className="relative py-16 lg:py-24">
         {/* Pill tags */}
@@ -70,7 +77,7 @@ export function Hero({ location }: { location: LocationInfo }) {
               Winning
             </span>
           </span>
-          <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="font-display text-[2.5rem] font-extrabold leading-[1.03] tracking-tight sm:text-6xl sm:leading-[0.95] lg:text-7xl">
             Premium dog grooming,{" "}
             <span className="text-playful-400">calm &amp; careful</span>{" "}
             <span className="text-white/55">from start to finish.</span>
@@ -103,9 +110,9 @@ export function Hero({ location }: { location: LocationInfo }) {
         </div>
 
         {/* Floating cards composition */}
-        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-5 sm:mt-14 lg:grid-cols-3">
           {/* Left: social proof */}
-          <div className="flex flex-col justify-center rounded-3xl bg-white p-6 text-stone-800 shadow-xl">
+          <div className="flex flex-col justify-center rounded-3xl bg-white p-6 text-stone-800 shadow-xl transition-transform duration-300 hover:-translate-y-1">
             <div className="flex items-center gap-2">
               <StarRating rating={location.rating.value} />
               <span className="text-sm font-bold text-stone-800">{location.rating.value}</span>
@@ -119,32 +126,23 @@ export function Hero({ location }: { location: LocationInfo }) {
             </p>
           </div>
 
-          {/* Center: image placeholder (swap in the hero photo when ready) */}
-          <div className="relative flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-3xl border-2 border-dashed border-white/40 bg-white/10 backdrop-blur">
-            <ImagePlus size={44} className="text-white/80" />
-            <span className="text-sm font-semibold uppercase tracking-[0.15em] text-white/80">
-              Photo coming soon
-            </span>
+          {/* Center: our groomers */}
+          <div className="flex flex-col justify-center rounded-3xl bg-accent-500 p-6 text-white shadow-xl transition-transform duration-300 hover:-translate-y-1">
+            <p className="text-xs font-bold uppercase tracking-wide text-white/80">Our Groomers</p>
+            <p className="mt-1.5 flex items-center gap-2 text-base font-extrabold">
+              <Award size={18} />
+              Certified &amp; Award-Winning Stylists
+            </p>
+            {realAwards[0] ? <p className="mt-2 text-sm text-white/90">{realAwards[0]}</p> : null}
           </div>
 
-          {/* Right: two stacked cards */}
-          <div className="flex flex-col gap-5">
-            <div className="rounded-3xl bg-accent-500 p-6 text-white shadow-xl">
-              <p className="text-xs font-bold uppercase tracking-wide text-white/80">Our Groomers</p>
-              <p className="mt-1.5 flex items-center gap-2 text-base font-extrabold">
-                <Award size={18} />
-                Certified &amp; Award-Winning Stylists
-              </p>
-              {realAwards[0] ? (
-                <p className="mt-2 text-sm text-white/90">{realAwards[0]}</p>
-              ) : null}
-            </div>
-            <div className="flex-1 rounded-3xl bg-white p-6 text-stone-800 shadow-xl">
-              <p className="text-xs font-bold uppercase tracking-wide text-stone-500">Local &amp; Trusted</p>
-              <p className="mt-1.5 text-base font-extrabold text-stone-800">
-                Serving {location.areaServed[0]} &amp; {location.areaServed[1]}
-              </p>
-            </div>
+          {/* Right: local & trusted */}
+          <div className="flex flex-col justify-center rounded-3xl bg-white p-6 text-stone-800 shadow-xl transition-transform duration-300 hover:-translate-y-1">
+            <p className="text-xs font-bold uppercase tracking-wide text-stone-500">Local &amp; Trusted</p>
+            <p className="mt-1.5 text-base font-extrabold text-stone-800">
+              Serving {location.areaServed[0]} &amp; {location.areaServed[1]}
+            </p>
+            <p className="mt-2 text-sm text-stone-500">Calm, careful grooming, close to home.</p>
           </div>
         </div>
       </Container>

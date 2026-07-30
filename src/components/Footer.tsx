@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { AtSign, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
+import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import { business } from "@/data/business";
 import { locations, type LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
@@ -21,7 +22,7 @@ export function Footer({ location }: { location: LocationInfo }) {
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white"
             >
-              <AtSign size={16} />
+              <InstagramIcon size={16} />
               the_dog_wash
             </a>
           </div>
@@ -33,6 +34,7 @@ export function Footer({ location }: { location: LocationInfo }) {
               <li><a href="#reviews" className="hover:text-white">Reviews</a></li>
               <li><a href="#gallery" className="hover:text-white">Gallery</a></li>
               <li><a href="#about" className="hover:text-white">About</a></li>
+              <li><Link href="/terms" className="hover:text-white">Terms &amp; Conditions</Link></li>
             </ul>
           </div>
 
@@ -72,7 +74,6 @@ export function Footer({ location }: { location: LocationInfo }) {
         <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} The Dog Wash. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="/terms" className="hover:text-white">Terms &amp; Conditions</Link>
             <span>Etobicoke &amp; Georgetown, Ontario</span>
           </div>
         </div>
