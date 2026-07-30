@@ -52,48 +52,70 @@ export type Testimonial = {
   source: string;
 };
 
-// Etobicoke: [PLACEHOLDER] reviews written in a realistic voice — replace each
-// entry with a real Google review (quote, reviewer first name + last initial,
-// and their dog's name/breed) before launch.
+// Etobicoke: real Google reviews, lightly shortened for the carousel.
 const etobicokeReviews: Testimonial[] = [
   {
     quote:
-      "The staff really listened to exactly the cut we wanted and took their time getting it right. My girl came home looking incredible and completely relaxed.",
-    name: "Sarah M.",
-    dog: "with Milo the Goldendoodle",
+      "I've been to so many groomers around the GTA and not one took the time to hear what I wanted for my poodles. The owner is beyond amazing — she listened, she's honest and professional, and she never rushes. I finally found our salon!",
+    name: "Teeta N.",
+    dog: "with her toy & miniature poodles",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "Great price and even better service — you can tell they genuinely love dogs. We've already booked our next appointment.",
-    name: "Andrew R.",
-    dog: "with Bailey the Cocker Spaniel",
+      "Angela was fantastic with my dog Chico, who was very nervous on his first visit. She took the time to make him feel at ease, and I really appreciated her patience and care. Highly recommend The Dog Wash!",
+    name: "Gisella G.",
+    dog: "with Chico",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "They're so patient with my nervous rescue. They care about how the dogs feel, not just how they look — that means everything to me.",
-    name: "Steph K.",
-    dog: "with Luna the rescue mix",
+      "Finding a groomer you actually trust is hard. Everyone here is so kind and patient — Luna gets excited and walks in wagging her tail every time, and the teddy bear cut is perfect every visit. My dogs always come home happy and relaxed.",
+    name: "Monica M.",
+    dog: "with Luna & Bailey",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "Clean, professional, and somehow my dog actually gets excited when we pull into the parking lot now. That says it all.",
-    name: "Tom L.",
-    dog: "with Cooper the Bernedoodle",
+      "Our dog Charlie, a wire-haired fox terrier, has been groomed here for 6 years. I love how good he looks after every visit to Angela's place!",
+    name: "Gabriel I.",
+    dog: "with Charlie the Fox Terrier",
     rating: 5,
     source: "Google Review",
   },
   {
     quote:
-      "Booked a full groom for my Shih Tzu and the attention to detail was excellent. This is our regular spot from now on.",
-    name: "Maria P.",
-    dog: "with Coco the Shih Tzu",
-    rating: 4,
+      "Angela is the only groomer I know who can do such perfect nail trims. She's very kind and professional, and I love the way she connects with my dog. Highly recommend her.",
+    name: "Elif H.",
+    dog: "",
+    rating: 5,
+    source: "Google Review",
+  },
+  {
+    quote:
+      "For the past 12 years, Angela and The Dog Wash have taken care of all my shelties — usually three at a time, at various stages from puppies to seniors to rescues.",
+    name: "André C.",
+    dog: "with his Shelties",
+    rating: 5,
+    source: "Google Review",
+  },
+  {
+    quote:
+      "My dog Asher has been groomed here for about 7.5 years. I first came because I lived nearby, and even after moving further away I stayed for their quality, professional service. Thank you Angela and the team!",
+    name: "Reb",
+    dog: "with Asher",
+    rating: 5,
+    source: "Google Review",
+  },
+  {
+    quote:
+      "My cavapoo Sparky was so hot under his fur during the heatwave, and they made room for me right in the middle of it. Fast, professional, and the best groom he's ever had — comfortable and cute. Highly recommend!",
+    name: "Kir M.",
+    dog: "with Sparky the Cavapoo",
+    rating: 5,
     source: "Google Review",
   },
 ];
