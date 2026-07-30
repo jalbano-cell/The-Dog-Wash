@@ -31,7 +31,7 @@ export function About({ location }: { location: LocationInfo }) {
         </div>
 
         <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-primary-600">
+          <p className="mb-1 font-script text-2xl font-bold text-accent-600 sm:text-[1.6rem]">
             About Our {location.shortName} Location
           </p>
           <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-stone-800 sm:text-5xl">

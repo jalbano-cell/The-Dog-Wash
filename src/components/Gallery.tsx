@@ -2,10 +2,12 @@ import { gallery } from "@/data/content";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { TornDivider } from "@/components/TornDivider";
 
 export function Gallery() {
   return (
-    <section id="gallery" data-reveal className="bg-cream py-24 lg:py-32">
+    <section id="gallery" data-reveal className="relative bg-cream py-24 lg:py-32">
+      <TornDivider colorClass="text-primary-700" />
       <Container>
         <SectionHeading
           eyebrow="Gallery"

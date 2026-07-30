@@ -5,12 +5,14 @@ import { ChevronDown } from "lucide-react";
 import { faqs } from "@/data/faq";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TornDivider } from "@/components/TornDivider";
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" data-reveal className="bg-white py-24 lg:py-32">
+    <section id="faq" data-reveal className="relative bg-white py-24 lg:py-32">
+      <TornDivider colorClass="text-stone-800" />
       <Container>
         <SectionHeading
           eyebrow="FAQ"

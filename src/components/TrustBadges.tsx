@@ -2,6 +2,7 @@ import { Award, BadgeCheck, Star } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { business, realAwards } from "@/data/business";
 import { Container } from "@/components/ui/Container";
+import { TornDivider } from "@/components/TornDivider";
 
 export function TrustBadges({ location }: { location: LocationInfo }) {
   const awardCount = realAwards.length;
@@ -9,7 +10,8 @@ export function TrustBadges({ location }: { location: LocationInfo }) {
     awardCount > 1 ? `${awardCount}× award winner` : realAwards[0] ?? "Multiple grooming awards";
 
   return (
-    <section aria-label="Credentials" data-reveal className="bg-white pt-4">
+    <section aria-label="Credentials" data-reveal className="relative bg-white pt-16">
+      <TornDivider colorClass="text-primary-700" />
       <Container>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {/* Featured: award-winning gets the emphasis treatment. */}

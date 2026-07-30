@@ -4,6 +4,7 @@ import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
 import { CountUp } from "@/components/CountUp";
+import { TornDivider } from "@/components/TornDivider";
 
 export function Reviews({ location }: { location: LocationInfo }) {
   const testimonials = getReviewsForLocation(location.slug);
@@ -11,10 +12,11 @@ export function Reviews({ location }: { location: LocationInfo }) {
   const track = [...testimonials, ...testimonials];
 
   return (
-    <section id="reviews" className="overflow-hidden bg-primary-700 py-24 text-white lg:py-32">
+    <section id="reviews" className="relative overflow-hidden bg-primary-700 py-24 text-white lg:py-32">
+      <TornDivider colorClass="text-white" />
       <Container>
         <div className="flex flex-col items-center text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-primary-100">
+          <p className="mb-1 font-script text-3xl font-bold text-playful-400">
             Reviews
           </p>
           <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">

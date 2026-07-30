@@ -4,6 +4,7 @@ import { Phone, ArrowRight } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { useBookingModal } from "@/components/BookingModalContext";
+import { TornDivider } from "@/components/TornDivider";
 
 function hoursSummary(location: LocationInfo) {
   const openDays = location.hours.filter((h) => h.hours !== "Closed");
@@ -15,7 +16,8 @@ export function BookingCTA({ location }: { location: LocationInfo }) {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <section id="booking" className="bg-stone-800 py-24 lg:py-32">
+    <section id="booking" className="relative overflow-hidden bg-stone-800 py-24 lg:py-32">
+      <TornDivider colorClass="text-white" />
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl">

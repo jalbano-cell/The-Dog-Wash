@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { TopBar } from "@/components/TopBar";
 import { PromoBanner } from "@/components/PromoBanner";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -81,6 +82,7 @@ export default async function LocationPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema(faqs)) }}
       />
+      <TopBar location={location} />
       <PromoBanner location={location} />
       <Header location={location} />
       <main className="flex-1">

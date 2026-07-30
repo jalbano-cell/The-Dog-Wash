@@ -14,7 +14,11 @@ const iconMap = {
 
 const iconStyles = [
   "bg-primary-600 text-white",
-  "bg-playful-500 text-white",
+  "bg-accent-500 text-white",
+  "bg-primary-100 text-primary-700",
+  "bg-playful-100 text-accent-600",
+  "bg-accent-500 text-white",
+  "bg-primary-600 text-white",
 ];
 
 export function WhyChooseUs() {
@@ -42,9 +46,9 @@ export function WhyChooseUs() {
                   className="pointer-events-none absolute -bottom-4 -right-4 rotate-12 text-stone-800/[0.04] transition-transform duration-300 group-hover:rotate-[24deg] group-hover:scale-110"
                 />
                 <span
-                  className={`relative flex h-11 w-11 items-center justify-center rounded-xl transition-transform group-hover:animate-wag ${iconStyles[index % iconStyles.length]}`}
+                  className={`relative flex h-14 w-14 items-center justify-center rounded-full transition-transform group-hover:animate-wag ${iconStyles[index % iconStyles.length]}`}
                 >
-                  <Icon size={20} />
+                  <Icon size={24} />
                 </span>
                 <h3 className="relative mt-5 text-lg font-bold text-stone-800">{feature.title}</h3>
                 <p className="relative mt-2 text-sm leading-relaxed text-stone-600">
