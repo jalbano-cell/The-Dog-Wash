@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Award, BadgeCheck, Star, MapPin } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { formatRating, type LocationInfo } from "@/data/locations";
@@ -38,12 +39,41 @@ export function TrustStrip({ location }: { location: LocationInfo }) {
     <section aria-label="Credentials" className="bg-navy">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
+          {items.map((item, i) => (
             <div
               key={item.label}
-              // Stacked rows are separated by bottom rules; at lg the strip
-              // becomes four columns divided by right rules instead.
-              className="flex items-start gap-3 border-b border-white/10 py-5 pr-7 last:border-b-0 lg:border-b-0 lg:border-r lg:py-6"
+              /**
+               * Rules are drawn *between* cells, never around the strip — a
+               * cell that owns a trailing border leaves a rule hanging at the
+               * container edge with nothing after it.
+               *
+               * Padding is symmetric about each rule for the same reason: the
+               * cell before it pads on the right, the cell after pads on the
+               * left, so every divider sits in an even gutter. The outermost
+               * edges stay flush with the container so the strip lines up with
+               * every other section.
+               *
+               * Laid out per-index rather than with nth-child variants because
+               * the column count changes twice (1 → 2 → 4) and each breakpoint
+               * needs a different cell to start a row.
+               */
+              className={clsx(
+                "flex items-start gap-3 py-5 lg:py-6",
+                // stacked: every cell but the first opens with a rule
+                i > 0 && "border-t border-white/10",
+                // 2-up: only cells that start a row keep it (so the last row's
+                // rule spans both columns instead of half the strip)
+                i === 1 && "sm:border-t-0",
+                // 4-up: a single row, so no horizontal rules at all
+                "lg:border-t-0",
+                // Vertical rules and their gutters. Each cell gets at most one
+                // border-left class per breakpoint — pairing `border-l` with
+                // `border-l-0` on one element would leave the winner up to
+                // Tailwind's own utility ordering rather than this logic.
+                i % 2 === 1 && "sm:border-l sm:border-white/10 sm:pl-7",
+                i > 0 && "lg:border-l lg:border-white/10 lg:pl-7",
+                i < items.length - 1 && "sm:pr-7"
+              )}
             >
               <item.icon size={16} className="mt-0.5 shrink-0 text-primary-300" />
               <div className="min-w-0">
