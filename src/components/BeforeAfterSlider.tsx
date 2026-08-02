@@ -98,7 +98,9 @@ export function BeforeAfterSlider({
           aria-valuemax={100}
           aria-valuenow={Math.round(pos)}
           onKeyDown={onKeyDown}
-          className="pointer-events-auto absolute top-1/2 left-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-primary-600 shadow-md ring-1 ring-stone-800/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600"
+          // 44px on touch (the drag handle is the whole interaction), shrinking
+          // back to the tighter 36px visual on pointer devices.
+          className="pointer-events-auto absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-primary-600 shadow-md ring-1 ring-stone-800/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 lg:h-9 lg:w-9"
         >
           <MoveHorizontal size={16} />
         </button>

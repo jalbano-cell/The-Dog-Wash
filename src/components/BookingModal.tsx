@@ -93,13 +93,16 @@ export function BookingModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="booking-modal-title"
-        className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl ring-1 ring-stone-800/5 sm:p-8"
+        // dvh, not vh: on mobile `vh` resolves against the *largest* viewport
+        // (URL bar hidden), so with the bar showing a 90vh modal overflows the
+        // screen and the Submit button at the bottom can't be reached.
+        className="relative max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl ring-1 ring-stone-800/5 sm:p-8"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-stone-500 transition-colors hover:bg-sand hover:text-stone-800"
+          className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-full text-stone-500 transition-colors hover:bg-sand hover:text-stone-800 sm:right-4 sm:top-4"
         >
           <X size={18} />
         </button>
@@ -147,7 +150,7 @@ export function BookingModal({
                         aria-pressed={isActive}
                         onClick={() => handleLocationChange(loc)}
                         className={clsx(
-                          "flex-1 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
+                          "min-h-11 flex-1 rounded-xl px-3 py-2 text-sm font-semibold transition-all",
                           isActive
                             ? "bg-primary-600 text-white shadow-sm"
                             : "bg-white text-stone-600 ring-1 ring-primary-200 hover:text-primary-600"
@@ -386,7 +389,7 @@ export function BookingModal({
                   href="/terms"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-primary-600 hover:text-primary-700"
+                  className="-my-3.5 inline-block py-3.5 font-semibold text-primary-600 hover:text-primary-700"
                 >
                   Terms &amp; Conditions
                 </a>
@@ -398,7 +401,7 @@ export function BookingModal({
               Prefer to call?
               <a
                 href={currentLocation.phoneHref}
-                className="inline-flex items-center gap-1.5 font-semibold text-primary-600 hover:text-primary-700"
+                className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary-600 hover:text-primary-700"
               >
                 <Phone size={14} />
                 {currentLocation.phone}

@@ -39,7 +39,9 @@ export function Header({ location }: { location: LocationInfo }) {
     >
       <Container className="flex h-18 items-center justify-between py-3">
         <div className="flex items-center gap-3">
-          <Link href="#top" className="group flex items-baseline gap-2">
+          {/* -my-2/py-2 extends the tap area to 44px without changing the
+              header's height or the wordmark's baseline alignment. */}
+          <Link href="#top" className="group -my-2 flex items-baseline gap-2 py-2">
             <PawPrint
               size={22}
               className="mb-0.5 shrink-0 -rotate-12 text-playful-500 transition-transform duration-300 group-hover:animate-wag"
@@ -90,7 +92,7 @@ export function Header({ location }: { location: LocationInfo }) {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full text-stone-800 lg:hidden"
+          className="-mr-1 flex h-11 w-11 items-center justify-center rounded-full text-stone-800 lg:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}

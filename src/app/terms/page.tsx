@@ -16,7 +16,7 @@ export default function TermsPage() {
     <div className="flex min-h-dvh flex-col bg-cream">
       <header className="border-b border-sand-dark/60 bg-white">
         <Container className="flex h-18 items-center justify-between py-3">
-          <Link href="/" className="flex items-baseline gap-2">
+          <Link href="/" className="-my-2 flex items-baseline gap-2 py-2">
             <PawPrint size={22} className="mb-0.5 shrink-0 -rotate-12 text-playful-500" />
             <span className="font-display text-xl font-extrabold tracking-tight text-stone-800">
               The Dog Wash
@@ -24,7 +24,7 @@ export default function TermsPage() {
           </Link>
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700"
+            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700"
           >
             <ArrowLeft size={16} />
             Back home
@@ -59,7 +59,7 @@ export default function TermsPage() {
 
             <p className="mt-8 text-sm text-stone-600">
               Questions about our terms? Please{" "}
-              <Link href="/" className="font-semibold text-primary-600 hover:text-primary-700">
+              <Link href="/" className="-my-3 inline-block py-3 font-semibold text-primary-600 hover:text-primary-700">
                 get in touch with your studio
               </Link>
               .

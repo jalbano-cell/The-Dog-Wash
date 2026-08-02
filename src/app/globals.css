@@ -179,3 +179,25 @@ h4 {
   transition: opacity 0.18s ease-out, transform 0.18s ease-out;
 }
 
+/* iOS Safari zooms the whole page in when you focus a field whose font-size is
+   under 16px, and leaves it zoomed — on the booking form that means every
+   customer gets a jarring zoom on the first tap and has to pinch back out.
+   Every field here is styled text-sm (14px) for density, so rather than
+   special-casing a dozen class strings (and hoping the next field remembers),
+   force 16px on form controls at phone widths only. Desktop keeps the intended
+   14px. The extra height this adds also lifts the fields past the 44px
+   touch-target minimum. */
+@media (max-width: 639px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Fixed bottom bars must clear the iPhone home indicator; pairs with
+   `viewportFit: "cover"` in app/layout.tsx (without that, env() resolves to 0). */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+

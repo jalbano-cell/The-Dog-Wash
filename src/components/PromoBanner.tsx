@@ -39,7 +39,10 @@ export function PromoBanner({ location }: { location: LocationInfo }) {
           <button
             type="button"
             onClick={() => openBookingModal(location)}
-            className="font-bold underline underline-offset-2 transition-opacity hover:opacity-80"
+            // Inline in a sentence, so it can't be a 44px-tall block — instead the
+            // tap area is extended past the text with padding that's pulled back
+            // out with a negative margin, leaving the visual line height unchanged.
+            className="-my-3 inline-block px-2 py-3 font-bold underline underline-offset-2 transition-opacity hover:opacity-80"
           >
             {promo.cta}
           </button>
@@ -49,7 +52,9 @@ export function PromoBanner({ location }: { location: LocationInfo }) {
         type="button"
         onClick={dismiss}
         aria-label="Dismiss announcement"
-        className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/15 hover:text-white"
+        // 44x44 tap area (the icon stays 16px) — the background is transparent
+        // until hover, so the larger target isn't visible.
+        className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/15 hover:text-white"
       >
         <X size={16} />
       </button>

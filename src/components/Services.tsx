@@ -74,7 +74,9 @@ export function Services({ location }: { location: LocationInfo }) {
                   <button
                     type="button"
                     onClick={() => openBookingModal(location, { service: service.name })}
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-600 transition-colors group-hover:text-primary-700"
+                    // min-h-11 (44px) so the primary per-service CTA is a full
+                    // touch target — it was 28px tall, well under the minimum.
+                    className="mt-3 inline-flex min-h-11 items-center gap-2 py-2 text-sm font-semibold text-primary-600 transition-colors group-hover:text-primary-700"
                   >
                     Book Now
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-50 transition-transform group-hover:translate-x-0.5">

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Inter, Caveat } from "next/font/google";
 import { BookingModalProvider } from "@/components/BookingModalContext";
 import { siteConfig } from "@/lib/site-config";
@@ -24,6 +24,21 @@ const script = Caveat({
 });
 
 const siteUrl = siteConfig.baseUrl;
+
+/**
+ * `viewportFit: "cover"` is what makes `env(safe-area-inset-*)` return real
+ * values instead of 0 — without it the fixed mobile action bar sits under the
+ * iPhone home indicator. Width/initialScale match Next's defaults and are
+ * spelled out only because this export now exists.
+ *
+ * Deliberately no `maximumScale`/`userScalable: false` — pinch-zoom stays on.
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

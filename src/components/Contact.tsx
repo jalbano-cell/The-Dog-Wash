@@ -45,7 +45,10 @@ export function Contact({ location }: { location: LocationInfo }) {
                 <Phone size={20} className="mt-0.5 shrink-0 text-primary-600" />
                 <div>
                   <p className="text-sm font-bold text-stone-800">Phone</p>
-                  <a href={location.phoneHref} className="text-sm text-stone-600 hover:text-primary-600">
+                  <a
+                    href={location.phoneHref}
+                    className="inline-flex min-h-11 items-center text-sm text-stone-600 hover:text-primary-600 lg:min-h-0"
+                  >
                     {location.phone}
                   </a>
                 </div>

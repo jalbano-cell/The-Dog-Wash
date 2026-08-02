@@ -75,7 +75,7 @@ export function DatePicker({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center gap-2 rounded-xl border border-sand-dark bg-cream/50 px-4 py-2.5 text-left text-sm text-stone-800 outline-none transition-colors focus:border-primary-500 focus:bg-white"
+        className="flex min-h-11 w-full items-center gap-2 rounded-xl border border-sand-dark bg-cream/50 px-4 py-2.5 text-left text-sm text-stone-800 outline-none transition-colors focus:border-primary-500 focus:bg-white"
       >
         <Calendar size={16} className="shrink-0 text-primary-600" />
         <span className={value ? "text-stone-800" : "text-stone-400"}>

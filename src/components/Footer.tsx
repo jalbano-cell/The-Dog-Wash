@@ -5,6 +5,14 @@ import { business } from "@/data/business";
 import { locations, type LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 
+/**
+ * Footer nav links were ~17px tall — far under the 44px touch minimum, and
+ * stacked closely enough to mis-tap. On mobile each becomes a full-width 44px
+ * row (the padding itself provides the separation, so the list's own spacing
+ * drops); on desktop they collapse back to the tighter text rhythm.
+ */
+const footerLink = "flex min-h-11 items-center hover:text-white lg:min-h-0";
+
 export function Footer({ location }: { location: LocationInfo }) {
   return (
     <footer className="relative bg-stone-800 pb-28 pt-14 text-white/70 lg:pb-14">
@@ -20,7 +28,7 @@ export function Footer({ location }: { location: LocationInfo }) {
               href={business.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white"
+              className="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white/70 hover:text-white lg:mt-4 lg:min-h-0"
             >
               <InstagramIcon size={16} />
               the_dog_wash
@@ -29,23 +37,27 @@ export function Footer({ location }: { location: LocationInfo }) {
 
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-white">Explore</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li><a href="#services" className="hover:text-white">Services</a></li>
-              <li><a href="#reviews" className="hover:text-white">Reviews</a></li>
-              <li><a href="#gallery" className="hover:text-white">Gallery</a></li>
-              <li><a href="#about" className="hover:text-white">About</a></li>
-              <li><Link href="/terms" className="hover:text-white">Terms &amp; Conditions</Link></li>
+            <ul className="mt-1 text-sm lg:mt-4 lg:space-y-2">
+              <li><a href="#services" className={footerLink}>Services</a></li>
+              <li><a href="#reviews" className={footerLink}>Reviews</a></li>
+              <li><a href="#gallery" className={footerLink}>Gallery</a></li>
+              <li><a href="#about" className={footerLink}>About</a></li>
+              <li><Link href="/terms" className={footerLink}>Terms &amp; Conditions</Link></li>
             </ul>
           </div>
 
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-white">Locations</p>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-1 text-sm lg:mt-4 lg:space-y-2">
               {locations.map((loc) => (
                 <li key={loc.slug}>
                   <Link
                     href={loc.isPrimary ? "/" : `/locations/${loc.slug}`}
-                    className={loc.slug === location.slug ? "font-semibold text-white" : "hover:text-white"}
+                    className={
+                      loc.slug === location.slug
+                        ? "flex min-h-11 items-center font-semibold text-white lg:min-h-0"
+                        : footerLink
+                    }
                   >
                     {loc.shortName}
                   </Link>
@@ -63,7 +75,7 @@ export function Footer({ location }: { location: LocationInfo }) {
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={16} className="shrink-0" />
-                <a href={location.phoneHref} className="hover:text-white">
+                <a href={location.phoneHref} className={footerLink}>
                   {location.phone}
                 </a>
               </li>
@@ -84,7 +96,7 @@ export function Footer({ location }: { location: LocationInfo }) {
               href="https://omnigriddigital.ca"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-white/70 hover:text-white"
+              className="-my-3.5 inline-block py-3.5 font-medium text-white/70 hover:text-white"
             >
               OmniGrid Digital
             </a>
