@@ -96,7 +96,7 @@ export function Footer({ location }: { location: LocationInfo }) {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-[22px] text-[12px] text-white/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-[22px] text-[12px] text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} The Dog Wash. All rights reserved.</p>
           <p>
             Website powered and managed by{" "}

@@ -30,13 +30,20 @@
   --color-border-input: #dce7f4; /* inputs, outline pills */
   --color-sand-dark: #dce7f4;    /* alias kept for the booking modal + pickers */
 
-  /* Text */
+  /* Text.
+     The design's sampled greys ran from #a3aec1 down to #566281, but only the
+     darkest cleared WCAG AA on these near-white grounds — the faint label tone
+     measured 2.24:1, well under the 4.5 small text needs. These are the same
+     cool-slate hue re-solved so every step lands at/above ~4.6:1 on the cream
+     page background. They sit closer together than the originals; the tonal
+     hierarchy is carried by size, weight and letter-spacing, which is where it
+     belonged anyway. */
   --color-stone-800: #12283f;
   --color-stone-700: #414d69;
-  --color-stone-600: #566281;    /* body */
-  --color-stone-500: #6d7c99;    /* secondary */
-  --color-stone-400: #7b89a3;    /* captions, eyebrows on light */
-  --color-stone-300: #a3aec1;    /* labels, closed days */
+  --color-stone-600: #566281;    /* body — 5.9:1, unchanged */
+  --color-stone-500: #5c667a;    /* secondary — 5.6:1 */
+  --color-stone-400: #626d81;    /* captions, eyebrows on light — 5.1:1 */
+  --color-stone-300: #68748a;    /* faint labels, closed days — 4.6:1 */
 
   --color-gold: #ec4899;         /* rating stars */
 }
@@ -244,5 +251,22 @@ body {
    `viewportFit: "cover"` in app/layout.tsx (without that, env() resolves to 0). */
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Every field carries `outline-none` so the underline/box styling stays clean,
+   but that also strips the only visible focus indicator — the 1px border
+   colour change left behind is far too subtle to satisfy WCAG 2.4.7. Put a
+   real ring back for *keyboard* users only (`:focus-visible`), so pointer
+   users still get the intended look.
+
+   Deliberately unlayered: Tailwind's `outline-none` lives in the utilities
+   layer, and unlayered rules outrank every layered one regardless of
+   specificity — which is what lets this override the utility without
+   !important, and without having to remember it on each new field. */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
 }
 

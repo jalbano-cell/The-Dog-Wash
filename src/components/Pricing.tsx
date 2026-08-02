@@ -50,8 +50,10 @@ export function Pricing({ location }: { location: LocationInfo }) {
                     >
                       {tier.size}
                     </p>
+                    {/* accent-600, not -500: white on the lighter pink is only
+                        3.5:1, and this badge sets at 9.5px. */}
                     {featured ? (
-                      <span className="shrink-0 whitespace-nowrap rounded-full bg-accent-500 px-[9px] py-[3px] text-[9.5px] font-semibold uppercase tracking-[0.1em] text-white">
+                      <span className="shrink-0 whitespace-nowrap rounded-full bg-accent-600 px-[9px] py-[3px] text-[9.5px] font-semibold uppercase tracking-[0.1em] text-white">
                         Most common
                       </span>
                     ) : null}

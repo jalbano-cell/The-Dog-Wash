@@ -32,7 +32,7 @@ export function Gallery() {
               />
               <figcaption className="mt-3.5 flex items-baseline justify-between gap-3">
                 <span className="font-display text-[21px]">{pair.breed}</span>
-                <span className="text-[11px] uppercase tracking-[0.12em] text-white/45">
+                <span className="text-[11px] uppercase tracking-[0.12em] text-white/60">
                   Full groom
                 </span>
               </figcaption>

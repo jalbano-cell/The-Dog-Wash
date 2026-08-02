@@ -15,7 +15,7 @@ export function LocationChooser() {
           </span>
           <span className="font-display text-[25px] leading-none">The Dog Wash</span>
         </div>
-        <span className="hidden text-[10.5px] font-semibold uppercase tracking-[0.2em] text-white/50 sm:block">
+        <span className="hidden text-[10.5px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:block">
           Two studios near Toronto
         </span>
       </Container>
