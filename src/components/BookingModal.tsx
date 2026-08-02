@@ -136,7 +136,7 @@ export function BookingModal({
               </p>
 
               <div className="mt-4 rounded-2xl border-2 border-primary-200 bg-primary-50 p-3">
-                <p className="mb-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.15em] text-primary-700">
+                <p className="mb-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.15em] text-primary-600">
                   <MapPin size={13} />
                   Studio location
                 </p>
@@ -333,7 +333,7 @@ export function BookingModal({
                         <span
                           className={clsx(
                             "text-xs font-semibold",
-                            isSelected ? "text-primary-700" : "text-stone-700"
+                            isSelected ? "text-primary-600" : "text-stone-700"
                           )}
                         >
                           {size.label}
@@ -368,7 +368,7 @@ export function BookingModal({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-600 px-6 py-3.5 text-base font-semibold text-white shadow-md shadow-primary-600/20 transition-all hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-600 px-6 py-3.5 text-base font-semibold text-white shadow-md shadow-primary-600/20 transition-all hover:bg-navy disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? (
                   <>
@@ -389,7 +389,7 @@ export function BookingModal({
                   href="/terms"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="-my-3.5 inline-block py-3.5 font-semibold text-primary-600 hover:text-primary-700"
+                  className="-my-3.5 inline-block py-3.5 font-semibold text-primary-600 hover:text-primary-500"
                 >
                   Terms &amp; Conditions
                 </a>
@@ -401,7 +401,7 @@ export function BookingModal({
               Prefer to call?
               <a
                 href={currentLocation.phoneHref}
-                className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary-600 hover:text-primary-700"
+                className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary-600 hover:text-primary-500"
               >
                 <Phone size={14} />
                 {currentLocation.phone}

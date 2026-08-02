@@ -4,6 +4,17 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { MoveHorizontal } from "lucide-react";
 
+/**
+ * Before/after reveal driven by raw pointer events rather than a range input:
+ * the whole figure is the drag surface, so there's no thumb to hunt for on a
+ * phone. `setPointerCapture` keeps the drag alive when the finger leaves the
+ * element, and `touch-action: none` stops the browser claiming the gesture as
+ * a scroll mid-drag.
+ *
+ * Keyboard users get the same control through the arrow keys — the handle
+ * itself is a focusable `role="slider"`, which is why the drag surface stays a
+ * plain div rather than becoming a second interactive element.
+ */
 export function BeforeAfterSlider({
   before,
   after,
@@ -16,78 +27,69 @@ export function BeforeAfterSlider({
   afterAlt: string;
 }) {
   const [pos, setPos] = useState(50);
-  const [dragging, setDragging] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+  const frameRef = useRef<HTMLDivElement>(null);
 
-  function updateFromClientX(clientX: number) {
-    const el = containerRef.current;
+  function setFromClientX(clientX: number) {
+    const el = frameRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const pct = ((clientX - rect.left) / rect.width) * 100;
-    setPos(Math.min(100, Math.max(0, pct)));
-  }
-
-  function onKeyDown(e: React.KeyboardEvent) {
-    if (e.key === "ArrowLeft") {
-      setPos((p) => Math.max(0, p - 2));
-    } else if (e.key === "ArrowRight") {
-      setPos((p) => Math.min(100, p + 2));
-    }
+    if (rect.width === 0) return;
+    setPos(Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100)));
   }
 
   return (
     <div
-      ref={containerRef}
-      className="relative aspect-[3/4] w-full touch-none select-none overflow-hidden"
+      ref={frameRef}
       onPointerDown={(e) => {
         e.currentTarget.setPointerCapture(e.pointerId);
-        setDragging(true);
-        updateFromClientX(e.clientX);
+        dragging.current = true;
+        setFromClientX(e.clientX);
       }}
       onPointerMove={(e) => {
-        if (dragging) updateFromClientX(e.clientX);
+        if (dragging.current) setFromClientX(e.clientX);
       }}
       onPointerUp={(e) => {
-        e.currentTarget.releasePointerCapture(e.pointerId);
-        setDragging(false);
+        try {
+          e.currentTarget.releasePointerCapture(e.pointerId);
+        } catch {
+          // Capture can already be gone if the pointer was cancelled.
+        }
+        dragging.current = false;
       }}
+      onPointerCancel={() => {
+        dragging.current = false;
+      }}
+      className="relative aspect-4/5 w-full cursor-ew-resize touch-none select-none overflow-hidden rounded-[3px]"
     >
-      {/* After image (base layer) */}
       <Image
         src={after}
         alt={afterAlt}
         fill
-        loading="lazy"
-        sizes="(min-width: 768px) 32vw, 90vw"
-        className="object-cover"
         draggable={false}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover"
       />
-      <span className="pointer-events-none absolute right-2 top-2 z-10 rounded-full bg-primary-600/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+      <span className="absolute right-3 top-3 z-10 rounded-full bg-navy/80 px-[11px] py-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-white">
         After
       </span>
 
-      {/* Before image (clipped overlay) */}
-      <div
-        className="absolute inset-0"
-        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
-      >
+      <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
         <Image
           src={before}
           alt={beforeAlt}
           fill
-          loading="lazy"
-          sizes="(min-width: 768px) 32vw, 90vw"
-          className="object-cover"
           draggable={false}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover"
         />
-        <span className="pointer-events-none absolute left-2 top-2 rounded-full bg-stone-800/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-[11px] py-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-navy">
           Before
         </span>
       </div>
 
-      {/* Divider + handle */}
       <div
-        className="pointer-events-none absolute inset-y-0 z-10 w-0.5 bg-white/90 shadow-[0_0_6px_rgba(0,0,0,0.35)]"
+        className="absolute inset-y-0 z-10 w-[1.5px] bg-white"
         style={{ left: `${pos}%` }}
       >
         <button
@@ -97,12 +99,15 @@ export function BeforeAfterSlider({
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={Math.round(pos)}
-          onKeyDown={onKeyDown}
-          // 44px on touch (the drag handle is the whole interaction), shrinking
-          // back to the tighter 36px visual on pointer devices.
-          className="pointer-events-auto absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-primary-600 shadow-md ring-1 ring-stone-800/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 lg:h-9 lg:w-9"
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - 4));
+            if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 4));
+          }}
+          // 44px on touch (dragging is the whole interaction), tightening to
+          // the 36px visual on pointer devices.
+          className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-primary-600 shadow-[0_4px_12px_rgba(0,0,0,.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 lg:h-9 lg:w-9"
         >
-          <MoveHorizontal size={16} />
+          <MoveHorizontal size={15} />
         </button>
       </div>
     </div>

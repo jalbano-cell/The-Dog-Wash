@@ -1,123 +1,82 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Clock, ArrowRight, PawPrint } from "lucide-react";
-import { locations } from "@/data/locations";
-import { getImage } from "@/data/images";
-import { business } from "@/data/business";
+import { Phone, ArrowRight, PawPrint, Star } from "lucide-react";
+import { locations, formatRating } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
-import { StarRating } from "@/components/ui/StarRating";
-
-function openDaysSummary(hours: { day: string; hours: string }[]) {
-  const open = hours.filter((h) => h.hours.toLowerCase() !== "closed");
-  if (open.length === 0) return "Hours by appointment";
-  const short = (d: string) => d.slice(0, 3);
-  return `Open ${short(open[0].day)}–${short(open[open.length - 1].day)}`;
-}
+import { Eyebrow } from "@/components/ui/SectionHeading";
 
 export function LocationChooser() {
   return (
-    <div className="flex min-h-dvh flex-col bg-background">
-      <header className="border-b border-sand-dark/60">
-        <Container className="flex h-18 items-center justify-center py-3 sm:justify-start">
-          <span className="flex items-baseline gap-2">
-            <PawPrint size={22} className="mb-0.5 shrink-0 -rotate-12 text-playful-500" />
-            <span className="font-display text-xl font-extrabold tracking-tight text-stone-800">
-              The Dog Wash
-            </span>
+    <div className="flex min-h-dvh flex-col bg-navy text-white">
+      <Container className="flex items-center justify-between gap-4 py-8 lg:py-10">
+        <div className="flex items-center gap-[9px]">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-navy">
+            <PawPrint size={16} />
           </span>
-        </Container>
-      </header>
+          <span className="font-display text-[25px] leading-none">The Dog Wash</span>
+        </div>
+        <span className="hidden text-[10.5px] font-semibold uppercase tracking-[0.2em] text-white/50 sm:block">
+          Two studios near Toronto
+        </span>
+      </Container>
 
-      <main className="flex flex-1 flex-col justify-center py-14 sm:py-20">
-        <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary-600">
-              <MapPin size={13} />
-              Two Studios
-            </span>
-            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-stone-800 sm:text-6xl">
-              Choose your <span className="text-stone-400">location</span>
-            </h1>
-            <p className="mx-auto mt-4 max-w-xl text-base text-stone-600 sm:text-lg">
-              Pick the studio nearest you to see services, hours, and book your
-              dog&apos;s appointment.
-            </p>
-          </div>
+      <Container className="flex flex-1 flex-col justify-center pb-16 lg:pb-20">
+        <Eyebrow tone="dark">Choose your location</Eyebrow>
+        <h1 className="mt-[22px] max-w-[30rem] text-[42px] leading-[1.02] tracking-[-0.02em] sm:text-[56px] lg:text-[70px]">
+          Premium dog grooming, <em className="italic text-primary-300">calm &amp; careful</em>
+        </h1>
+        <p className="mt-[22px] max-w-[34rem] text-[15.5px] leading-[1.7] text-white/65 sm:text-[16.5px]">
+          Pick the studio closest to you to see services, hours and pricing — and to book your
+          dog&rsquo;s appointment.
+        </p>
 
-          <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
-            {locations.map((location) => {
-              const image = getImage(location.exteriorImage);
-              return (
-                <Link
-                  key={location.slug}
-                  href={`/locations/${location.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-sand-dark/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-xl"
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={`/images/${image.filename}`}
-                      alt={image.alt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 40vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-800/45 to-transparent" />
-                    <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-primary-600 backdrop-blur">
-                      <MapPin size={12} />
-                      {location.shortName}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="flex items-center gap-2">
-                      <StarRating rating={location.rating.value} size={15} />
-                      <span className="text-xs font-medium text-stone-500">
-                        {location.rating.value} ({location.rating.count})
-                      </span>
-                    </div>
-
-                    <h2 className="mt-3 font-display text-2xl font-extrabold text-stone-800">
-                      {location.shortName}
-                    </h2>
-                    <p className="mt-1.5 text-sm leading-relaxed text-stone-600">
-                      {location.tagline}
-                    </p>
-
-                    <dl className="mt-4 space-y-2 text-sm text-stone-600">
-                      <div className="flex items-start gap-2">
-                        <MapPin size={16} className="mt-0.5 shrink-0 text-accent-500" />
-                        <span>{location.address.full}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Phone size={16} className="shrink-0 text-accent-500" />
-                        <span>{location.phone}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock size={16} className="shrink-0 text-accent-500" />
-                        <span>{openDaysSummary(location.hours)}</span>
-                      </div>
-                    </dl>
-
-                    <span className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary-600 px-5 py-3 text-sm font-semibold text-white transition-colors group-hover:bg-primary-700">
-                      Visit {location.shortName} studio
-                      <ArrowRight
-                        size={16}
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                      />
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </Container>
-      </main>
-
-      <footer className="border-t border-sand-dark/60 py-6">
-        <Container className="text-center text-xs text-stone-500">
-          © {new Date().getFullYear()} {business.name} · Premium dog grooming in Etobicoke &amp; Georgetown
-        </Container>
-      </footer>
+        <div className="mt-10 grid gap-[22px] lg:mt-14 lg:grid-cols-2">
+          {locations.map((location) => (
+            <Link
+              key={location.slug}
+              href={location.isPrimary ? `/locations/${location.slug}` : `/locations/${location.slug}`}
+              className="group relative min-h-[360px] overflow-hidden rounded-[3px] transition-opacity hover:opacity-[0.94] lg:min-h-[420px]"
+            >
+              <Image
+                src={`/images/${location.exteriorImage}`}
+                alt={`The Dog Wash ${location.shortName} storefront exterior`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,40,63,.94),rgba(18,40,63,.4)_55%,rgba(18,40,63,.12))]"
+              />
+              <div className="relative flex h-full flex-col justify-end p-7 lg:p-[34px]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-300">
+                  {location.eyebrow.split(" · ")[0]}
+                </p>
+                <h2 className="mt-3 text-[34px] leading-[1.05] lg:text-[42px]">
+                  {location.shortName}
+                </h2>
+                <p className="mt-2.5 max-w-[24rem] text-[14.5px] leading-[1.65] text-white/75">
+                  {location.address.full}
+                </p>
+                <div className="mt-[22px] flex flex-wrap items-center gap-[18px] text-[12.5px] text-white/70">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <Star size={13} strokeWidth={0} className="fill-accent-500" />
+                    {formatRating(location.rating.value)} · {location.rating.count}+ reviews
+                  </span>
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <Phone size={13} />
+                    {location.phone}
+                  </span>
+                </div>
+                <span className="mt-[26px] inline-flex w-fit items-center gap-[9px] whitespace-nowrap rounded-full bg-white px-[22px] py-3 text-[14px] font-semibold text-navy">
+                  View this studio
+                  <ArrowRight size={15} />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </Container>
     </div>
   );
 }

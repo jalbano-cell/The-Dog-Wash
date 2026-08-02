@@ -14,17 +14,19 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="flex min-h-dvh flex-col bg-cream">
-      <header className="border-b border-sand-dark/60 bg-white">
-        <Container className="flex h-18 items-center justify-between py-3">
-          <Link href="/" className="-my-2 flex items-baseline gap-2 py-2">
-            <PawPrint size={22} className="mb-0.5 shrink-0 -rotate-12 text-playful-500" />
-            <span className="font-display text-xl font-extrabold tracking-tight text-stone-800">
+      <header className="border-b border-border bg-white">
+        <Container className="flex h-[74px] items-center justify-between gap-4">
+          <Link href="/" className="-my-2 flex items-center gap-[9px] py-2">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-white">
+              <PawPrint size={16} />
+            </span>
+            <span className="whitespace-nowrap font-display text-[25px] leading-none tracking-[-0.01em] text-navy">
               The Dog Wash
             </span>
           </Link>
           <Link
             href="/"
-            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700"
+            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-500"
           >
             <ArrowLeft size={16} />
             Back home
@@ -35,31 +37,31 @@ export default function TermsPage() {
       <main className="flex-1 py-14 sm:py-20">
         <Container>
           <div className="mx-auto max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-600">
-              Award-Winning Pet Grooming
+            <span className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-stone-400">
+              Award-winning pet grooming
             </span>
-            <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-stone-800">
+            <h1 className="mt-4 text-[38px] leading-[1.06] tracking-[-0.015em] text-navy sm:text-[48px]">
               Terms and Conditions
             </h1>
-            <p className="mt-5 text-base font-medium text-stone-700">{termsIntro}</p>
+            <p className="mt-5 text-[15.5px] leading-[1.75] text-stone-600">{termsIntro}</p>
 
-            <ol className="mt-6 space-y-4">
+            <ol className="mt-8 space-y-3">
               {termsClauses.map((clause, index) => (
                 <li
                   key={index}
-                  className="flex gap-4 rounded-2xl border border-sand-dark/70 bg-white p-5 shadow-sm"
+                  className="flex gap-4 rounded-[3px] border border-border bg-white p-5"
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-bold text-white">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-600 text-[13px] font-semibold text-white">
                     {index + 1}
                   </span>
-                  <p className="text-sm leading-relaxed text-stone-700">{clause}</p>
+                  <p className="text-[13.5px] leading-[1.75] text-stone-600">{clause}</p>
                 </li>
               ))}
             </ol>
 
             <p className="mt-8 text-sm text-stone-600">
               Questions about our terms? Please{" "}
-              <Link href="/" className="-my-3 inline-block py-3 font-semibold text-primary-600 hover:text-primary-700">
+              <Link href="/" className="-my-3 inline-block py-3 font-semibold text-primary-600 hover:text-primary-500">
                 get in touch with your studio
               </Link>
               .
@@ -68,7 +70,7 @@ export default function TermsPage() {
         </Container>
       </main>
 
-      <footer className="border-t border-sand-dark/60 py-6">
+      <footer className="border-t border-border py-6">
         <Container className="text-center text-xs text-stone-500">
           © {new Date().getFullYear()} The Dog Wash · Premium dog grooming in Etobicoke &amp; Georgetown
         </Container>

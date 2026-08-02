@@ -72,7 +72,7 @@ export default async function ManageBookingPage({
           <input type="hidden" name="by" value="owner" />
           <button
             type="submit"
-            className="w-full rounded-full bg-primary-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary-700"
+            className="w-full rounded-full bg-primary-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-navy"
           >
             {location.bookingMode === "calendar" ? "Approve & confirm" : "Approve requested time"}
           </button>

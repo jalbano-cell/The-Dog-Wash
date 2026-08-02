@@ -6,8 +6,14 @@ import type { LocationInfo } from "@/data/locations";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const inputClass =
-  "w-full rounded-xl border border-sand-dark bg-cream/50 px-4 py-2.5 text-sm text-stone-800 outline-none transition-colors focus:border-primary-500 focus:bg-white";
+// Underline-only fields: the card already has a border, so boxing each input
+// inside it doubles the visual weight. The textarea keeps a full border since
+// a bare underline can't communicate a multi-line target.
+const fieldClass =
+  "w-full border-0 border-b border-border-input bg-transparent px-0.5 py-2.5 text-[14.5px] text-navy outline-none transition-colors focus:border-primary-600";
+const labelClass =
+  "mb-[7px] block text-[10.5px] font-semibold uppercase tracking-[0.14em] text-stone-400";
+const errorClass = "mt-1.5 flex items-center gap-1 text-[12px] font-medium text-red-600";
 
 export function ContactForm({ location }: { location: LocationInfo }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -41,22 +47,27 @@ export function ContactForm({ location }: { location: LocationInfo }) {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center rounded-3xl bg-white p-8 text-center ring-1 ring-stone-800/5">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 text-primary-600">
+      <div className="flex flex-col items-center rounded-[3px] border border-border bg-white p-8 text-center">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600">
           <CheckCircle2 size={28} />
         </span>
-        <h3 className="mt-5 text-xl font-bold text-stone-800">Message sent!</h3>
-        <p className="mt-2 max-w-sm text-sm leading-relaxed text-stone-600">
-          Thanks for reaching out to our {location.shortName} studio — we&rsquo;ll get back to you as soon as we can.
+        <h3 className="mt-5 text-[26px] text-navy">Message sent</h3>
+        <p className="mt-2 max-w-sm text-[13.5px] leading-relaxed text-stone-500">
+          Thanks for reaching out to our {location.shortName} studio — we&rsquo;ll get back to you
+          as soon as we can.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="rounded-3xl bg-white p-6 ring-1 ring-stone-800/5 sm:p-8">
-      <h3 className="text-lg font-bold text-stone-800">Send us a message</h3>
-      <p className="mt-1 text-sm text-stone-600">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="rounded-[3px] border border-border bg-white p-6 sm:p-8"
+    >
+      <h3 className="text-[28px] text-navy">Send us a message</h3>
+      <p className="mt-1.5 text-[13.5px] text-stone-400">
         Have a question about your dog or our services? We&rsquo;d love to hear from you.
       </p>
 
@@ -67,42 +78,42 @@ export function ContactForm({ location }: { location: LocationInfo }) {
         <input id="contact-company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="mt-5 space-y-4">
+      <div className="mt-6 flex flex-col gap-4">
         <div>
-          <label htmlFor="contact-name" className="mb-1.5 block text-xs font-semibold text-stone-700">
+          <label htmlFor="contact-name" className={labelClass}>
             Your name
           </label>
-          <input id="contact-name" name="name" type="text" className={inputClass} aria-invalid={!!errors.name} />
+          <input id="contact-name" name="name" type="text" autoComplete="name" className={fieldClass} aria-invalid={!!errors.name} />
           {errors.name ? (
-            <p className="mt-1 flex items-center gap-1 text-xs font-medium text-red-600">
+            <p className={errorClass}>
               <AlertCircle size={12} /> {errors.name}
             </p>
           ) : null}
         </div>
         <div>
-          <label htmlFor="contact-contact" className="mb-1.5 block text-xs font-semibold text-stone-700">
+          <label htmlFor="contact-contact" className={labelClass}>
             Phone or email
           </label>
-          <input id="contact-contact" name="contact" type="text" className={inputClass} aria-invalid={!!errors.contact} />
+          <input id="contact-contact" name="contact" type="text" className={fieldClass} aria-invalid={!!errors.contact} />
           {errors.contact ? (
-            <p className="mt-1 flex items-center gap-1 text-xs font-medium text-red-600">
+            <p className={errorClass}>
               <AlertCircle size={12} /> {errors.contact}
             </p>
           ) : null}
         </div>
         <div>
-          <label htmlFor="contact-message" className="mb-1.5 block text-xs font-semibold text-stone-700">
+          <label htmlFor="contact-message" className={labelClass}>
             Message
           </label>
           <textarea
             id="contact-message"
             name="message"
             rows={4}
-            className={`${inputClass} resize-none`}
+            className="w-full resize-none rounded-[2px] border border-border-input bg-transparent p-3 text-[14.5px] text-navy outline-none transition-colors focus:border-primary-600"
             aria-invalid={!!errors.message}
           />
           {errors.message ? (
-            <p className="mt-1 flex items-center gap-1 text-xs font-medium text-red-600">
+            <p className={errorClass}>
               <AlertCircle size={12} /> {errors.message}
             </p>
           ) : null}
@@ -110,7 +121,7 @@ export function ContactForm({ location }: { location: LocationInfo }) {
       </div>
 
       {status === "error" ? (
-        <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-red-600">
+        <p className="mt-4 flex items-center gap-1.5 text-[13.5px] font-medium text-red-600">
           <AlertCircle size={15} />
           Something went wrong — please call us instead at {location.phone}.
         </p>
@@ -119,15 +130,15 @@ export function ContactForm({ location }: { location: LocationInfo }) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-[26px] inline-flex min-h-11 w-full items-center justify-center gap-[9px] rounded-full bg-primary-600 px-6 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-navy disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "submitting" ? (
           <>
-            <Loader2 size={16} className="animate-spin" /> Sending...
+            <Loader2 size={15} className="animate-spin" /> Sending...
           </>
         ) : (
           <>
-            <Send size={16} /> Send message
+            <Send size={15} /> Send message
           </>
         )}
       </button>

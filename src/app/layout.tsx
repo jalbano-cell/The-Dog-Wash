@@ -1,26 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Inter, Caveat } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import { BookingModalProvider } from "@/components/BookingModalContext";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const display = Plus_Jakarta_Sans({
+// Instrument Serif ships a single weight (400) in roman and italic — the
+// display voice for every headline. Don't request other weights; there aren't
+// any, and asking for one gets a synthesised fake-bold.
+const display = Instrument_Serif({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const body = Inter({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-// Casual handwriting accent for section labels and flourishes.
-const script = Caveat({
-  variable: "--font-script",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const siteUrl = siteConfig.baseUrl;
@@ -83,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-CA" className={`${display.variable} ${body.variable} ${script.variable} h-full antialiased`}>
+    <html lang="en-CA" className={`${display.variable} ${body.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <BookingModalProvider>{children}</BookingModalProvider>
       </body>

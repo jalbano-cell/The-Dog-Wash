@@ -1,98 +1,84 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, PawPrint, MapPin, ChevronDown } from "lucide-react";
-import clsx from "clsx";
+import { Menu, X, Phone, PawPrint, MapPin, ChevronsUpDown } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
 import { useBookingModal } from "@/components/BookingModalContext";
 
 const navLinks = [
   { href: "#services", label: "Services" },
-  { href: "#pricing", label: "Pricing" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#studio", label: "Studio" },
+  { href: "#visit", label: "Visit" },
 ];
 
 export function Header({ location }: { location: LocationInfo }) {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { openBookingModal } = useBookingModal();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={clsx(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled
-          ? "border-b border-sand-dark/60 bg-cream/90 backdrop-blur-md"
-          : "border-b border-transparent bg-cream/40 backdrop-blur-sm"
-      )}
-    >
-      <Container className="flex h-18 items-center justify-between py-3">
-        <div className="flex items-center gap-3">
-          {/* -my-2/py-2 extends the tap area to 44px without changing the
-              header's height or the wordmark's baseline alignment. */}
-          <Link href="#top" className="group -my-2 flex items-baseline gap-2 py-2">
-            <PawPrint
-              size={22}
-              className="mb-0.5 shrink-0 -rotate-12 text-playful-500 transition-transform duration-300 group-hover:animate-wag"
-            />
-            <span className="font-display text-xl font-extrabold tracking-tight text-stone-800">
+    <header className="sticky top-0 z-60 w-full border-b border-border bg-cream/[0.92] backdrop-blur-[12px]">
+      {/* Every group is shrink-0: the wordmark must never compress, so at
+          narrow widths the nav drops out (below lg) rather than squeezing it. */}
+      <Container className="flex h-[74px] items-center justify-between gap-4">
+        <div className="flex shrink-0 items-center gap-[10px]">
+          {/* -my-2/py-2 extends the tap area past 44px without changing the
+              header's height. */}
+          <Link href="#top" className="-my-2 flex shrink-0 items-center gap-[9px] py-2">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-white">
+              <PawPrint size={16} />
+            </span>
+            <span className="whitespace-nowrap font-display text-[25px] leading-none tracking-[-0.01em] text-navy">
               The Dog Wash
             </span>
           </Link>
           <Link
             href="/"
             aria-label="Change location"
-            className="hidden items-center gap-1 rounded-full bg-sand px-2.5 py-1 text-xs font-semibold text-primary-600 transition-colors hover:bg-primary-50 sm:inline-flex"
+            className="hidden shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-border-input bg-white px-[11px] py-[5px] text-[11px] font-semibold uppercase tracking-[0.09em] text-primary-600 transition-colors hover:border-primary-600 sm:inline-flex"
           >
-            <MapPin size={12} />
+            <MapPin size={11} />
             {location.shortName}
-            <ChevronDown size={12} className="opacity-60" />
+            <ChevronsUpDown size={11} className="opacity-50" />
           </Link>
         </div>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden shrink-0 items-center gap-[clamp(11px,1.6vw,28px)] lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-stone-600 transition-colors hover:text-primary-600"
+              className="whitespace-nowrap text-[13px] font-medium text-stone-600 transition-colors hover:text-primary-600"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden shrink-0 items-center gap-4 lg:flex">
           <a
             href={location.phoneHref}
-            className="flex items-center gap-2 text-sm font-semibold text-stone-800 transition-colors hover:text-primary-600"
+            aria-label="Call the studio"
+            title={location.phone}
+            className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full border border-border-input text-navy transition-colors hover:border-primary-600 hover:text-primary-600"
           >
-            <Phone size={16} />
-            {location.phone}
+            <Phone size={15} />
           </a>
           <button
             type="button"
             onClick={() => openBookingModal(location)}
-            className="rounded-full bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-700 hover:shadow-md"
+            className="shrink-0 whitespace-nowrap rounded-full bg-primary-600 px-[22px] py-[11px] text-[13.5px] font-semibold text-white transition-colors hover:bg-navy"
           >
-            Book Appointment
+            Book appointment
           </button>
         </div>
 
         <button
           type="button"
-          className="-mr-1 flex h-11 w-11 items-center justify-center rounded-full text-stone-800 lg:hidden"
+          className="-mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-navy lg:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -102,14 +88,14 @@ export function Header({ location }: { location: LocationInfo }) {
       </Container>
 
       {menuOpen ? (
-        <div className="border-t border-sand-dark/60 bg-cream lg:hidden">
-          <Container className="flex flex-col gap-1 py-4">
+        <div className="border-t border-border bg-cream lg:hidden">
+          <Container className="flex flex-col py-3">
             <Link
               href="/"
               onClick={() => setMenuOpen(false)}
-              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-primary-600 hover:bg-sand"
+              className="flex min-h-11 items-center gap-2 rounded-sm px-1 text-[14px] font-semibold text-primary-600"
             >
-              <MapPin size={16} />
+              <MapPin size={15} />
               Change location ({location.shortName})
             </Link>
             {navLinks.map((link) => (
@@ -117,18 +103,18 @@ export function Header({ location }: { location: LocationInfo }) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-sand"
+                className="flex min-h-11 items-center rounded-sm px-1 text-[14px] font-medium text-stone-600"
               >
                 {link.label}
               </a>
             ))}
-            <div className="mt-3 flex flex-col gap-2 px-3">
+            <div className="mt-3 flex flex-col gap-2">
               <a
                 href={location.phoneHref}
-                className="flex items-center justify-center gap-2 rounded-full border border-primary-600 px-5 py-2.5 text-sm font-semibold text-primary-600"
+                className="flex min-h-11 items-center justify-center gap-2 rounded-full border border-border-input px-5 text-[14px] font-semibold text-navy"
               >
-                <Phone size={16} />
-                Call Now
+                <Phone size={15} />
+                {location.phone}
               </a>
               <button
                 type="button"
@@ -136,9 +122,9 @@ export function Header({ location }: { location: LocationInfo }) {
                   setMenuOpen(false);
                   openBookingModal(location);
                 }}
-                className="rounded-full bg-primary-600 px-5 py-2.5 text-center text-sm font-semibold text-white"
+                className="min-h-11 rounded-full bg-primary-600 px-5 text-center text-[14px] font-semibold text-white"
               >
-                Book Appointment
+                Book appointment
               </button>
             </div>
           </Container>

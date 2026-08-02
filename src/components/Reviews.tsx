@@ -1,65 +1,64 @@
-import { Quote } from "lucide-react";
+import { Star } from "lucide-react";
 import { getReviewsForLocation } from "@/data/content";
-import type { LocationInfo } from "@/data/locations";
+import { formatRating, type LocationInfo } from "@/data/locations";
 import { Container } from "@/components/ui/Container";
-import { StarRating } from "@/components/ui/StarRating";
-import { CountUp } from "@/components/CountUp";
-import { TornDivider } from "@/components/TornDivider";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Reviews({ location }: { location: LocationInfo }) {
   const testimonials = getReviewsForLocation(location.slug);
-  // Duplicated once so the marquee can loop seamlessly (track translates -50%).
+  // Duplicated once so the marquee loops seamlessly — the track translates
+  // exactly -50%, landing the copy back where the original started.
   const track = [...testimonials, ...testimonials];
 
   return (
-    <section id="reviews" className="relative overflow-hidden bg-primary-700 py-24 text-white lg:py-32">
-      <TornDivider colorClass="text-white" />
-      <Container>
-        <div className="flex flex-col items-center text-center">
-          <p className="mb-1 font-script text-3xl font-bold text-playful-400">
-            Reviews
+    <section id="reviews" className="overflow-hidden border-t border-border bg-white py-20 lg:py-[104px]">
+      <Container className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
+        <SectionHeading
+          eyebrow="Reviews"
+          title={`What ${location.shortName} pet parents`}
+          titleItalic="are saying"
+          className="max-w-[34rem]"
+        />
+        <div className="shrink-0 sm:text-right">
+          <p className="font-display text-[44px] leading-none text-navy lg:text-[54px]">
+            {formatRating(location.rating.value)}
           </p>
-          <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
-            What {location.shortName} pet parents{" "}
-            <span className="text-primary-300">are saying</span>
-          </h2>
-          <div className="mt-5 flex items-center gap-2">
-            <StarRating rating={location.rating.value} />
-            <span className="text-sm font-medium text-primary-100">
-              {location.rating.value} average from <CountUp end={location.rating.count} />+ Google reviews
-            </span>
-          </div>
+          <p className="mt-1.5 text-[11px] uppercase tracking-[0.12em] text-stone-400">
+            Average from {location.rating.count}+ Google reviews
+          </p>
         </div>
       </Container>
 
-      {/* Auto-scrolling review cards. Pauses on hover; users who prefer reduced
-          motion get a static, horizontally scrollable row instead. */}
-      <div
-        className="group relative mt-16 flex overflow-hidden motion-reduce:overflow-x-auto"
-        aria-label="Customer reviews"
-      >
-        {/* Edge fades */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-primary-700 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-primary-700 to-transparent" />
-
-        <div className="flex w-max animate-marquee pl-6 group-hover:[animation-play-state:paused] motion-reduce:animate-none">
-          {track.map((t, i) => (
+      <div className="relative mt-10 flex overflow-hidden lg:mt-12">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent lg:w-[90px]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent lg:w-[90px]"
+        />
+        {/* Paused on hover so a quote can actually be read, and stopped
+            outright for anyone who asked for reduced motion. */}
+        <div className="flex w-max animate-marquee pl-6 hover:[animation-play-state:paused] motion-reduce:animate-none lg:pl-10">
+          {track.map((review, i) => (
             <article
-              key={i}
-              aria-hidden={i >= testimonials.length}
-              className="mr-6 flex w-[300px] shrink-0 flex-col rounded-3xl bg-white p-7 text-left text-stone-800 shadow-lg sm:w-[380px]"
+              key={`${review.name}-${i}`}
+              className="mr-[22px] flex w-[300px] shrink-0 flex-col rounded-[3px] border border-border bg-cream p-7 sm:w-[370px]"
             >
-              <Quote size={24} className="text-primary-300" />
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-stone-700">
-                &ldquo;{t.quote}&rdquo;
+              <span className="flex items-center gap-[3px]">
+                {Array.from({ length: 5 }).map((_, s) => (
+                  <Star key={s} size={14} strokeWidth={0} className="fill-accent-500" />
+                ))}
+              </span>
+              <p className="mt-4 flex-1 font-display text-[19px] leading-[1.45] text-navy">
+                &ldquo;{review.quote}&rdquo;
               </p>
-              <div className="mt-4 border-t border-sand-dark/60 pt-4">
-                <StarRating rating={t.rating} size={15} />
-                <p className="mt-2 text-sm font-bold text-stone-800">
-                  {t.name}
-                  <span className="font-normal text-stone-500"> {t.dog}</span>
+              <div className="mt-5 border-t border-border pt-3.5">
+                <p className="text-[13.5px] font-semibold text-navy">{review.name}</p>
+                <p className="mt-0.5 text-[12.5px] text-stone-400">
+                  {[review.dog, review.source].filter(Boolean).join(" · ")}
                 </p>
-                <p className="text-xs text-stone-400">{t.source}</p>
               </div>
             </article>
           ))}

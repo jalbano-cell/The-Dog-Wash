@@ -4,6 +4,19 @@ export type LocationInfo = {
   displayName: string;
   tagline: string;
   descriptionShort: string;
+  /**
+   * Small caps label under the hero headline, and the only per-location copy
+   * the redesign added. Kept as data (not derived) because the two studios
+   * describe themselves differently: Etobicoke is a full-service studio,
+   * Georgetown leads with self-serve.
+   */
+  eyebrow: string;
+  /**
+   * The area the hero headline claims ("Award-winning dog grooming in
+   * {region}"). Distinct from shortName because Georgetown's studio is
+   * physically in Limehouse and serves Halton Hills more broadly.
+   */
+  region: string;
   phone: string;
   phoneHref: string;
   address: {
@@ -44,6 +57,8 @@ export const locations: LocationInfo[] = [
     tagline: "Etobicoke's Premium Dog Grooming Studio",
     descriptionShort:
       "Award-winning, certified pet stylists delivering calm, careful grooming for every breed — in a clean, modern studio your dog will actually enjoy.",
+    eyebrow: "Certified pet stylists · Etobicoke studio",
+    region: "Etobicoke",
     phone: "(416) 242-2501",
     phoneHref: "tel:+14162422501",
     address: {
@@ -87,6 +102,8 @@ export const locations: LocationInfo[] = [
     tagline: "Georgetown's Express Self-Serve Wash & Grooming Bar",
     descriptionShort:
       "A fast, affordable self-serve wash bar plus express grooming services — for pet parents who want a quick, quality clean without booking a full spa day.",
+    eyebrow: "Self-serve wash & express grooming · Georgetown",
+    region: "Halton Hills",
     phone: "(905) 702-9274",
     phoneHref: "tel:+19057029274",
     address: {
@@ -118,6 +135,14 @@ export const locations: LocationInfo[] = [
     bookingMode: "calendar",
   },
 ];
+
+/**
+ * Ratings always read to one decimal — a stored 5.0 is the number 5, which
+ * would otherwise print as a bare "5" next to Etobicoke's "4.2".
+ */
+export function formatRating(value: number): string {
+  return value.toFixed(1);
+}
 
 export function getLocationBySlug(slug: string): LocationInfo | undefined {
   return locations.find((location) => location.slug === slug);

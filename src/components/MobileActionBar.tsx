@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, CalendarCheck } from "lucide-react";
+import { Phone } from "lucide-react";
 import type { LocationInfo } from "@/data/locations";
 import { useBookingModal } from "@/components/BookingModalContext";
 
@@ -8,21 +8,22 @@ export function MobileActionBar({ location }: { location: LocationInfo }) {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <div className="pb-safe fixed inset-x-0 bottom-0 z-50 flex items-stretch gap-px border-t border-sand-dark bg-white/95 backdrop-blur-md lg:hidden">
+    // pb-safe clears the iPhone home indicator — it depends on
+    // `viewportFit: "cover"` in app/layout.tsx, without which env() is 0.
+    <div className="pb-safe fixed inset-x-0 bottom-0 z-70 flex items-stretch border-t border-border-input bg-white/[0.96] backdrop-blur-[10px] lg:hidden">
       <a
         href={location.phoneHref}
-        className="flex min-h-[52px] flex-1 items-center justify-center gap-2 bg-white py-3.5 text-sm font-semibold text-stone-800"
+        className="flex min-h-[52px] flex-1 items-center justify-center gap-2 py-[15px] text-[14px] font-semibold text-navy"
       >
-        <Phone size={16} />
-        Call Now
+        <Phone size={15} />
+        Call now
       </a>
       <button
         type="button"
         onClick={() => openBookingModal(location)}
-        className="flex min-h-[52px] flex-1 items-center justify-center gap-2 bg-primary-600 py-3.5 text-sm font-semibold text-white"
+        className="min-h-[52px] flex-1 bg-primary-600 py-[15px] text-[14px] font-semibold text-white"
       >
-        <CalendarCheck size={16} />
-        Book Appointment
+        Book appointment
       </button>
     </div>
   );
