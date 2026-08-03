@@ -31,7 +31,7 @@ export function FaqAccordion() {
                 aria-expanded={isOpen}
                 className="flex w-full min-h-11 items-center justify-between gap-4 px-0.5 py-4 text-left"
               >
-                <span className="text-[14.5px] font-medium text-navy">{item.question}</span>
+                <span className="text-[14.5px] font-medium text-primary-900">{item.question}</span>
                 {isOpen ? (
                   <Minus size={15} className="shrink-0 text-primary-600" />
                 ) : (

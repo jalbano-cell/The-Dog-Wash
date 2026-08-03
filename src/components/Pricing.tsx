@@ -38,7 +38,7 @@ export function Pricing({ location }: { location: LocationInfo }) {
                   key={tier.size}
                   className={clsx(
                     "flex flex-col border-t border-border-light px-6 py-[30px] first:border-t-0 sm:border-l sm:border-t-0 sm:first:border-l-0",
-                    featured ? "bg-navy" : "bg-white"
+                    featured ? "bg-primary-900" : "bg-white"
                   )}
                 >
                   <div className="flex min-h-[22px] flex-wrap items-center justify-between gap-1.5">
@@ -62,7 +62,7 @@ export function Pricing({ location }: { location: LocationInfo }) {
                   <p
                     className={clsx(
                       "mt-4 font-display text-[46px] leading-none",
-                      featured ? "text-white" : "text-navy"
+                      featured ? "text-white" : "text-primary-900"
                     )}
                   >
                     <span className="align-top text-[22px] leading-[1.6]">$</span>
@@ -106,7 +106,7 @@ export function Pricing({ location }: { location: LocationInfo }) {
                     className={clsx(
                       "mt-[26px] min-h-11 rounded-full border px-[18px] text-[13px] font-semibold transition-colors",
                       featured
-                        ? "border-white bg-white text-navy hover:bg-primary-100"
+                        ? "border-white bg-white text-primary-900 hover:bg-primary-100"
                         : "border-border-input bg-transparent text-primary-600 hover:border-primary-600"
                     )}
                   >
@@ -118,7 +118,7 @@ export function Pricing({ location }: { location: LocationInfo }) {
           </div>
 
           <div className="rounded-[3px] border border-border bg-cream px-7 py-[30px]">
-            <h3 className="text-[26px] text-navy">Add-on services</h3>
+            <h3 className="text-[26px] text-primary-900">Add-on services</h3>
             <p className="mt-1.5 text-[13px] text-stone-400">
               Add any of these to a groom, or book them on their own.
             </p>
@@ -129,7 +129,7 @@ export function Pricing({ location }: { location: LocationInfo }) {
                   className="flex items-baseline justify-between gap-3 border-b border-dashed border-[#dfe8f3] py-[11px]"
                 >
                   <dt className="text-[13.5px] text-stone-700">{addOn.name}</dt>
-                  <dd className="font-display text-[19px] text-navy">${addOn.price}</dd>
+                  <dd className="font-display text-[19px] text-primary-900">${addOn.price}</dd>
                 </div>
               ))}
             </dl>

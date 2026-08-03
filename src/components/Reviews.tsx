@@ -20,7 +20,7 @@ export function Reviews({ location }: { location: LocationInfo }) {
           className="max-w-[34rem]"
         />
         <div className="shrink-0 sm:text-right">
-          <p className="font-display text-[44px] leading-none text-navy lg:text-[54px]">
+          <p className="font-display text-[44px] leading-none text-primary-900 lg:text-[54px]">
             {formatRating(location.rating.value)}
           </p>
           <p className="mt-1.5 text-[11px] uppercase tracking-[0.12em] text-stone-400">
@@ -51,11 +51,11 @@ export function Reviews({ location }: { location: LocationInfo }) {
                   <Star key={s} size={14} strokeWidth={0} className="fill-accent-500" />
                 ))}
               </span>
-              <p className="mt-4 flex-1 font-display text-[19px] leading-[1.45] text-navy">
+              <p className="mt-4 flex-1 font-display text-[19px] leading-[1.45] text-primary-900">
                 &ldquo;{review.quote}&rdquo;
               </p>
               <div className="mt-5 border-t border-border pt-3.5">
-                <p className="text-[13.5px] font-semibold text-navy">{review.name}</p>
+                <p className="text-[13.5px] font-semibold text-primary-900">{review.name}</p>
                 <p className="mt-0.5 text-[12.5px] text-stone-400">
                   {[review.dog, review.source].filter(Boolean).join(" · ")}
                 </p>

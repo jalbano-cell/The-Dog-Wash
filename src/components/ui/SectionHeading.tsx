@@ -68,7 +68,7 @@ export function SectionHeading({
       <Tag
         className={clsx(
           "mt-5 text-[34px] leading-[1.06] tracking-[-0.015em] sm:text-[42px] lg:text-[52px]",
-          tone === "dark" ? "text-white" : "text-navy"
+          tone === "dark" ? "text-white" : "text-primary-900"
         )}
       >
         {title}

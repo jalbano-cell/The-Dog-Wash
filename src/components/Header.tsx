@@ -28,10 +28,10 @@ export function Header({ location }: { location: LocationInfo }) {
           {/* -my-2/py-2 extends the tap area past 44px without changing the
               header's height. */}
           <Link href="#top" className="-my-2 flex shrink-0 items-center gap-[9px] py-2">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-white">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-900 text-white">
               <PawPrint size={16} />
             </span>
-            <span className="whitespace-nowrap font-display text-[25px] leading-none tracking-[-0.01em] text-navy">
+            <span className="whitespace-nowrap font-display text-[25px] leading-none tracking-[-0.01em] text-primary-900">
               The Dog Wash
             </span>
           </Link>
@@ -63,7 +63,7 @@ export function Header({ location }: { location: LocationInfo }) {
             href={location.phoneHref}
             aria-label="Call the studio"
             title={location.phone}
-            className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full border border-border-input text-navy transition-colors hover:border-primary-600 hover:text-primary-600"
+            className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full border border-border-input text-primary-900 transition-colors hover:border-primary-600 hover:text-primary-600"
           >
             <Phone size={15} />
           </a>
@@ -78,7 +78,7 @@ export function Header({ location }: { location: LocationInfo }) {
 
         <button
           type="button"
-          className="-mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-navy lg:hidden"
+          className="-mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-primary-900 lg:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -111,7 +111,7 @@ export function Header({ location }: { location: LocationInfo }) {
             <div className="mt-3 flex flex-col gap-2">
               <a
                 href={location.phoneHref}
-                className="flex min-h-11 items-center justify-center gap-2 rounded-full border border-border-input px-5 text-[14px] font-semibold text-navy"
+                className="flex min-h-11 items-center justify-center gap-2 rounded-full border border-border-input px-5 text-[14px] font-semibold text-primary-900"
               >
                 <Phone size={15} />
                 {location.phone}

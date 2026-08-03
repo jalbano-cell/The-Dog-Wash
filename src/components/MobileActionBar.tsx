@@ -13,7 +13,7 @@ export function MobileActionBar({ location }: { location: LocationInfo }) {
     <div className="pb-safe fixed inset-x-0 bottom-0 z-70 flex items-stretch border-t border-border-input bg-white/[0.96] backdrop-blur-[10px] lg:hidden">
       <a
         href={location.phoneHref}
-        className="flex min-h-[52px] flex-1 items-center justify-center gap-2 py-[15px] text-[14px] font-semibold text-navy"
+        className="flex min-h-[52px] flex-1 items-center justify-center gap-2 py-[15px] text-[14px] font-semibold text-primary-900"
       >
         <Phone size={15} />
         Call now

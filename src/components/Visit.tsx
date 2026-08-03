@@ -42,7 +42,7 @@ export function Visit({ location }: { location: LocationInfo }) {
             <div className="mt-[22px] grid gap-px rounded-[3px] border border-border bg-border sm:grid-cols-2">
               <div className="bg-white px-[22px] py-5">
                 <p className={cellLabel}>Address</p>
-                <p className="mt-2 text-[14px] leading-[1.6] text-navy">{location.address.full}</p>
+                <p className="mt-2 text-[14px] leading-[1.6] text-primary-900">{location.address.full}</p>
               </div>
               <div className="bg-white px-[22px] py-5">
                 <p className={cellLabel}>Phone</p>
@@ -67,7 +67,7 @@ export function Visit({ location }: { location: LocationInfo }) {
                         <dd
                           className={clsx(
                             "text-[13.5px] font-medium",
-                            closed ? "text-stone-300" : "text-navy"
+                            closed ? "text-stone-300" : "text-primary-900"
                           )}
                         >
                           {h.hours}

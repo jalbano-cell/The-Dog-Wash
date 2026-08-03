@@ -10,7 +10,7 @@ type Status = "idle" | "submitting" | "success" | "error";
 // inside it doubles the visual weight. The textarea keeps a full border since
 // a bare underline can't communicate a multi-line target.
 const fieldClass =
-  "w-full border-0 border-b border-border-input bg-transparent px-0.5 py-2.5 text-[14.5px] text-navy outline-none transition-colors focus:border-primary-600";
+  "w-full border-0 border-b border-border-input bg-transparent px-0.5 py-2.5 text-[14.5px] text-primary-900 outline-none transition-colors focus:border-primary-600";
 const labelClass =
   "mb-[7px] block text-[10.5px] font-semibold uppercase tracking-[0.14em] text-stone-400";
 const errorClass = "mt-1.5 flex items-center gap-1 text-[12px] font-medium text-red-600";
@@ -51,7 +51,7 @@ export function ContactForm({ location }: { location: LocationInfo }) {
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-50 text-primary-600">
           <CheckCircle2 size={28} />
         </span>
-        <h3 className="mt-5 text-[26px] text-navy">Message sent</h3>
+        <h3 className="mt-5 text-[26px] text-primary-900">Message sent</h3>
         <p className="mt-2 max-w-sm text-[13.5px] leading-relaxed text-stone-500">
           Thanks for reaching out to our {location.shortName} studio — we&rsquo;ll get back to you
           as soon as we can.
@@ -66,7 +66,7 @@ export function ContactForm({ location }: { location: LocationInfo }) {
       noValidate
       className="rounded-[3px] border border-border bg-white p-6 sm:p-8"
     >
-      <h3 className="text-[28px] text-navy">Send us a message</h3>
+      <h3 className="text-[28px] text-primary-900">Send us a message</h3>
       <p className="mt-1.5 text-[13.5px] text-stone-400">
         Have a question about your dog or our services? We&rsquo;d love to hear from you.
       </p>
@@ -109,7 +109,7 @@ export function ContactForm({ location }: { location: LocationInfo }) {
             id="contact-message"
             name="message"
             rows={4}
-            className="w-full resize-none rounded-[2px] border border-border-input bg-transparent p-3 text-[14.5px] text-navy outline-none transition-colors focus:border-primary-600"
+            className="w-full resize-none rounded-[2px] border border-border-input bg-transparent p-3 text-[14.5px] text-primary-900 outline-none transition-colors focus:border-primary-600"
             aria-invalid={!!errors.message}
           />
           {errors.message ? (
@@ -130,7 +130,7 @@ export function ContactForm({ location }: { location: LocationInfo }) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-[26px] inline-flex min-h-11 w-full items-center justify-center gap-[9px] rounded-full bg-primary-600 px-6 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-navy disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-[26px] inline-flex min-h-11 w-full items-center justify-center gap-[9px] rounded-full bg-primary-600 px-6 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-primary-900 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "submitting" ? (
           <>

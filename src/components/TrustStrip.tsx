@@ -36,7 +36,7 @@ export function TrustStrip({ location }: { location: LocationInfo }) {
   ];
 
   return (
-    <section aria-label="Credentials" className="bg-navy">
+    <section aria-label="Credentials" className="bg-primary-900">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
@@ -78,7 +78,7 @@ export function TrustStrip({ location }: { location: LocationInfo }) {
               <item.icon size={16} className="mt-0.5 shrink-0 text-primary-300" />
               <div className="min-w-0">
                 <p className="text-[13px] font-semibold text-white">{item.label}</p>
-                <p className="mt-[3px] text-[12.5px] text-white/55">{item.sub}</p>
+                <p className="mt-[3px] text-[12.5px] text-white/60">{item.sub}</p>
               </div>
             </div>
           ))}

@@ -70,7 +70,7 @@ export function BeforeAfterSlider({
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="object-cover"
       />
-      <span className="absolute right-3 top-3 z-10 rounded-full bg-navy/80 px-[11px] py-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-white">
+      <span className="absolute right-3 top-3 z-10 rounded-full bg-primary-900/80 px-[11px] py-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-white">
         After
       </span>
 
@@ -83,7 +83,7 @@ export function BeforeAfterSlider({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-[11px] py-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-navy">
+        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-[11px] py-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-primary-900">
           Before
         </span>
       </div>

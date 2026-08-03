@@ -38,7 +38,7 @@ export function Services({ location }: { location: LocationInfo }) {
         </div>
 
         <div className="mt-10 grid items-stretch gap-[22px] lg:mt-[52px] lg:grid-cols-[1.35fr_1fr_1fr]">
-          <article className="relative min-h-[380px] overflow-hidden rounded-[3px] bg-navy text-white lg:min-h-[440px]">
+          <article className="relative min-h-[380px] overflow-hidden rounded-[3px] bg-primary-900 text-white lg:min-h-[440px]">
             <Image
               src={featured.image}
               alt={featured.alt}
@@ -48,7 +48,7 @@ export function Services({ location }: { location: LocationInfo }) {
             />
             <div
               aria-hidden
-              className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,40,63,.92),rgba(18,40,63,.25)_55%,rgba(18,40,63,.05))]"
+              className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,63,107,.92),rgba(18,63,107,.25)_55%,rgba(18,63,107,.05))]"
             />
             <div className="relative flex h-full flex-col justify-end p-7 lg:p-[34px]">
               {/* accent-400, not -500: the brighter pink is only 4.25:1 over
@@ -93,7 +93,7 @@ export function Services({ location }: { location: LocationInfo }) {
                     />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-sans text-[15px] font-semibold tracking-[-0.005em] text-navy">
+                    <h3 className="font-sans text-[15px] font-semibold tracking-[-0.005em] text-primary-900">
                       {service.name}
                     </h3>
                     <p className="mt-1.5 text-[13px] leading-[1.6] text-stone-400">

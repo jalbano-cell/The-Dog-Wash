@@ -25,7 +25,7 @@ export function Footer({ location }: { location: LocationInfo }) {
   return (
     // pb-28 clears the fixed mobile action bar; desktop drops back to the
     // designed 96px.
-    <footer className="bg-navy pb-28 pt-16 text-white/[0.62] lg:pb-24">
+    <footer className="bg-primary-900 pb-28 pt-16 text-white/[0.62] lg:pb-24">
       <Container>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-12">
           <div>

@@ -27,7 +27,7 @@ export function Studio({ location }: { location: LocationInfo }) {
 
   return (
     <section id="studio" className="bg-cream pb-20 lg:pb-[104px]">
-      <div className="relative h-[340px] overflow-hidden bg-navy lg:h-[420px]">
+      <div className="relative h-[340px] overflow-hidden bg-primary-900 lg:h-[420px]">
         <Image
           src="/images/about-groomer-portrait.jpg"
           alt="The Dog Wash's award-winning head groomer with a freshly groomed dog"
@@ -38,7 +38,7 @@ export function Studio({ location }: { location: LocationInfo }) {
         {/* Contrast-tuned like the hero overlay — don't lighten. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,40,63,.88),rgba(18,40,63,.6)_60%,rgba(18,40,63,.66))]"
+          className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,63,107,.88),rgba(18,63,107,.6)_60%,rgba(18,63,107,.66))]"
         />
         <Container className="relative flex h-full flex-col justify-end pb-10 text-white lg:pb-11">
           <Eyebrow className="!text-white">The {location.shortName} studio</Eyebrow>
@@ -64,7 +64,7 @@ export function Studio({ location }: { location: LocationInfo }) {
 
       <Container className="grid items-start gap-12 pt-14 lg:grid-cols-2 lg:gap-[72px] lg:pt-[72px]">
         <div>
-          <h2 className="text-[34px] leading-[1.06] tracking-[-0.015em] text-navy sm:text-[42px] lg:text-[52px]">
+          <h2 className="text-[34px] leading-[1.06] tracking-[-0.015em] text-primary-900 sm:text-[42px] lg:text-[52px]">
             Award-winning grooming,{" "}
             <em className="italic text-stone-500">built on trust and craft</em>
           </h2>
@@ -96,7 +96,7 @@ export function Studio({ location }: { location: LocationInfo }) {
                   size={17}
                   className={i % 2 === 0 ? "text-primary-600" : "text-accent-500"}
                 />
-                <p className="mt-3 text-[14px] font-semibold text-navy">{feature.title}</p>
+                <p className="mt-3 text-[14px] font-semibold text-primary-900">{feature.title}</p>
                 <p className="mt-1.5 text-[13px] leading-[1.6] text-stone-400">
                   {feature.description}
                 </p>

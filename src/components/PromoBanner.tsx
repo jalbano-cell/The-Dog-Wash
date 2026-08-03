@@ -38,7 +38,7 @@ export function PromoBanner({ location }: { location: LocationInfo }) {
   }
 
   return (
-    <div className="relative bg-navy text-[#e8f1fa]">
+    <div className="relative bg-primary-900 text-[#e8f1fa]">
       <div className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center justify-center gap-x-[10px] gap-y-1 px-12 py-[9px] text-center text-[12.5px] tracking-[0.01em]">
         {/* Decorative only, and it strands itself on its own line once the
             banner wraps — so it's desktop-only. */}

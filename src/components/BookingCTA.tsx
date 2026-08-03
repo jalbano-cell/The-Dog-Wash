@@ -29,7 +29,7 @@ export function BookingCTA({ location }: { location: LocationInfo }) {
             {`Book online in a few taps or call our ${location.shortName} studio directly — we’ll find the right time for you and your dog.`}
           </p>
           {summary ? (
-            <p className="mt-5 text-[12px] tracking-[0.06em] text-white/55">Hours: {summary}</p>
+            <p className="mt-5 text-[12px] tracking-[0.06em] text-white/60">Hours: {summary}</p>
           ) : null}
         </div>
 
@@ -37,7 +37,7 @@ export function BookingCTA({ location }: { location: LocationInfo }) {
           <button
             type="button"
             onClick={() => openBookingModal(location)}
-            className="inline-flex min-h-11 items-center justify-between gap-3 whitespace-nowrap rounded-full bg-white px-[26px] py-[15px] text-[15px] font-semibold text-navy transition-colors hover:bg-primary-100"
+            className="inline-flex min-h-11 items-center justify-between gap-3 whitespace-nowrap rounded-full bg-white px-[26px] py-[15px] text-[15px] font-semibold text-primary-900 transition-colors hover:bg-primary-100"
           >
             Book appointment
             <ArrowRight size={16} className="shrink-0" />

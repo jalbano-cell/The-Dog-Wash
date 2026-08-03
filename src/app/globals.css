@@ -7,8 +7,12 @@
   --background: #fbfcfe;
   --foreground: #2b3550;
 
-  /* Dark ground — headings, footer, photo overlays */
-  --color-navy: #12283f;
+  /* The dark ground, and the deepest step of the blue scale — not a navy.
+     The brand is pink / blue / white, so the dark sections read blue rather
+     than slate: #123f6b has roughly twice the blue-vs-red spread of the
+     #12283f it replaces. It can't go lighter than this without the on-dark
+     eyebrow tint (primary-300) dropping under 4.5:1 against it. */
+  --color-primary-900: #123f6b;
 
   /* Blues */
   --color-primary-600: #1f6cbd;  /* primary CTA, links, icons */
@@ -21,11 +25,11 @@
   /* Pink accent. This is half the brand (pink / blue / white), so it carries a
      real job rather than only hairlines: pink is the *booking action* — header,
      hero and service CTAs — plus rules, checks and stars. Blue stays structure
-     (links, icons, the booking band), navy the ground.
-     -400 is the on-dark tint: accent-500 over navy is only 4.25:1, under what
-     small text needs. -700 is the button hover, going darker so the white label
-     gains contrast rather than losing it. */
-  --color-accent-400: #f472b6;   /* on navy — 5.7:1 */
+     (links, icons, the booking band) and primary-900 the dark ground.
+     -400 is the on-dark tint: accent-500 over that ground is only 3.05:1, fine
+     for a rule but well under what a 10px label needs. -700 is the button
+     hover, going darker so the white label gains contrast, not loses it. */
+  --color-accent-400: #f78ac4;   /* on the dark ground — 4.8:1 */
   --color-accent-500: #ec4899;   /* rules, stars, icons on light — 3.5:1 */
   --color-accent-600: #db2777;   /* filled buttons — white on it is 4.6:1 */
   --color-accent-700: #b91c5c;   /* button hover — 6.2:1 */
@@ -46,7 +50,7 @@
      page background. They sit closer together than the originals; the tonal
      hierarchy is carried by size, weight and letter-spacing, which is where it
      belonged anyway. */
-  --color-stone-800: #12283f;
+  --color-stone-800: #123f6b;
   --color-stone-700: #414d69;
   --color-stone-600: #566281;    /* body — 5.9:1, unchanged */
   --color-stone-500: #5c667a;    /* secondary — 5.6:1 */
@@ -60,7 +64,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-navy: var(--color-navy);
+  --color-primary-900: var(--color-primary-900);
   --color-cream: var(--color-cream);
   --color-sand: var(--color-sand);
   --color-sand-dark: var(--color-sand-dark);
@@ -80,7 +84,6 @@
   --color-primary-300: var(--color-primary-300);
   --color-primary-500: var(--color-primary-500);
   --color-primary-600: var(--color-primary-600);
-  --color-primary-700: var(--color-primary-700);
 
   --color-accent-400: var(--color-accent-400);
   --color-accent-500: var(--color-accent-500);
@@ -212,7 +215,7 @@ body {
 
 ::selection {
   background: var(--color-primary-100);
-  color: var(--color-navy);
+  color: var(--color-primary-900);
 }
 
 /* The hero's Ken Burns drift and its content entrance are decorative — both

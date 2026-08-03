@@ -7,10 +7,10 @@ import { Eyebrow } from "@/components/ui/SectionHeading";
 
 export function LocationChooser() {
   return (
-    <div className="flex min-h-dvh flex-col bg-navy text-white">
+    <div className="flex min-h-dvh flex-col bg-primary-900 text-white">
       <Container className="flex items-center justify-between gap-4 py-8 lg:py-10">
         <div className="flex items-center gap-[9px]">
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-navy">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-primary-900">
             <PawPrint size={16} />
           </span>
           <span className="font-display text-[25px] leading-none">The Dog Wash</span>
@@ -46,7 +46,7 @@ export function LocationChooser() {
               />
               <div
                 aria-hidden
-                className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,40,63,.94),rgba(18,40,63,.4)_55%,rgba(18,40,63,.12))]"
+                className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,63,107,.94),rgba(18,63,107,.4)_55%,rgba(18,63,107,.12))]"
               />
               <div className="relative flex h-full flex-col justify-end p-7 lg:p-[34px]">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-300">
@@ -68,7 +68,7 @@ export function LocationChooser() {
                     {location.phone}
                   </span>
                 </div>
-                <span className="mt-[26px] inline-flex w-fit items-center gap-[9px] whitespace-nowrap rounded-full bg-white px-[22px] py-3 text-[14px] font-semibold text-navy">
+                <span className="mt-[26px] inline-flex w-fit items-center gap-[9px] whitespace-nowrap rounded-full bg-white px-[22px] py-3 text-[14px] font-semibold text-primary-900">
                   View this studio
                   <ArrowRight size={15} />
                 </span>

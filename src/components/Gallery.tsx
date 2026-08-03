@@ -5,7 +5,7 @@ import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 
 export function Gallery() {
   return (
-    <section id="gallery" className="bg-navy py-20 text-white lg:py-[104px]">
+    <section id="gallery" className="bg-primary-900 py-20 text-white lg:py-[104px]">
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
           <SectionHeading

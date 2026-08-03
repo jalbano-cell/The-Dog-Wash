@@ -22,7 +22,7 @@ export function Hero({ location }: { location: LocationInfo }) {
   return (
     <section
       id="top"
-      className="relative min-h-[620px] overflow-hidden bg-navy text-white lg:min-h-[780px]"
+      className="relative min-h-[620px] overflow-hidden bg-primary-900 text-white lg:min-h-[780px]"
     >
       <Image
         src="/images/hero-grooming.jpg"
@@ -36,7 +36,7 @@ export function Hero({ location }: { location: LocationInfo }) {
           copy clear WCAG AA over the photograph. Don't lighten them. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,40,63,.94),rgba(18,40,63,.62)_52%,rgba(18,40,63,.72))]"
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,63,107,.94),rgba(18,63,107,.62)_52%,rgba(18,63,107,.72))]"
       />
 
       <Container className="relative flex min-h-[620px] flex-col justify-end py-14 lg:min-h-[780px] lg:py-16">
