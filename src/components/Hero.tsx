@@ -67,7 +67,7 @@ export function Hero({ location }: { location: LocationInfo }) {
             <button
               type="button"
               onClick={() => openBookingModal(location)}
-              className="inline-flex min-h-11 items-center gap-[11px] whitespace-nowrap rounded-full bg-white px-[26px] py-[15px] text-[15px] font-semibold text-navy transition-colors hover:bg-primary-100"
+              className="inline-flex min-h-11 items-center gap-[11px] whitespace-nowrap rounded-full bg-accent-600 px-[26px] py-[15px] text-[15px] font-semibold text-white transition-colors hover:bg-accent-700"
             >
               Book an appointment
               <ArrowRight size={16} className="shrink-0" />

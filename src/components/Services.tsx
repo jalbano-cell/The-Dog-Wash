@@ -51,7 +51,9 @@ export function Services({ location }: { location: LocationInfo }) {
               className="absolute inset-0 bg-[linear-gradient(to_top,rgba(18,40,63,.92),rgba(18,40,63,.25)_55%,rgba(18,40,63,.05))]"
             />
             <div className="relative flex h-full flex-col justify-end p-7 lg:p-[34px]">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-300">
+              {/* accent-400, not -500: the brighter pink is only 4.25:1 over
+                  the photo overlay and this label sets at 10px. */}
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-400">
                 Most booked
               </p>
               <h3 className="mt-3 text-[30px] leading-[1.08] lg:text-[38px]">{featured.name}</h3>
@@ -62,7 +64,7 @@ export function Services({ location }: { location: LocationInfo }) {
                 <button
                   type="button"
                   onClick={() => openBookingModal(location, { service: featured.name })}
-                  className="inline-flex min-h-11 items-center gap-[9px] rounded-full bg-white px-[22px] text-[14px] font-semibold text-navy transition-colors hover:bg-primary-100"
+                  className="inline-flex min-h-11 items-center gap-[9px] rounded-full bg-accent-600 px-[22px] text-[14px] font-semibold text-white transition-colors hover:bg-accent-700"
                 >
                   Book this
                   <ArrowRight size={15} />

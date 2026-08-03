@@ -70,7 +70,7 @@ export function Header({ location }: { location: LocationInfo }) {
           <button
             type="button"
             onClick={() => openBookingModal(location)}
-            className="shrink-0 whitespace-nowrap rounded-full bg-primary-600 px-[22px] py-[11px] text-[13.5px] font-semibold text-white transition-colors hover:bg-navy"
+            className="shrink-0 whitespace-nowrap rounded-full bg-accent-600 px-[22px] py-[11px] text-[13.5px] font-semibold text-white transition-colors hover:bg-accent-700"
           >
             Book appointment
           </button>
@@ -122,7 +122,7 @@ export function Header({ location }: { location: LocationInfo }) {
                   setMenuOpen(false);
                   openBookingModal(location);
                 }}
-                className="min-h-11 rounded-full bg-primary-600 px-5 text-center text-[14px] font-semibold text-white"
+                className="min-h-11 rounded-full bg-accent-600 px-5 text-center text-[14px] font-semibold text-white"
               >
                 Book appointment
               </button>

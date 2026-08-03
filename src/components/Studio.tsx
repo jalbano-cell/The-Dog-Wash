@@ -85,11 +85,17 @@ export function Studio({ location }: { location: LocationInfo }) {
             hairlines between cells — cheaper than per-cell borders that would
             double up at the seams. */}
         <div className="grid gap-px rounded-[3px] border border-border bg-border sm:grid-cols-2">
-          {features.map((feature) => {
+          {features.map((feature, i) => {
             const Icon = featureIcons[feature.icon] ?? Sparkles;
             return (
               <div key={feature.title} className="bg-white px-[22px] py-5">
-                <Icon size={17} className="text-primary-600" />
+                {/* Alternating blue/pink across the grid — six identical blue
+                    glyphs was the largest place the brand's pink had gone
+                    missing entirely. */}
+                <Icon
+                  size={17}
+                  className={i % 2 === 0 ? "text-primary-600" : "text-accent-500"}
+                />
                 <p className="mt-3 text-[14px] font-semibold text-navy">{feature.title}</p>
                 <p className="mt-1.5 text-[13px] leading-[1.6] text-stone-400">
                   {feature.description}

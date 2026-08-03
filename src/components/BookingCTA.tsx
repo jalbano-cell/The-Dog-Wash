@@ -22,9 +22,11 @@ export function BookingCTA({ location }: { location: LocationInfo }) {
           <h2 className="text-[34px] leading-[1.06] sm:text-[42px] lg:text-[50px]">
             Book your dog&rsquo;s appointment <em className="italic text-primary-200">today</em>
           </h2>
+          {/* Composed as one string, not JSX text around an expression: with a
+              line break between `{shortName}` and "studio", React's text
+              separator absorbs the space and it renders "Etobicokestudio". */}
           <p className="mt-[18px] text-[16px] leading-[1.7] text-white/[0.72]">
-            Book online in a few taps or call our {location.shortName} studio directly —
-            we&rsquo;ll find the right time for you and your dog.
+            {`Book online in a few taps or call our ${location.shortName} studio directly — we’ll find the right time for you and your dog.`}
           </p>
           {summary ? (
             <p className="mt-5 text-[12px] tracking-[0.06em] text-white/55">Hours: {summary}</p>

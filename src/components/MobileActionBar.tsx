@@ -21,7 +21,7 @@ export function MobileActionBar({ location }: { location: LocationInfo }) {
       <button
         type="button"
         onClick={() => openBookingModal(location)}
-        className="min-h-[52px] flex-1 bg-primary-600 py-[15px] text-[14px] font-semibold text-white"
+        className="min-h-[52px] flex-1 bg-accent-600 py-[15px] text-[14px] font-semibold text-white"
       >
         Book appointment
       </button>

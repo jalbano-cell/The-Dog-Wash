@@ -72,7 +72,7 @@ export default function TermsPage() {
 
       <footer className="border-t border-border py-6">
         <Container className="text-center text-xs text-stone-500">
-          © {new Date().getFullYear()} The Dog Wash · Premium dog grooming in Etobicoke &amp; Georgetown
+          {`© ${new Date().getFullYear()} The Dog Wash · Premium dog grooming in Etobicoke & Georgetown`}
         </Container>
       </footer>
     </div>

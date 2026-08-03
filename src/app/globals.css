@@ -18,9 +18,17 @@
   --color-primary-100: #d6e9fb;  /* hover fill on white CTA */
   --color-primary-50: #eef5fc;
 
-  /* Pink accent — rules, checks, stars, badges */
-  --color-accent-500: #ec4899;
-  --color-accent-600: #db2777;
+  /* Pink accent. This is half the brand (pink / blue / white), so it carries a
+     real job rather than only hairlines: pink is the *booking action* — header,
+     hero and service CTAs — plus rules, checks and stars. Blue stays structure
+     (links, icons, the booking band), navy the ground.
+     -400 is the on-dark tint: accent-500 over navy is only 4.25:1, under what
+     small text needs. -700 is the button hover, going darker so the white label
+     gains contrast rather than losing it. */
+  --color-accent-400: #f472b6;   /* on navy — 5.7:1 */
+  --color-accent-500: #ec4899;   /* rules, stars, icons on light — 3.5:1 */
+  --color-accent-600: #db2777;   /* filled buttons — white on it is 4.6:1 */
+  --color-accent-700: #b91c5c;   /* button hover — 6.2:1 */
 
   /* Surfaces + borders */
   --color-cream: #fbfcfe;        /* page background */
@@ -74,8 +82,10 @@
   --color-primary-600: var(--color-primary-600);
   --color-primary-700: var(--color-primary-700);
 
+  --color-accent-400: var(--color-accent-400);
   --color-accent-500: var(--color-accent-500);
   --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
 
   --color-gold: var(--color-gold);
 
