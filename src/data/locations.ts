@@ -144,6 +144,46 @@ export function formatRating(value: number): string {
   return value.toFixed(1);
 }
 
+const DAY_ABBREVIATIONS: Record<string, string> = {
+  Monday: "Mon",
+  Tuesday: "Tue",
+  Wednesday: "Wed",
+  Thursday: "Thu",
+  Friday: "Fri",
+  Saturday: "Sat",
+  Sunday: "Sun",
+};
+
+/**
+ * The days a studio is open, collapsed into runs — "Tue–Sat", "Thu & Sun".
+ *
+ * Derived from `hours` rather than stored alongside it so the two can't drift
+ * apart when someone edits opening times. Deliberately days-only: the location
+ * chooser needs enough to pick a studio, not the full timetable.
+ *
+ * Runs are consecutive within the Mon-first `hours` array, so a studio open
+ * Sunday *and* Monday reads "Mon & Sun" rather than wrapping the week. Neither
+ * studio does that today, and a wrap-around rule would be guesswork.
+ */
+export function getOpenDaysSummary(location: LocationInfo): string {
+  const runs: string[][] = [];
+  let previousIndex = -2;
+
+  location.hours.forEach((entry, index) => {
+    if (entry.hours.toLowerCase() === "closed") return;
+    const abbreviation = DAY_ABBREVIATIONS[entry.day] ?? entry.day;
+    if (index === previousIndex + 1) runs[runs.length - 1].push(abbreviation);
+    else runs.push([abbreviation]);
+    previousIndex = index;
+  });
+
+  const parts = runs.map((run) => (run.length > 1 ? `${run[0]}–${run[run.length - 1]}` : run[0]));
+
+  if (parts.length === 0) return "By appointment";
+  if (parts.length === 1) return parts[0];
+  return `${parts.slice(0, -1).join(", ")} & ${parts[parts.length - 1]}`;
+}
+
 export function getLocationBySlug(slug: string): LocationInfo | undefined {
   return locations.find((location) => location.slug === slug);
 }
